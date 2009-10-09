@@ -260,6 +260,7 @@ void Awesomium::WebView::injectTextEvent(std::wstring text)
 #if defined(_WIN32)
 void Awesomium::WebView::injectKeyboardEvent(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
+
 	coreThread->message_loop()->PostTask(FROM_HERE, NewRunnableMethod(viewProxy, &WebViewProxy::injectKeyboardEvent, hwnd, message, wparam, lparam));
 }
 

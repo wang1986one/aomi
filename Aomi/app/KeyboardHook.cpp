@@ -19,9 +19,10 @@ KeyboardHook::~KeyboardHook()
 
 	instance = 0;
 }
-
+#include <iostream>
 void KeyboardHook::handleHook(UINT msg, HWND hwnd, WPARAM wParam, LPARAM lParam)
 {
+
 	switch(msg)
 	{
 	case WM_KEYDOWN:
@@ -52,6 +53,8 @@ void KeyboardHook::handleHook(UINT msg, HWND hwnd, WPARAM wParam, LPARAM lParam)
 
 			break;
 		}
+	default:
+		break;
 	}
 }
 

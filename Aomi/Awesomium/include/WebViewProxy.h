@@ -71,7 +71,7 @@ class WebViewProxy : public WebViewDelegate
 	bool isPopupsDirty;
 	bool needsPainting;
 	ClientObject* clientObject;
-	WebKit::WebCursorInfo curCursor;
+	WebCursor curCursor;//WebKit::WebCursorInfo curCursor;
 	std::wstring curTooltip;
 	LockImpl *renderBufferLock, *refCountLock;
 	base::RepeatingTimer<WebViewProxy> renderTimer;
