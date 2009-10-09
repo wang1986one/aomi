@@ -41,7 +41,7 @@
 #include "net/base/base64.h"
 #include "skia/ext/platform_canvas.h"
 #include <assert.h>
-
+#include <iostream>
 #include "webkit/glue/media/buffered_data_source.h"
 #include "webkit/appcache/appcache_interfaces.h"
 #include "base/process_util.h"
@@ -510,7 +510,32 @@ void WebViewProxy::injectTextEvent(string16 text) {
 #if defined(_WIN32)
 void WebViewProxy::injectKeyboardEvent(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
+	//std::cout<<"hwnd:"<<int(hwnd)
+	//	<<",message:"<<int(message)
+	//	
+	//	<<",wparam:"<<int(wparam)
+	//	
+	//	<<",lparam:"<<int(lparam)
+	//	
+	//	<<std::endl;
+
+	switch(message)
+	{
+	case WM_SYSKEYDOWN:
+	case WM_KEYDOWN:
+	case WM_SYSKEYUP:
+	case WM_KEYUP:
+	case WM_IME_CHAR:
+	case WM_SYSCHAR:
+	case WM_CHAR:
+        break;
+		
+    default:
+        return;
+	}
+	
 	WebKit::WebKeyboardEvent event (WebKit::WebInputEventFactory::keyboardEvent(hwnd, message, wparam, lparam));
+	
 	view->handleInputEvent(event);
 
 	checkKeyboardFocus();
@@ -1409,13 +1434,25 @@ void WebViewProxy::didBlur()
 
 void WebViewProxy::didChangeCursor(const WebKit::WebCursorInfo& cursor)
 {
-	if(cursor.type!=curCursor.type)
+			// TODO(darin): Eliminate this temporary.
+	WebCursor cursor_(cursor);
+
+	// Only send a SetCursor message if we need to make a change.
+	if (!curCursor.IsEqual(cursor_)) {
+		curCursor = cursor_;
+
+		#if defined(_WIN32)
+			Awesomium::WebCore::Get().queueEvent(new WebViewEvents::ChangeCursor(parent, cursor_.GetCursor(GetModuleHandle(0))));
+		#endif
+	}
+
+	/*if(cursor.type!=curCursor.type)
 	{
 		curCursor = cursor;
 #if defined(WIN32)
 		Awesomium::WebCore::Get().queueEvent(new WebViewEvents::ChangeCursor(parent, curCursor.GetCursor(GetModuleHandle(0))));
 #endif
-	}
+	}*/
 }
 
 // Returns the rectangle of the WebWidget in screen coordinates.
@@ -1442,7 +1479,7 @@ WebKit::WebRect WebViewProxy::rootWindowRect()
 
 WebKit::WebRect WebViewProxy::windowResizerRect()
 {
-	return windowRect();
+	return WebKit::WebRect();
 }
 
 // Keeps track of the necessary window move for a plugin window that resulted
@@ -1510,7 +1547,6 @@ void WebViewProxy::handleMouseEvent(WebKit::WebInputEvent::Type type, short butt
 				return;
 		}
 	}
-
 	view->handleInputEvent(event);
 
 	if(type != WebKit::WebInputEvent::MouseMove)
