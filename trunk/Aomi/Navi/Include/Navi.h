@@ -388,12 +388,19 @@ namespace NaviLibrary
 		void windowClosed(Ogre::RenderWindow* rw);
 		void windowFocusChange(Ogre::RenderWindow* rw);
 
-		void onBeginNavigation(const std::string& url);
-		void onBeginLoading();
+		void onBeginNavigation(const std::string& url, const std::wstring& frameName);
+		void onBeginLoading(const std::string& url, const std::wstring& frameName, int statusCode, const std::wstring& mimeType);
 		void onFinishLoading();
 		void onCallback(const std::string& name, const Awesomium::JSArguments& args);
-		void onReceiveTitle(const std::wstring& title);
-		void onChangeCursor(Awesomium::WebCursor cursor);
+		void onReceiveTitle(const std::wstring& title, const std::wstring& frameName);
+		
+		void onChangeTooltip(const std::wstring& tooltip);
+		void onChangeCursor(const HCURSOR& cursor) ;//void onChangeCursor(Awesomium::WebCursor cursor);
+
+	virtual void onChangeKeyboardFocus(bool isFocused);
+	virtual void onChangeTargetURL(const std::string& url);
+
+
 	};
 
 }

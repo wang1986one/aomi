@@ -24,7 +24,7 @@
 */
 
 #include "PlatformUtils.h"
-
+#include "base/basictypes.h"
 #ifndef SUPPRESS_LEAK_CHECKING
 #define SUPPRESS_LEAK_CHECKING 1
 #endif
