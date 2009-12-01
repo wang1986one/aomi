@@ -675,11 +675,11 @@ void Navi::injectMouseUp(int xPos, int yPos)
 	webView->injectMouseUp(Awesomium::LEFT_MOUSE_BTN);
 }
 
-void Navi::onBeginNavigation(const std::string& url)
+void Navi::onBeginNavigation(const std::string& url, const std::wstring& frameName)
 {
 }
 
-void Navi::onBeginLoading()
+void Navi::onBeginLoading(const std::string& url, const std::wstring& frameName, int statusCode, const std::wstring& mimeType)
 {
 }
 
@@ -695,10 +695,15 @@ void Navi::onCallback(const std::string& name, const Awesomium::JSArguments& arg
 		i->second(args);
 }
 
-void Navi::onReceiveTitle(const std::wstring& title)
+void Navi::onReceiveTitle(const std::wstring& title, const std::wstring& frameName)
+{
+}
+void Navi::onChangeTooltip(const std::wstring& tooltip)
+{}
+void Navi::onChangeCursor(const HCURSOR& cursor)
 {
 }
 
-void Navi::onChangeCursor(Awesomium::WebCursor cursor)
-{
-}
+
+void Navi::onChangeKeyboardFocus(bool isFocused){}
+void Navi::onChangeTargetURL(const std::string& url){}
