@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<project name="SanUnitTest" default="build" basedir=".">
+
+
+  <condition property="project.rebuild" value="true">
+    <isset property="is-windows"/>
+  </condition>
+
+  <target name="build">
+
+
+
+    <ant antfile="./build_template.xml" target="build" inheritAll="true" >
+
+      <property name="project.name" value="SanUnitTest"/>
+      <property name="project.dir" value=".\SanUnitTest"/>
+      <property name="lib.type" value="executable"/>
+      <property name="subsystem" value="console"/>
+
+
+      <property name="project.orz.lib" value="View_Fmod, View_OGRE3D, View_OIS, Framework_Base, Toolkit_Base, View_SingleChip, View_CEGUI, Toolkit_Components"/>
+      <property name="project.lib" value="SanController"/>
+      <property name="project.include.dir" value=".\SanUnitTest\include;.;.\SanController\include"/>
+      <property name="project.src" value="src\*.cpp"/>
+    </ant>
+  </target>
+
+</project>

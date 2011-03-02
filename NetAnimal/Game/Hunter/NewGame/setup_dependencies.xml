@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project name="SetupDependencies" default="setup-dependencies" basedir=".">
+
+
+
+
+<target name="check-dependencies" >
+
+  <available file="./all_dependencies" type="dir" property="all_dependencies.dir" />
+
+  <condition property="all_dependencies.update" value="true">
+    <isset property="all_dependencies.dir"/>
+  </condition>
+
+
+  <condition property="all_dependencies.co" value="true">
+    <not>
+      <isset property="all_dependencies.dir"/>
+    </not>
+  </condition>
+
+
+
+</target>
+  
+<target name="svn-update" if = "all_dependencies.update" depends="check-dependencies" >
+
+  <echo message="all_dependencies.update"/>
+  <exec executable="cmd" failonerror="true"  dir="./all_dependencies">
+    <arg value="/c"/>
+    <arg value="svn.exe"/>
+    <arg value="update"/>
+  </exec>
+</target>
+
+<target name="svn-co" if = "all_dependencies.co" depends="check-dependencies" >
+  
+  <echo message="all_dependencies.co"/>
+  <exec executable="cmd" failonerror="true"  dir=".">
+    <arg value="/c"/>
+    <arg value="svn.exe"/>
+    <arg value="co"/>
+    <arg value="http://apache:123456@192.168.1.101:81/svn/build"/>
+    <arg value="all_dependencies"/>
+  </exec>
+
+</target>
+  
+  
+<target name="setup-dependencies" depends="svn-co, svn-update" >
+  
+
+  
+  <echo message="setup all dependencies"/>
+
+</target>
+
+</project>

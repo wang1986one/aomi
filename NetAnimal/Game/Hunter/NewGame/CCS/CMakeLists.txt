@@ -1,0 +1,38 @@
+
+ORZ_PRE_BUILD_EVENT(CCS)
+
+ADD_DEFINITIONS(-D_CONSOLE -D${LIB_NAME_TOUPPER}_EXPORTS -DCCS_LIB -DCCS_OGRE_1_7)
+
+
+INCLUDE_DIRECTORIES(
+include
+)
+
+
+# specify a precompiled header to use
+use_precompiled_header(SanController 
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/CCSPrerequisites.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/CCSPrerequisites.cpp"
+)
+
+ORZ_SET_PROJECT_FILES(include include/ .h)
+ORZ_SET_PROJECT_FILES(src src/ .cpp)
+
+
+
+ADD_LIBRARY(${LIB_NAME} SHARED ${${LIB_NAME}_FILE})
+
+TARGET_LINK_LIBRARIES(${LIB_NAME} 
+debug OgreMain_d 
+optimized OgreMain 
+)
+INSTALL(TARGETS ${LIB_NAME}
+ RUNTIME DESTINATION ${SAN_PROJECT_COMPONENT_DIR}/debug
+ CONFIGURATIONS Debug
+)
+
+INSTALL(TARGETS ${LIB_NAME}
+ RUNTIME DESTINATION ${SAN_PROJECT_COMPONENT_DIR}/release
+ CONFIGURATIONS Release
+)
+ORZ_POST_BUILD_EVENT()

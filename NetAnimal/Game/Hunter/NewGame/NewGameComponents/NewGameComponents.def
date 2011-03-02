@@ -1,0 +1,4 @@
+LIBRARY	"NewGameComponents"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin
