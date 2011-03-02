@@ -1,0 +1,4 @@
+LIBRARY	"WheelAnimalScene"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin

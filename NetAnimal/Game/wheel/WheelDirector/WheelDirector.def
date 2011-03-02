@@ -1,0 +1,4 @@
+LIBRARY	"WheelDirector"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin
