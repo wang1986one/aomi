@@ -1,0 +1,4 @@
+LIBRARY	"CodingComponent"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin
