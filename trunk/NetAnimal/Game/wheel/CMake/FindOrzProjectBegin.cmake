@@ -1,0 +1,11 @@
+ORZ_FIND(ORZ_PROJECT ORZ_PROJECT media/resources.cfg.in)
+UNSET(ORZ_PROJECT_BIN_DIR CACHE)
+UNSET(ORZ_PROJECT_INCLUDE_DIR CACHE)
+UNSET(ORZ_PROJECT_LIBRARY_DIR CACHE)
+FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/media ORZ_MEDIA_DIR)
+configure_file(${ORZ_MEDIA_DIR}/resources.cfg.in ${ORZ_MEDIA_DIR}/resources.cfg)
+configure_file(${ORZ_MEDIA_DIR}/WheelScene.cfg.in ${ORZ_MEDIA_DIR}/WheelScene.cfg)
+configure_file(${ORZ_MEDIA_DIR}/WheelScene2.cfg.in ${ORZ_MEDIA_DIR}/WheelScene2.cfg)
+
+INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/component/debug/ DESTINATION ./bin/debug/ PATTERN "CVS" EXCLUDE PATTERN ".svn" )
+INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/component/release/ DESTINATION ./bin/release/ PATTERN "CVS" EXCLUDE PATTERN ".svn" )
