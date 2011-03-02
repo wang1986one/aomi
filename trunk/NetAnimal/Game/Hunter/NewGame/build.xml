@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<project name="San" default="test_all" basedir=".">
+
+
+
+  <taskdef resource="cpptasks.tasks"/>
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+
+  <property name="debug" value="true"/>
+  <property name="out.dir" value=".\out_file"/>
+  <property name="build.dir" value=".\build_file"/>
+
+
+
+  <target name="setup-dependencies">
+    <ant antfile="./setup_dependencies.xml" target="setup-dependencies" inheritAll="true"/>
+  </target>
+
+
+  <target name="init">
+
+    <property name="cc" value="msvc"/>
+    <property name="is-windows" value="1"/>
+
+
+    <condition property="is-debug" value="true">
+      <istrue value="${debug}"/>
+    </condition>
+
+    <condition property="is-release" value="true">
+      <isfalse value="${debug}"/>
+    </condition>
+
+    <condition property="debug.release" value="debug">
+      <isset property="is-debug"/>
+    </condition>
+    <property name="debug.release" value="release"/>
+
+
+    <condition property="_d" value="_d">
+      <isset property="is-debug"/>
+    </condition>
+
+    <property name="_d" value=""/>
+
+
+
+    <condition property="d" value="d">
+      <isset property="is-debug"/>
+    </condition>
+
+    <property name="d" value=""/>
+
+
+    <!--<property name="project.dependencies.lib.dir" value=".\all_dependencies\OrzSDK\lib\${debug.release};.\all_dependencies\OrzSDK\dependencies\lib;.\all_dependencies\OrzSDK\dependencies\lib\${debug.release}"/>-->
+
+    <!--<property name="project.dependencies.boost.lib" value=".\all_dependencies\OrzSDK\lib\${debug.release};.\all_dependencies\OrzSDK\dependencies\lib;.\all_dependencies\OrzSDK\dependencies\lib\${debug.release}"/>-->
+
+
+
+    <property name="boost.lib.dir"  value=".\all_dependencies\OrzSDK\dependencies\lib\${debug.release}"/>
+    <property name="project.orz.lib.dir"  value=".\all_dependencies\OrzSDK\lib\${debug.release}"/>
+    <property name="project.orz.sc.lib.dir"  value=".\all_dependencies\OrzSingleChip\lib\${debug.release}"/>
+  
+
+    <property name="project.orz.bin.dir"  value=".\all_dependencies\OrzSDK\bin\${debug.release}"/>
+    <property name="project.orz.sc.bin.dir"  value=".\all_dependencies\OrzSingleChip\bin\${debug.release}"/>
+
+    <property name="project.dependencies.media.dir"  value=".\all_dependencies\OrzSDK\media"/>
+
+    <property name="project.dependencies.include.dir"  value=".\all_dependencies\OrzSDK\include;.\all_dependencies\OrzSDK\dependencies\include;.\all_dependencies\OrzSingleChip\include"/>
+    <property name="project.dependencies.lib.dir"  value=".\all_dependencies\OrzSDK\lib\${debug.release}"/>
+
+    <property name="project.system.lib"  value="kernel32, user32, gdi32, winspool, comdlg32, advapi32, shell32, ole32, oleaut32, uuid, odbc32, odbccp32"/>
+
+
+  </target>
+
+
+
+  <target name="build" depends="setup-dependencies, init, setup-all">
+
+    <ant antfile="./SanController/build.xml" target="build" inheritAll="true" />
+    <ant antfile="./SanModel/build.xml" target="build" inheritAll="true" />
+    <ant antfile="./SanExecute/build.xml" target="build" inheritAll="true" />
+    <ant antfile="./SanUnitTest/build.xml" target="build" inheritAll="true" />
+
+  </target>
+
+  <target name="setup-all">
+
+    <mkdir dir=".\${out.dir}\lib\${debug.release}"/>
+    <mkdir dir=".\${out.dir}\bin\${debug.release}"/>
+    <mkdir dir=".\${out.dir}\media"/>
+
+    <copy todir=".\${out.dir}\bin\${debug.release}"  overwrite="false">
+      <fileset dir="${project.orz.bin.dir}"/>
+      <fileset dir="${project.orz.sc.bin.dir}"/>
+    </copy>
+
+    <copy todir=".\${out.dir}\media"  overwrite="false">
+      <fileset dir="${project.dependencies.media.dir}"/>
+    </copy>
+  </target>
+
+  <target name="test_all" depends="build">
+    <ant antfile="./run_unittest.xml" target="test_all" inheritAll="true"/>
+    <!--<ant antfile="./UnitTest/UnitTest.xml" target="test_all" inheritAll="true"/>-->
+  </target>
+
+
+
+</project>

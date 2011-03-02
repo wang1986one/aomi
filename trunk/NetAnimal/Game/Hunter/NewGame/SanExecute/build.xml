@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="SanExecute" default="build" basedir="./..">
+
+	
+	<property name="project.system.lib" value="dl"/>
+
+	
+	<target name="build" >
+	
+		
+		<ant antfile="./build_template.xml" target="build" inheritAll="true" >
+		
+			<property name="project.name" value="SanExecute"/>
+			<property name="project.dir" value=".\SanExecute"/>
+			<property name="lib.type" value="executable"/>
+			<property name="subsystem" value="console"/>
+      <property name="project.orz.lib" value="Toolkit_Base,Framework_Base, View_Fmod, View_OGRE3D, View_OIS, View_CEGUI, View_SingleChip"/>
+     
+
+      <property name="project.include.dir" value=".\SanExecute\include;."/>
+			
+			<property name="project.src" value="src\*.cpp"/>
+		</ant>  
+
+	</target>
+</project>

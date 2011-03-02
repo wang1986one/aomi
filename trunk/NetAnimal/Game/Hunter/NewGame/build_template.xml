@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<project name="BuildTemplate" default="build" basedir=".">
+
+  <target name="windows_shared_put_out" if = "is-windows-shared">
+
+
+    <exec executable="cmd" failonerror="true"  dir="${build.dir}\${debug.release}">
+      <arg value="/c"/>
+      <arg value="mt.exe"/>
+      <arg value="-manifest"/>
+      <arg value="${project.name}.dll.manifest"/>
+      <arg value="-outputresource:${project.name}.dll;2"/>
+    </exec>
+
+    <copy file="${build.dir}\${debug.release}\${project.name}.dll" todir=".\${out.dir}\bin\${debug.release}" overwrite="true" />
+    <copy file="${build.dir}\${debug.release}\${project.name}.lib" todir=".\${out.dir}\lib\${debug.release}" overwrite="true" />
+
+  </target>
+
+  <target name="windows_executable_put_out" if = "is-windows-executable">
+
+
+    <exec executable="cmd" failonerror="true"  dir="${build.dir}\${debug.release}">
+      <arg value="/c"/>
+      <arg value="mt.exe"/>
+      <arg value="-manifest"/>
+      <arg value="${project.name}.exe.manifest"/>
+      <arg value="-outputresource:${project.name}.exe;1"/>
+    </exec>
+
+    <copy file="${build.dir}\${debug.release}\${project.name}.exe" todir=".\${out.dir}\bin\${debug.release}" overwrite="true" />
+
+
+
+  </target>
+
+  <target name="windows_static_put_out" if = "is-windows-static">
+    <copy file="${build.dir}\${debug.release}\${project.name}.lib" todir=".\${out.dir}\lib\${debug.release}" overwrite="true" />
+  </target>
+
+  <target name="windows_put_out" if = "is-windows" depends="windows_shared_put_out, windows_static_put_out, windows_executable_put_out">
+  </target>
+
+
+
+
+
+
+
+
+
+  <target name="setup" >
+
+    <condition property="is-static" value="1">
+      <equals arg1="${lib.type}" arg2="static"/>
+    </condition>
+
+    <condition property="is-shared" value="1">
+      <equals arg1="${lib.type}" arg2="shared"/>
+    </condition>
+
+    <condition property="is-executable" value="1">
+      <equals arg1="${lib.type}" arg2="executable"/>
+    </condition>
+
+
+    <condition property="is-windows-shared" value="1">
+      <and>
+        <isset property="is-windows"/>
+        <isset property="is-shared"/>
+      </and>
+    </condition>
+
+    <condition property="is-windows-executable" value="1">
+      <and>
+        <isset property="is-windows"/>
+        <isset property="is-executable"/>
+      </and>
+    </condition>
+
+    <condition property="is-windows-static" value="1">
+      <and>
+        <isset property="is-windows"/>
+        <isset property="is-static"/>
+      </and>
+    </condition>
+
+    <property name="executable.extension" value=".exe"/>
+    <property name="project.rebuild" value="true"/>
+
+
+
+
+
+  </target>
+
+
+
+
+  <target name="build"  depends="setup" >
+
+
+
+    <ant antfile="os_init.xml" target="help" inheritAll="true"/>
+
+
+    <mkdir dir="${build.dir}\obj\${debug.release}\${project.name}"/>
+    <mkdir dir="${build.dir}\${debug.release}"/>
+
+    <echo message="${lib.type}"/>
+    <echo message="???${project.orz.lib}!!!"/>
+
+
+    <echo message="${project.include}"/>
+
+    <echo message="${project.dependencies.lib}"/>
+
+    <cc name="${cc}"
+    subsystem="${subsystem}"
+    debug="${debug}"
+    outfile="${build.dir}\${debug.release}\${project.name}"
+    exceptions="true"
+    rtti="true"
+    rebuild="${project.rebuild}"
+    multithreaded="true"
+    objdir="${build.dir}\obj\${debug.release}\${project.name}"
+    outtype="${lib.type}">
+
+
+      <defineset define="${project.define}" if="project.define" />
+      <includepath path="${project.include.dir}"/>
+      <fileset dir="${project.dir}" includes="${project.src}"/>
+
+
+
+
+      <defineset define="_DEBUG" if="is-debug"/>
+      <defineset define="NDEBUG" if="is-release"/>
+      <defineset define="WIN32" if="is-windows"/>
+      <defineset define="RTC1" if="is-windows"/>
+      <defineset define="_WINDOWS" if="is-windows"/>
+      <defineset define="_USRDLL" if="is-shared" />
+      <defineset define="UNICODE"/>
+      <defineset define="_UNICODE"/>
+
+
+
+      <linkerarg value='/DEF:"${project.def}"' if="project.def"/>
+
+
+      <includepath path="${project.dependencies.include.dir}"/>
+      <fileset dir="${boost.lib.dir}" includes="*.lib"/>
+      <libset dir="${project.orz.lib.dir}" libs="${project.orz.lib}" if="project.orz.lib"/>
+      <libset dir="${project.orz.sc.lib.dir}" libs="${project.orz.lib}" if="project.orz.lib"/>
+      <libset dir="${project.dependencies.lib.dir}" libs="${project.dependencies.lib}" if="project.dependencies.lib"/>
+      <libset dir=".\${out.dir}\lib\${debug.release}" libs="${project.lib}" if="project.lib"/>
+
+      <syslibset libs="${project.system.lib}" if="project.system.lib"/>
+
+    </cc>
+
+    <antcall target="windows_put_out"/>
+
+
+  </target>
+
+  <target name="clean" >
+
+  </target>
+</project>

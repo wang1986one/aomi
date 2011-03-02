@@ -1,0 +1,4 @@
+LIBRARY	"SanController"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin

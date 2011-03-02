@@ -1,0 +1,4 @@
+LIBRARY	"NewGameSceneComponent"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin

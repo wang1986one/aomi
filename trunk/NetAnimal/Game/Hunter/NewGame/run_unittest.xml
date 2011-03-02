@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<project name="RunUnittest" default="test_all" basedir=".">
+
+
+
+ 
+
+  <target name="test_all">
+    <echo>
+      ${test.output.dir}
+    </echo>
+    <exec executable="${out.dir}\bin\${debug.release}\SanUnitTest" failonerror="true"  dir="${out.dir}\bin\${debug.release}\">
+    </exec>
+
+  </target>
+</project>

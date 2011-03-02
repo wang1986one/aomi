@@ -1,0 +1,4 @@
+LIBRARY	"SanModel"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin
