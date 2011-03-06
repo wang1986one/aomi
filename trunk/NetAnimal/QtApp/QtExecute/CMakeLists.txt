@@ -53,7 +53,7 @@ View_OGRE3D
 View_Fmod
 debug OgreMain_d 
 optimized OgreMain 
-${QT_QTOPENGL_LIBRARY} 
+${QT_QTWEBKIT_LIBRARY} 
 )
 
 

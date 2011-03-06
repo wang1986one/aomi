@@ -26,18 +26,13 @@ public:
 	size_t getHeight();
 	void orzWindowResizeEvent(void);
 
-	/*void paintEvent(QPaintEvent *evt)
-	{
-		Q_UNUSED(evt);
-		if(Orz::SystemInterface::getSingleton().isInit())
-			Orz::SystemInterface::getSingleton().update(0.0f);
-	}*/
+	
 
 	void timerEvent(QTimerEvent* evt)
 	{
 		Q_UNUSED(evt);
-		if(Orz::SystemInterface::getSingleton().isInit())
-			Orz::SystemInterface::getSingleton().update(0.004f);
+	/*	if(Orz::SystemInterface::getSingleton().isInit())
+			Orz::SystemInterface::getSingleton().update(0.004f);*/
 	}
 	QMenu * createQMenu(const std::wstring & text)
 	{

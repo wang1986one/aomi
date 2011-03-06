@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>QtExecuteClass</class>
  <widget class="QMainWindow" name="QtExecuteClass">
@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1297</width>
-    <height>910</height>
+    <height>911</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -47,7 +47,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-       <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tab">
        <property name="toolTip">
         <string/>
        </property>
@@ -78,13 +78,409 @@
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="LogWindow" name="_logWindow">
-       <property name="readOnly">
-        <bool>true</bool>
+      <widget class="QTabWidget" name="tabWidget_2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>200</height>
+        </size>
        </property>
-       <property name="acceptRichText">
-        <bool>true</bool>
+       <property name="currentIndex">
+        <number>0</number>
        </property>
+       <widget class="QWidget" name="tab_1">
+        <attribute name="title">
+         <string>控制台</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>1251</width>
+           <height>161</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>按键</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>1221</width>
+            <height>141</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>红色兔子</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="text">
+              <string>黄色兔子</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="pushButton_4">
+             <property name="text">
+              <string>绿色兔子</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButton_6">
+             <property name="text">
+              <string>装</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QPushButton" name="pushButton_7">
+             <property name="text">
+              <string>和</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="6">
+            <widget class="QPushButton" name="pushButton_8">
+             <property name="text">
+              <string>闲</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLCDNumber" name="lcdNumber_5">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton_9">
+             <property name="text">
+              <string>红色猴子</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="pushButton_10">
+             <property name="text">
+              <string>黄色猴子</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="pushButton_11">
+             <property name="text">
+              <string>绿色猴子</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QPushButton" name="pushButton_13">
+             <property name="text">
+              <string>红色熊猫</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QPushButton" name="pushButton_14">
+             <property name="text">
+              <string>黄色熊猫</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QPushButton" name="pushButton_15">
+             <property name="text">
+              <string>绿色熊猫</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="6">
+            <widget class="QPushButton" name="pushButton_17">
+             <property name="text">
+              <string>红色老虎</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="6">
+            <widget class="QPushButton" name="pushButton_18">
+             <property name="text">
+              <string>黄色老虎</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="6">
+            <widget class="QPushButton" name="pushButton_19">
+             <property name="text">
+              <string>绿色老虎</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLCDNumber" name="lcdNumber_6">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLCDNumber" name="lcdNumber_7">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLCDNumber" name="lcdNumber_8">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLCDNumber" name="lcdNumber_9">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QLCDNumber" name="lcdNumber_10">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLCDNumber" name="lcdNumber_11">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QLCDNumber" name="lcdNumber_13">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="5">
+            <widget class="QLCDNumber" name="lcdNumber_12">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="5">
+            <widget class="QLCDNumber" name="lcdNumber_14">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QLCDNumber" name="lcdNumber_15">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7">
+            <widget class="QLCDNumber" name="lcdNumber_16">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="7">
+            <widget class="QLCDNumber" name="lcdNumber_18">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="7">
+            <widget class="QLCDNumber" name="lcdNumber_17">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="7">
+            <widget class="QLCDNumber" name="lcdNumber_19">
+             <property name="numDigits">
+              <number>5</number>
+             </property>
+             <property name="segmentStyle">
+              <enum>QLCDNumber::Flat</enum>
+             </property>
+             <property name="value" stdset="0">
+              <double>9999.000000000000000</double>
+             </property>
+             <property name="intValue" stdset="0">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>用户信息</string>
+        </attribute>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>1261</width>
+           <height>161</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>用户信息</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </item>
     </layout>
@@ -109,18 +505,36 @@
    <addaction name="menuTest"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_2">
+   <property name="maximumSize">
+    <size>
+     <width>350</width>
+     <height>596</height>
+    </size>
+   </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QTreeWidget" name="treeWidget">
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
+      <widget class="QWebView" name="webView">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>558</height>
+        </size>
+       </property>
+       <property name="url">
+        <url>
+         <string>http://duoheyi.com/chat/</string>
+        </url>
+       </property>
       </widget>
      </item>
     </layout>
@@ -139,15 +553,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+  <customwidget>
    <class>OrzWindow</class>
    <extends>QWidget</extends>
    <header>OrzWindow.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>LogWindow</class>
-   <extends>QTextEdit</extends>
-   <header location="global">LogWindow.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

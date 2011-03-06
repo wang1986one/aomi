@@ -32,15 +32,6 @@ public:
 
 protected:
 
-	
-	  //virtual void initializeGL(void);
-	  //virtual void resizeGL( int, int );
-	  //virtual void paintGL(void);
-	 
-	/*void createLogic();
-	LogicConfiger::ConfigerPtr getLogic()
-	bool init(void);
-	void shutdown(void);*/
 private:
 	Orz::SystemPtr _system;
 	Orz::LogicConfiger::LogicFacadePtr  _logic;//(new LogicConfiger::LogicFacade());
@@ -48,9 +39,6 @@ private:
 	bool _init;
 	
 	QTimer* _autoUpdateTimer;
-		//SystemPtr system(new SystemList<boost::mpl::list</*QtLogManager,*/ SimpleTimerManager,OgreGraphicsManager,/* CEGUIManager,*/ QtInputManager, PluginsManager> >());
-	//SystemInterface::getSingleton().setParame("w32_mouse",Orz::Variant(true));
-	//(new LogicConfiger::Configer());
 };
 
 
