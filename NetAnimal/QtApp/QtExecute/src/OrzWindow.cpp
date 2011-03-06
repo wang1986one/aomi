@@ -124,7 +124,7 @@ bool OrzWindow::init(void)
 		setAttribute(Qt::WA_PaintOnScreen);
 		setAttribute(Qt::WA_NoSystemBackground);
 		using namespace Orz;
-		_system.reset(new SystemList<boost::mpl::list</*QtLogManager,*/ SimpleTimerManager,OgreGraphicsManager,/* CEGUIManager,*/ QtInputManager, PluginsManager> >());
+		_system.reset(new SystemList<boost::mpl::list<SimpleTimerManager,OgreGraphicsManager, QtInputManager, PluginsManager> >());
 		//SystemPtr system();
 		_system->setParame("w32_mouse",Orz::Variant(true));
 		_logic.reset(new LogicConfiger::LogicFacade());
@@ -174,25 +174,6 @@ void OrzWindow::resizeEvent(QResizeEvent* evt)
 	_window->resize(width(), height());
 
 	this->setVisible(true);
-	//if(m_pOgreRenderWindow)
-	//{
-	//	m_pOgreRenderWindow->resize(width(), height());
-	//	m_pOgreRenderWindow->windowMovedOrResized();
-
-	//	for(int ct = 0; ct < m_pOgreRenderWindow->getNumViewports(); ++ct)
-	//	{
-	//		Ogre::Viewport* pViewport = m_pOgreRenderWindow->getViewport(ct);
-	//		Ogre::Camera* pCamera = pViewport->getCamera();
-	//		pCamera->setAspectRatio(static_cast<Ogre::Real>(pViewport->getActualWidth()) / static_cast<Ogre::Real>(pViewport->getActualHeight()));
-	//	}
-	//}
+	
 }
 
-//void OrzWindow::resizeGL( int width, int height  )
-//{
-//	_window->resize(width, height);
-//}
-//void OrzWindow::paintGL(void)
-//{
-//	_system->update(0.015f);
-//}

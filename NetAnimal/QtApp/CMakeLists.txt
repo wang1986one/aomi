@@ -26,6 +26,8 @@ INSTALL(FILES
 ${QT_BINARY_DIR}/QtGuid4.dll
 ${QT_BINARY_DIR}/QtCored4.dll
 ${QT_BINARY_DIR}/QtWebKitd4.dll
+${QT_BINARY_DIR}/QtNetworkd4.dll
+${QT_BINARY_DIR}/phonond4.dll
  DESTINATION ./bin/Debug)
  
  
@@ -33,6 +35,8 @@ INSTALL(FILES
 ${QT_BINARY_DIR}/QtGui4.dll
 ${QT_BINARY_DIR}/QtCore4.dll
 ${QT_BINARY_DIR}/QtWebKit4.dll
+${QT_BINARY_DIR}/QtNetwork4.dll
+${QT_BINARY_DIR}/phonon4.dll
  DESTINATION ./bin/Release)
  
  

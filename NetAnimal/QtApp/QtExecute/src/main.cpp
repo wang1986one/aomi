@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 	if(window->init())
 	{
 		window->show();
+		window->showMaximized();
 		ret = app.exec();
 		window->shutdown();
 	}

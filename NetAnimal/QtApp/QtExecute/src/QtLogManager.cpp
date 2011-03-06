@@ -1,14 +1,4 @@
 #include "QtLogManager.h"
-//
-//QtLogManager& QtLogManager::getSingleton(void)
-//{
-//	return static_cast<QtLogManager&> (ILogManager::getSingleton());
-//}
-//QtLogManager* QtLogManager::getSingletonPtr(void)
-//{
-//	return static_cast<QtLogManager*> (ILogManager::getSingletonPtr());
-//}
-
 
 
 void QtLogManager::addWindow(LogWindow * window)
