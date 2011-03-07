@@ -1,0 +1,4 @@
+LIBRARY	"PUComponent"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin
