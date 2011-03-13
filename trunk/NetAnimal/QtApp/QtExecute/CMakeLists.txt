@@ -5,6 +5,7 @@ SET(QT_USE_QTMAIN true)
 
 INCLUDE(${QT_USE_FILE} )
 
+INCLUDE(OrzSingleChip)
 INCLUDE_DIRECTORIES("include")
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
@@ -49,6 +50,9 @@ TARGET_LINK_LIBRARIES(${EXE_NAME}
 ${QT_LIBRARIES}
 Toolkit_Base
 Framework_Base
+View_SingleChip
+View_OIS 
+View_CEGUI
 View_OGRE3D
 View_Fmod
 debug OgreMain_d 

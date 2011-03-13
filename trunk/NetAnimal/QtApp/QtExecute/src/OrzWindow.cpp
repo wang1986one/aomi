@@ -3,7 +3,18 @@
 #include "QtInputManager.h"
 #include "QTimer.h"
 #include <orz/View_OGRE3D/OgreGraphicsManager.h>
+#include <orz/Toolkit_Base/EventSystem/EventWorldUpdate.h>
 
+#include <orz/Toolkit_Base/DynLibManager.h>
+#include <orz/Toolkit_Base/LogManager.h>
+#include <orz/View_OGRE3D/OgreGraphicsManager.h>
+#include <orz/View_CEGUI/CEGUIManager.h>
+#include <orz/View_OIS/OISInputManager.h>
+#include <orz/View_Fmod/FmodSoundManager.h>
+
+//#include <orz/View_AomiUI/AomiUIManager.h>
+
+#include <orz/View_SingleChip/SingleChipManager.h>
 namespace Orz
 {
 
@@ -124,19 +135,36 @@ bool OrzWindow::init(void)
 		setAttribute(Qt::WA_PaintOnScreen);
 		setAttribute(Qt::WA_NoSystemBackground);
 		using namespace Orz;
-		_system.reset(new SystemList<boost::mpl::list<SimpleTimerManager,OgreGraphicsManager, QtInputManager, PluginsManager> >());
+
+		_system.reset(new SystemList<boost::mpl::list<SimpleTimerManager,OgreGraphicsManager, QtInputManager, PluginsManager,CEGUIManager, FmodSoundManager, SingleChipManager, EventWorldUpdate> >());
 		//SystemPtr system();
 		_system->setParame("w32_mouse",Orz::Variant(true));
 		_logic.reset(new LogicConfiger::LogicFacade());
 		LogicConfiger::ManualBuilder builder;
 		//
 		////loader->addPlugin("");
-
+		//增加两个个动态插件
+		builder.addPlugin("SanController");
 		builder.addPlugin("Model_Base");
-		builder.setTheater("TheaterBase", "main");
+		builder.addPlugin("MyWheelDirector");
+		builder.addPlugin("WheelAnimal2Model");
+		builder.addPlugin("SanModel");
+		builder.addPlugin("NewGameComponents");
+		builder.addPlugin("NewGameSceneComponent");
+		builder.addPlugin("GameNeedleComponent");
+		builder.addPlugin("GameDiamondComponent");
+		builder.addPlugin("VedioUIComponent");
+
+		builder.addPlugin("CodingComponent");
+		builder.addPlugin("MyJobComponent");
+		//设置大厅
+		builder.setTheater("TheaterBase","main");
 		////builder.addDirector("AvatarEditorDirector", "avatar_editor");
 		////builder.setActiveDirector("avatar_editor");
 		//
+		builder.addDirector("WheelDirector","wheel"/*, p*/);
+		builder.setActiveDirector("wheel");
+
 		_logic->building(builder);
 
 		setMouseTracking(true);
@@ -149,7 +177,7 @@ bool OrzWindow::init(void)
 		QObject::connect(_autoUpdateTimer, SIGNAL(timeout()), this, SLOT(update()));
 		_autoUpdateTimer->setInterval(1);
 		_init = true;
-		bool ret = _logic->load();
+		bool ret = _logic->load(EventWorld::Parameter());
 		_autoUpdateTimer->start();
 		return ret;
 
