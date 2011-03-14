@@ -4,7 +4,10 @@
 #include <orz/Framework_Base/FrameworkBaseAllInclude.h>
 #include <QWidget>
 #include <QtOpenGL/QGLWidget>
+
+#include <orz/Toolkit_Base/Clock.h>
 namespace Orz
+
 {
 	class TheWindow;
 }
@@ -39,6 +42,8 @@ private:
 	bool _init;
 	
 	QTimer* _autoUpdateTimer;
+	Orz::Clock<Orz::TimeType, 1> _clock;
+	Orz::TimeType _now;
 };
 
 
