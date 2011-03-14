@@ -10,6 +10,13 @@
 #include <orz/Toolkit_Component_Task/Component/ComponentFactories.h>
 #include <cegui/cegui.h>
 
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+#include <WheelGobal/ReferenceCount.h>
+#include <WheelGobal/WheelEvents.h>
+#include <WheelGobal/WheelEnum.h>
+#include <WheelGobal/WinData.h>
+
 //#include "OgreEntityComponent.h"
 //#include "OgrePlayerComponent.h"
 //#include "OgreResourceComponent.h"

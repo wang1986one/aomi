@@ -10,4 +10,11 @@
 #include <orz/View_OGRE3D/OgreHeader.h>
 
 
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+#include <WheelGobal/ReferenceCount.h>
+#include <WheelGobal/WheelEvents.h>
+#include <WheelGobal/WheelEnum.h>
+#include <WheelGobal/WinData.h>
+
 #endif

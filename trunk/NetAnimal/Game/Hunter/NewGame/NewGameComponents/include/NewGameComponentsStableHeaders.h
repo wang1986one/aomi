@@ -10,6 +10,13 @@
 #include <cegui/cegui.h>
 #include <boost/multi_array.hpp>
 
+
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+#include <WheelGobal/ReferenceCount.h>
+#include <WheelGobal/WheelEvents.h>
+#include <WheelGobal/WheelEnum.h>
+#include <WheelGobal/WinData.h>
 namespace Orz
 {
 	
