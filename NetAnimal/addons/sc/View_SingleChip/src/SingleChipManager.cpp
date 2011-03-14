@@ -84,22 +84,22 @@ void SingleChipManager::shutdown(void)
 
 
 
-//bool SingleChipManager::write(const MsgBuffer & buffer)
-//{
-//	return _impl->write(buffer);
-//}
-//
-//
-//bool SingleChipManager::write(unsigned char * data, int num)
-//{
-//	return _impl->write(data, num);
-//}
-//
-//bool SingleChipManager::write(char * data, int num)
-//{
-//	return _impl->write(data, num);
-//
-//}
+bool SingleChipManager::write(int id, const MsgBuffer & buffer)
+{
+	return _SCMs.at(id)->write(buffer);
+}
+
+
+bool SingleChipManager::write(int id, unsigned char * data, int num)
+{
+	return _SCMs.at(id)->write(data, num);
+}
+
+bool SingleChipManager::write(int id, char * data, int num)
+{
+	return _SCMs.at(id)->write(data, num);
+
+}
 
 size_t SingleChipManager::getSCMAmount(void) const
 {

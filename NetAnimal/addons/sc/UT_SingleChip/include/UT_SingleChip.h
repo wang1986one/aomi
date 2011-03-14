@@ -52,8 +52,7 @@ BOOST_FIXTURE_TEST_CASE(simple, F)
 
 	using namespace rapidxml;
 
-	Orz::SystemInterface::getSingleton().setParame<std::string>("SingleChip_Port", std::string("COM1"));
-	Orz::SystemInterface::getSingleton().setParame<int>("SingleChip_BaudRate", 9600);
+	Orz::SystemInterface::getSingleton().setParame<bool>("OGRE_NO_OUT", true);
 	Listener_ l;
 
 	if(system->init())
@@ -76,8 +75,21 @@ BOOST_FIXTURE_TEST_CASE(simple, F)
 			rapidxml::xml_node<> *node = doc.first_node("single-chips");
 			Orz::SingleChipManager::getSingleton().loadXML(node);
 
+			std::cout<<Orz::SingleChipManager::getSingleton().getSCMAmount()<<std::endl;
 			Orz::SingleChipManager::getSingleton().addListener(0,&l);
-			Orz::SingleChipManager::getSingleton().addListener(1,&l);
+			Orz::MsgBuffer buffer;
+			buffer.push_back(0XFF);
+			buffer.push_back(0XFF);
+			buffer.push_back(0X80);
+			buffer.push_back(0X00);
+			buffer.push_back(0X8D);
+			buffer.push_back(0X00);
+			
+			buffer.push_back(0X00);
+			buffer.push_back(0X00);
+			buffer.push_back(0X9E);
+			buffer.push_back(0X30);
+			Orz::SingleChipManager::getSingleton().write(0, buffer);
 
 		}
 		//boost::shared_ptr<OgreNewtRunning>  runing(new OgreNewtRunning());
