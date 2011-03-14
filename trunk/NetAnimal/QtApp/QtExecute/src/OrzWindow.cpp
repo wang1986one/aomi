@@ -69,6 +69,9 @@ OrzWindow::OrzWindow(QWidget *parent, Qt::WFlags flags):QWidget(parent, flags | 
 	colourPalette.setColor(QPalette::Active, QPalette::Window, Qt::black);
 	setPalette(colourPalette);
 
+	_clock.restart();
+	_now =_clock.elapsed();
+
 
 
 }
@@ -121,7 +124,15 @@ void OrzWindow::paintEvent(QPaintEvent* evt)
 	
 	if(_init)
 	{
-		_system->update(0.015f);
+
+		Orz::TimeType temp = _clock.elapsed();
+		if(_now > temp)
+		{
+			_now -= _clock.elapsed_max();
+		}
+		Orz::TimeType interval = temp - _now;
+		_now = temp;
+		_system->update(interval);
 
 	}
 }
@@ -179,6 +190,10 @@ bool OrzWindow::init(void)
 		_init = true;
 		bool ret = _logic->load(EventWorld::Parameter());
 		_autoUpdateTimer->start();
+
+		
+		_clock.restart();
+		_now =_clock.elapsed();
 		return ret;
 
 	}
