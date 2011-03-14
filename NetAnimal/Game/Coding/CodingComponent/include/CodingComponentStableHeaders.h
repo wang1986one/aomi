@@ -6,7 +6,7 @@
 #include <orz/Toolkit_Component_Task/Component/ComponentInterface.h>	
 #include <orz/Toolkit_Component_Task/Component/Component.h>	
 #include <orz/Toolkit_Component_Task/Component/ComponentFactories.h>
-#include <orz/Toolkit_Tasks/TaskManager.h>
+#include <orz/Toolkit_Component_Task/Task/TaskManager.h>
 #include <Ogre/Ogre.h>
 #include <orz/Toolkit_Component_Task/Component/ComponentQueryInterface.h>	
 #include <orz/View_OGRE3D/OgreGraphicsManager.h>

@@ -20,7 +20,15 @@
 
 #include <orz/Framework_Base/Logic.h>
 #include <orz/Framework_Base/FrameworkBase.h>
+#include <orz/Toolkit_Base/EventSystem.h>
 
+
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+#include <WheelGobal/ReferenceCount.h>
+#include <WheelGobal/WheelEvents.h>
+#include <WheelGobal/WheelEnum.h>
+#include <WheelGobal/WinData.h>
 
 
 #endif

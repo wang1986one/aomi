@@ -16,4 +16,8 @@
 #include "OgreVideoManager.h"
 #include "TheoraVideoManager.h"
 #include "TheoraVideoClip.h"
+#include <WheelGobal/ReferenceCount.h>
+#include <WheelGobal/WheelEvents.h>
+#include <WheelGobal/WheelEnum.h>
+#include <WheelGobal/WinData.h>
 #endif
