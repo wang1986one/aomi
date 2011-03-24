@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Zend Framework jQuery AjaxLink Example</title>
+        <script language="javascript"
+                type="text/javascript"
+                src="myCallbackFuncs.js"></script>
+    </head>
+ 
+    <body>
+        <!-- without echoing jQuery this following -->
+        <!-- list only prints a list of for links -->
+        <ul>
+            <li>
+                <?php echo $this->ajaxLink("Example 1",
+                                           "/ctrl/action1",
+                                           array('update' => '#content',
+                                                 'noscript' => false,
+                                                 'method' => 'POST')); ?>
+            </li>
+            <li>
+                <?php echo $this->ajaxLink("Example 2",
+                                           "/ctrl/action2",
+                                           array('update' => '#content',
+                                                 'class' => 'someLink'),
+                                           array('param1' => 'value1',
+                                                 'param2' => 'value2')); ?>
+            </li>
+            <li><?php echo $this->ajaxLink("Example 3",
+                                           "/ctrl/action3",
+                                           array('dataType' => 'json',
+                                                 'complete' =>
+                                                    'alert(data)')); ?>
+            </li>
+            <li><?php echo $this->ajaxLink("Example 4",
+                                           "/ctrl/action4",
+                                           array('beforeSend' => 'hide',
+                                                 'complete' => 'show')); ?>
+            </li>
+            <li>
+                <?php echo $this->ajaxLink("Example 5",
+                                           "/ctrl/action5",
+                                           array(
+                                            'beforeSend' =>
+                                             'myBeforeSendCallbackJsFunc();',
+                                            'complete' =>
+                                             'myCompleteCallbackJsFunc(data);')
+                                           ); ?>
+            </li>
+        </ul>
+ 
+        <!-- only at this point the javascript is printed to sreen -->
+        <?php echo $this->jQuery(); ?>
+    </body>
+</html>
