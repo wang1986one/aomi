@@ -11,7 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
 		$viewRenderer->setView($view);
 		Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-		$view->jQuery()->addStylesheet($baseUrl.'js/jquery/css/le-frog/jquery-ui-1.8.11.custom.css')
+		$view->jQuery()->addStylesheet($baseUrl.'js/jquery/css/overcast/jquery-ui-1.8.11.custom.css')
 			 ->setLocalPath($baseUrl.'js/jquery/js/jquery-1.5.1.min.js')
 			 ->setUiLocalPath($baseUrl.'js/jquery/js/jquery-ui-1.8.11.custom.min.js');
 	}
