@@ -13,6 +13,8 @@ class IndexController extends Zend_Controller_Action
     }
 	public function demoAction()
     {
+	
+		echo "nonononono";
         $this->view->hello = 'Hello, world! ('.date('H:i:s').')';
     }
     public function indexAction()
