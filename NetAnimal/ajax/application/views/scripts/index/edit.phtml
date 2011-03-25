@@ -1,54 +1,28 @@
-<html>
+﻿<html>
     <head>
         <title>Zend Framework jQuery AjaxLink Example</title>
         <script language="javascript"
                 type="text/javascript"
                 src="myCallbackFuncs.js"></script>
+        <style type="text/css">
+			/*demo page css*/
+			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+		
+		</style>	
     </head>
  
     <body>
         <!-- without echoing jQuery this following -->
         <!-- list only prints a list of for links -->
-        <ul>
-            <li>
-                <?php echo $this->ajaxLink("Example 1",
-                                           "/ctrl/action1",
-                                           array('update' => '#content',
-                                                 'noscript' => false,
-                                                 'method' => 'POST')); ?>
-            </li>
-            <li>
-                <?php echo $this->ajaxLink("Example 2",
-                                           "/ctrl/action2",
-                                           array('update' => '#content',
-                                                 'class' => 'someLink'),
-                                           array('param1' => 'value1',
-                                                 'param2' => 'value2')); ?>
-            </li>
-            <li><?php echo $this->ajaxLink("Example 3",
-                                           "/ctrl/action3",
-                                           array('dataType' => 'json',
-                                                 'complete' =>
-                                                    'alert(data)')); ?>
-            </li>
-            <li><?php echo $this->ajaxLink("Example 4",
-                                           "/ctrl/action4",
-                                           array('beforeSend' => 'hide',
-                                                 'complete' => 'show')); ?>
-            </li>
-            <li>
-                <?php echo $this->ajaxLink("Example 5",
-                                           "/ctrl/action5",
-                                           array(
-                                            'beforeSend' =>
-                                             'myBeforeSendCallbackJsFunc();',
-                                            'complete' =>
-                                             'myCompleteCallbackJsFunc(data);')
-                                           ); ?>
-            </li>
-        </ul>
- 
-        <!-- only at this point the javascript is printed to sreen -->
-        <?php echo $this->jQuery(); ?>
+    
+		
+			
+		<p><a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a></p>
+		
+		测试
+
+
     </body>
 </html>
