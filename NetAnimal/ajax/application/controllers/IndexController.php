@@ -6,17 +6,16 @@ class IndexController extends Zend_Controller_Action
     public function init()
     {
 	
-	    $ajaxContext = $this->_helper->getHelper('AjaxContext');
-        $ajaxContext->addActionContext('demo', 'html')
-                    ->initContext();
+			$ajaxContext = $this->_helper->getHelper('AjaxContext');
+			$ajaxContext->addActionContext('list', 'html')
+                ->initContext();
         /* Initialize action controller here */
     }
-	public function demoAction()
-    {
-	
-		echo "nonononono";
-        $this->view->hello = 'Hello, world! ('.date('H:i:s').')';
-    }
+	public function listAction() {
+		// pretend this is a sophisticated database query
+		$data = array('red','green','blue','yellow');
+		$this->view->data = $data;
+	}
     public function indexAction()
     {
         $albums = new Application_Model_DbTable_Albums();
