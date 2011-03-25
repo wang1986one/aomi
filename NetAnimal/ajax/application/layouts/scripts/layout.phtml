@@ -9,6 +9,17 @@ echo $this->doctype(); ?>
     <?php echo $this->headTitle(); ?>
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/site.css'); ?> 
 	<?php echo $this->jQuery(); ?>
+	
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#ajax_button').click(function(){ //#ajax_button 的 onclick 事件触发
+        var url = '<?=$this->url(array('controller'=>'index','action'=>'demo'))?>'; //AJAX 请求的目标 URL
+        $.get(url, {'format':'html'}, function(data){ //这里传递了 format=html 的 GET 参数
+            $('#hello_message').html(data); //将 AJAX 返回的内容显示在 #hello_message 里边
+        });
+    });
+});
+</script>
 </head>
 <body>
 <div id="content">
