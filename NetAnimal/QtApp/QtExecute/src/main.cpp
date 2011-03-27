@@ -52,17 +52,22 @@ int main(int argc, char *argv[])
 
 	int ret = 0;
 	//
-	QApplication app(argc, argv);
-
-	boost::shared_ptr<QtExecute> window(new QtExecute());
-	if(window->init())
+	try
 	{
-		window->show();
-		window->showMaximized();
-		ret = app.exec();
-		window->shutdown();
-	}
+		QApplication app(argc, argv);
 
+		boost::shared_ptr<QtExecute> window(new QtExecute());
+		if(window->init())
+		{
+			window->show();
+			window->showMaximized();
+			ret = app.exec();
+			window->shutdown();
+		}
+	}catch(std::exception & e)
+	{
+		std::cout<<e.what()<<std::endl;
+	}
 	//	//Orz::ILogManager::getSingleton().unicode(L"²âÊÔÈÕÖ¾");
 	//	Orz::WeakWindowPtr win = WindowPtr(window);
 	//	system->setParame<Orz::WeakWindowPtr>("WINDOW", win);
