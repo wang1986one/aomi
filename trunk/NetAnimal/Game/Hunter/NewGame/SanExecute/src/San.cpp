@@ -73,8 +73,8 @@ int main()
 	builder.setActiveDirector("wheel");
 	logic->building(builder);
 
-	SystemInterface::getSingleton().setParame<int>("SingleChip_BaudRate", 19200);
-	LoadSingleChipPort();//
+	//SystemInterface::getSingleton().setParame<int>("SingleChip_BaudRate", 19200);
+	//LoadSingleChipPort();//
 	SystemInterface::getSingleton().setParame<bool>("SILENT", true);
 	SystemInterface::getSingleton().setParame<bool>(SystemParame::SystemUpdateFilter, true);
 	SystemInterface::getSingleton().setParame<unsigned int>(SystemParame::SystemUpdateFilterCount, 20);
@@ -88,7 +88,7 @@ int main()
 
 			
 
-			using namespace Ogre;
+		/*	using namespace Ogre;
 			DataStreamPtr pStream;
 
 			pStream = ResourceGroupManager::getSingleton().openResource( "sc.xml", "xml" );
@@ -102,7 +102,7 @@ int main()
 
 			xml_document<> doc;
 			doc.parse<0>(&data[0]);
-			rapidxml::xml_node<> *node = doc.first_node("single-chips");
+			rapidxml::xml_node<> *node = doc.first_node("single-chips");*/
 		/*	Orz::SingleChipManager::getSingleton().loadXML(node);
 			{
 				const Ogre::ResourceGroupManager::LocationList  & list = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList("sound");
