@@ -5,9 +5,9 @@ var panelDatas = new Array();
 
 
 
-panelDatas["zhuang"] = {text:'装',num:0, rate:10};
-panelDatas["xian"] = {text:'闲',num:0, rate:10};
-panelDatas["he"] = {text:'和',num:0, rate:10};
+panelDatas["zhuang"] = {text:'装',num:0, rate:2};
+panelDatas["xian"] = {text:'闲',num:0, rate:8};
+panelDatas["he"] = {text:'和',num:0, rate:2};
 
 panelDatas["red_lion"] = {text:'红色狮子',num:1, rate:46};
 panelDatas["green_lion"] = {text:'绿色狮子',num:12, rate:40};
