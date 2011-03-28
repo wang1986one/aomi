@@ -2,182 +2,95 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head> 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" > 
-    <title>Zend Framework Tutorial</title>    <link href="/zf-tutorial/public/css/site.css" media="screen" rel="stylesheet" type="text/css" > 
+   
+        <title>My Test</title>
+        <link href="/zf-tutorial/public/css/site.css" media="screen" rel="stylesheet" type="text/css" > 
 	<link rel="stylesheet" href="./js/jquery/css/overcast/jquery-ui-1.8.11.custom.css" type="text/css" media="screen">
 
 
 
 <script type="text/javascript" src="./js/jquery/js/jquery-1.5.1.min.js"></script>
-
 <script type="text/javascript" src="./js/jquery/js/jquery-ui-1.8.11.custom.min.js"></script>
-
+<script type="text/javascript" src="./js/panel.js"></script>
 
 
 <script type="text/javascript">
-
 //<!--
 
 $(document).ready(function() {
-    $('a#dialog_link').click(function() { $.post('/zf-tutorial/public/index/list/format/html', {}, function(data, textStatus) { $('#content').html(data); }, 'html');return false; });
+
+	
+	
+	
+	$('#line1').html($('#line1').html()+getButton('zhuang', "庄"));	
+	$('#line1').html($('#line1').html()+getButton('z', "和"));	
+	$('#line1').html($('#line1').html()+getButton('z', "闲"));	
+	$('#line1').html($('#line1').html()+getButton('z', "倒计时30"));	
+	$('#line1').html($('#line1').html()+getButton('z', "盈利"));	
+	$('#line1').html($('#line1').html()+getButton('z', "台面数" + tms));	
+	
+	$('#line2').html($('#line2').html()+getButton('z', "红色狮子"));	
+	$('#line2').html($('#line2').html()+getButton('z', "绿色狮子"));	
+	$('#line2').html($('#line2').html()+getButton('z', "黄色狮子"));
+	
+	$('#line2').html($('#line2').html()+getButton('z', "红色熊猫"));	
+	$('#line2').html($('#line2').html()+getButton('z', "绿色熊猫"));	
+	$('#line2').html($('#line2').html()+getButton('z', "黄色熊猫"));
+	
+	
+	
+	$('#line3').html($('#line3').html()+getButton('z', "红色猴子"));	
+	$('#line3').html($('#line3').html()+getButton('z', "绿色猴子"));	
+	$('#line3').html($('#line3').html()+getButton('z', "黄色猴子"));
+	
+	$('#line3').html($('#line3').html()+getButton('z', "红色兔子"));	
+	$('#line3').html($('#line3').html()+getButton('z', "绿色兔子"));	
+	$('#line3').html($('#line3').html()+getButton('z', "黄色兔子"));
+	
 });
 //-->
 
-
-
-</script></head> 
-<body> 
-<div id="content"> 
-    <h1></h1> 
-    <html>
-
-    <head>
-
-        <title>Zend Framework jQuery AjaxLink Example</title>
-
-        <script language="javascript"
-
-                type="text/javascript"
-
-                src="myCallbackFuncs.js"></script>
+</script>
 
 				
 
-		<script type="text/javascript">
-
-			$(function(){
-
-				
-
-				// Dialog Link
-
-				$('#dialog_link').click(function(){
-
-					return false;
-
-				});
-
-
-
-		
-
-				
-
-				//hover states on the static widgets
-
-				$('#dialog_link, ul#icons li').hover(
-
-					function() { $(this).addClass('ui-state-hover'); }, 
-
-					function() { $(this).removeClass('ui-state-hover'); }
-
-				);
-
-				
-
-			});
-
-		</script>
-
-        <style type="text/css">
-
-			/*demo page css*/
-
-			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
-
-			#dialog_link {
-
-				padding: .4em 1em .4em 7%;
-
-				text-decoration: none;
-
-				position: relative;
-
-			}
-
-			
-
-			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
-
-		
-
-		</style>	
-
-    </head>
-
- 
-
-    <body>
-
-    
-
-		
-
-			
-
-		<p> 
-
-		<a class="ui-state-default ui-corner-all" id="dialog_link" href="#"><span class='ui-icon ui-icon-newwin'></span>测试</a>												 
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		</p>
-
-		
-
-		<p>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		</p>
-
-		
-
-		
-
-		<p>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		<a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>测试</a>
-
-		</p>
+<script type="text/javascript">
+    $(function(){
+        // Dialog Link
+        //hover states on the static widgets
+
+        $('a, ul#icons li').hover(
+            function() { $(this).addClass('ui-state-hover'); }, 
+            function() { $(this).removeClass('ui-state-hover'); }
+        );
+    });
+</script>
+
+<style type="text/css">
+	/*demo page css*/
+	body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+	a {
+		padding: .4em 1em .4em 7%;
+		text-decoration: none;
+		position: relative;
+	}
+	a span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+</style>
 
 	
+</head> 
+
+<body> 
+<div id="content"> 
 
 
+<p id="line1"/>
+<p id="line2"/>
+<p id="line3"/>
 
 
+</div>
 
-    </body>
 
-</html></div> 
 </body> 
 </html>
