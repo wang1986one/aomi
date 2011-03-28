@@ -11,6 +11,7 @@
 
 <script type="text/javascript" src="./js/jquery/js/jquery-1.5.1.min.js"></script>
 <script type="text/javascript" src="./js/jquery/js/jquery-ui-1.8.11.custom.min.js"></script>
+<script type="text/javascript" src="./js/panel_message.js"></script>
 <script type="text/javascript" src="./js/panel.js"></script>
 
 
@@ -19,54 +20,38 @@
 
 $(document).ready(function() {
 
-	
-	$('#line0').html($('#line0').html()+getButton('z', "盈利", 0));	
-	$('#line0').html($('#line0').html()+getButton('z', "倒计时", 30));	
-	$('#line0').html($('#line0').html()+getButton('tms', "台面数", 1000));	
-	
-	
-	$('#line1').html($('#line1').html()+getButton('zhuang', "庄", 0));	
-	$('#line1').html($('#line1').html()+getButton('he', "和", 0));	
-	$('#line1').html($('#line1').html()+getButton('xian', "闲", 0));	
-	
-	$('#line2').html($('#line2').html()+getButton('red_lion', "红色狮子", 0));	
-	$('#line2').html($('#line2').html()+getButton('green_lion', "绿色狮子", 0));	
-	$('#line2').html($('#line2').html()+getButton('yellow_lion', "黄色狮子", 0));
-	
-	$('#line2').html($('#line2').html()+getButton('red_panda', "红色熊猫", 0));	
-	$('#line2').html($('#line2').html()+getButton('green_panda', "绿色熊猫", 0));	
-	$('#line2').html($('#line2').html()+getButton('yellow_panda', "黄色熊猫", 0));
+	$('#line0').html($('#line0').html()+getMsg('yl'));	
+	$('#line0').html($('#line0').html()+getMsg('time'));	
+	$('#line0').html($('#line0').html()+getMsg('tms'));	
 	
 	
+	$('#line1').html($('#line1').html()+getButton('zhuang'));	
+	$('#line1').html($('#line1').html()+getButton('he'));	
+	$('#line1').html($('#line1').html()+getButton('xian'));	
 	
-	$('#line3').html($('#line3').html()+getButton('red_monkey', "红色猴子", 0));	
-	$('#line3').html($('#line3').html()+getButton('green_monkey', "绿色猴子", 0));	
-	$('#line3').html($('#line3').html()+getButton('yellow_monkey', "黄色猴子", 0));
+	$('#line2').html($('#line2').html()+getButton('red_lion'));	
+	$('#line2').html($('#line2').html()+getButton('green_lion'));	
+	$('#line2').html($('#line2').html()+getButton('yellow_lion'));
 	
-	$('#line3').html($('#line3').html()+getButton('red_rabbit', "红色兔子", 0));	
-	$('#line3').html($('#line3').html()+getButton('green_rabbit', "绿色兔子", 0));	
-	$('#line3').html($('#line3').html()+getButton('yellow_rabbit', "黄色兔子", 0));
+	$('#line2').html($('#line2').html()+getButton('red_panda'));	
+	$('#line2').html($('#line2').html()+getButton('green_panda'));	
+	$('#line2').html($('#line2').html()+getButton('yellow_panda'));
+	
+	
+	
+	$('#line3').html($('#line3').html()+getButton('red_monkey'));	
+	$('#line3').html($('#line3').html()+getButton('green_monkey'));	
+	$('#line3').html($('#line3').html()+getButton('yellow_monkey'));
+	
+	$('#line3').html($('#line3').html()+getButton('red_rabbit'));	
+	$('#line3').html($('#line3').html()+getButton('green_rabbit'));	
+	$('#line3').html($('#line3').html()+getButton('yellow_rabbit'));
 
-	$('#zhuang').bind("click", $('#zhuang'), handle);
-	$('#he').bind("click", $('#he'), handle);
-	$('#xian').bind("click", $('#xian'), handle);
 	
-	
-	$('#red_lion').bind("click", $('#red_lion'), handle);
-	$('#green_lion').bind("click", $('#green_lion'), handle);
-	$('#yellow_lion').bind("click", $('#yellow_lion'), handle);
-	
-	$('#red_panda').bind("click", $('#red_panda'), handle);
-	$('#green_panda').bind("click", $('#green_panda'), handle);
-	$('#yellow_panda').bind("click", $('#yellow_panda'), handle);
-	
-	$('#red_monkey').bind("click", $('#red_monkey'), handle);
-	$('#green_monkey').bind("click", $('#green_monkey'), handle);
-	$('#yellow_monkey').bind("click", $('#yellow_monkey'), handle);
-	
-	$('#red_rabbit').bind("click", $('#red_rabbit'), handle);
-	$('#green_rabbit').bind("click", $('#green_rabbit'), handle);
-	$('#yellow_rabbit').bind("click", $('#yellow_rabbit'), handle);
+	setupButton();
+	enableButton();
+	clearButton();
+
 });
 //-->
 
@@ -75,6 +60,8 @@ $(document).ready(function() {
 				
 
 <script type="text/javascript">
+
+
     $(function(){
         // Dialog Link
         //hover states on the static widgets
@@ -103,12 +90,13 @@ $(document).ready(function() {
 <body> 
 <div id="content"> 
 
+<div class="demo">
 
 <p id="line0"/>
 <p id="line1"/>
 <p id="line2"/>
 <p id="line3"/>
-
+</div>
 
 </div>
 
