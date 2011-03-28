@@ -5,7 +5,7 @@
 [HunterScene]
 FileSystem=@ORZ_MEDIA_DIR@/HunterScene/mesh/
 FileSystem=@ORZ_MEDIA_DIR@/HunterScene/oggs/
-FileSystem=E:/jieji/jieji/Game/Project/media/WheelScene/animal_mesh/
+FileSystem=@ORZ_MEDIA_DIR@/media/WheelScene/animal_mesh/
 
 FileSystem=@ORZ_MEDIA_DIR@/HunterScene/ParticleUniverse/core
 FileSystem=@ORZ_MEDIA_DIR@/HunterScene/ParticleUniverse/examples/materials
