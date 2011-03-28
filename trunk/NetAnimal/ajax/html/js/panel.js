@@ -63,7 +63,7 @@ function refushButton()
 
 function getText(id)
 {
-	return 	panelDatas[id].text+':'+panelDatas[id].num;
+	return 	'<font  color="0xFF0000">'+ panelDatas[id].rate+'|</font>'+panelDatas[id].text+'<font  color="0xFFFFFF">|'+panelDatas[id].num+"</font>";
 }
 function getButton(id)
 {
