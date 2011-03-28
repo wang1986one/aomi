@@ -25,9 +25,7 @@ panelDatas["red_rabbit"] = {text:'红色兔子',num:0, rate:8};
 panelDatas["green_rabbit"] = {text:'绿色兔子',num:0, rate:7};
 panelDatas["yellow_rabbit"] = {text:'黄色兔子',num:0, rate:4};
 
-$(function() {
-		$( "#radio" ).buttonset();
-	});
+
 function setupButton()
 {
 	for (var key in panelDatas) { 
