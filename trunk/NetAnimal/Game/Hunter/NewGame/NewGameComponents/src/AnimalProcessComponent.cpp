@@ -74,13 +74,25 @@ bool no_update(TimeType i)
 bool AnimalProcessComponent::activate(SanProcess process)
 {
 
-
+	
+	COgreAnimationInterface * animation = _entityComp->queryInterface< COgreAnimationInterface >();
 	if(process == PROCESS_START)
 	{
 
+		
 		if(this->_type.second == Orz::AnimalEnum::KING)
+		{
+			if(_type.first == 3)
+			{
+				
+				_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_dj", 0);
+				_actionInterface->disable = animation->disable;
+				_actionInterface->update = boost::bind(&___update, _1);
+				
+				return true;
+			}
 			return false;
-		COgreAnimationInterface * animation = _entityComp->queryInterface< COgreAnimationInterface >();
+		}
 
 		switch(_type.first)
 		{
@@ -108,23 +120,7 @@ bool AnimalProcessComponent::activate(SanProcess process)
 		_actionInterface->disable = animation->disable;
 		_actionInterface->update = animation->update;
 		return true;
-	}	
-
-	if(process == PROCESS_END)
-	{
-		return false;
-	}	
-	//
-	//if(process == PROCESS_RUN)
-	//{
-	//	COgreAnimationInterface * animation = _entityComp->queryInterface< COgreAnimationInterface >();
-	//	_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "play", 3);
-	//	_actionInterface->disable = animation->disable;
-	//	_actionInterface->update = animation->update;
-	//	return true;
-	//}	
-
-	if(process == PROCESS_PLAY && _isWinner)
+	}else if(process == PROCESS_PLAY && _isWinner)
 	{
 		COgreAnimationInterface * animation = _entityComp->queryInterface< COgreAnimationInterface >();
 		/*	if(_type.first != 3)
@@ -157,7 +153,20 @@ bool AnimalProcessComponent::activate(SanProcess process)
 		_actionInterface->disable = animation->disable;
 		_actionInterface->update = animation->update;
 		return true;
-	}	
+	}else
+	{
+	
+		
+		if(_type.first == 3)
+		{
+			
+			_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_dj", 0);
+			_actionInterface->disable = animation->disable;
+			_actionInterface->update = boost::bind(&___update, _1);
+			
+			return true;
+		}
+	}
 	return false;
 }
 
