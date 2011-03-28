@@ -180,26 +180,26 @@ bool AnimalProcessComponent::init(AnimalEnum::ANIMAL_TYPE type, Ogre::SceneNode 
 	{
 	case 0:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "coney01.mesh", node);
-		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 2.3f);
+		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
 		break;
 	case 1:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "monkey01.mesh", node);
-		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 2.3f);
+		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.2f);
 		break;
 	case 2:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "Lion01.mesh", node);
-		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 2.3f);
+		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.2f);
 		break; 
 	case 3:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "Panda.mesh", node);
-		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 2.3f);
+		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
 		break;
 	}
 	if(type.second == Orz::AnimalEnum::KING)
 	{
 		entity->getEntity()->setMaterialName("Ogre/Earring");
-	}
-	entity->getSceneNode()->translate(0,10, 0);
+	} 
+	entity->getSceneNode()->translate(0,18, 0);
 	return true;
 }
 
