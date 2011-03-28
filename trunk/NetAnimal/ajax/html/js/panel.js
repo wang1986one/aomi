@@ -9,21 +9,21 @@ panelDatas["zhuang"] = {text:'装',num:0, rate:10};
 panelDatas["xian"] = {text:'闲',num:0, rate:10};
 panelDatas["he"] = {text:'和',num:0, rate:10};
 
-panelDatas["red_lion"] = {text:'红色狮子',num:1, rate:10};
-panelDatas["green_lion"] = {text:'绿色狮子',num:12, rate:10};
-panelDatas["yellow_lion"] = {text:'黄色狮子',num:0, rate:10};
+panelDatas["red_lion"] = {text:'红色狮子',num:1, rate:46};
+panelDatas["green_lion"] = {text:'绿色狮子',num:12, rate:40};
+panelDatas["yellow_lion"] = {text:'黄色狮子',num:0, rate:25};
 
-panelDatas["red_panda"] = {text:'红色熊猫',num:0, rate:10};
-panelDatas["green_panda"] = {text:'绿色熊猫',num:0, rate:10};
-panelDatas["yellow_panda"] = {text:'黄色熊猫',num:0, rate:10};
+panelDatas["red_panda"] = {text:'红色熊猫',num:0, rate:23};
+panelDatas["green_panda"] = {text:'绿色熊猫',num:0, rate:20};
+panelDatas["yellow_panda"] = {text:'黄色熊猫',num:0, rate:12};
 
-panelDatas["red_monkey"] = {text:'红色猴子',num:0, rate:10};
-panelDatas["green_monkey"] = {text:'绿色猴子',num:0, rate:10};
-panelDatas["yellow_monkey"] = {text:'黄色猴子',num:0, rate:10};
+panelDatas["red_monkey"] = {text:'红色猴子',num:0, rate:13};
+panelDatas["green_monkey"] = {text:'绿色猴子',num:0, rate:11};
+panelDatas["yellow_monkey"] = {text:'黄色猴子',num:0, rate:7};
 
-panelDatas["red_rabbit"] = {text:'红色兔子',num:0, rate:10};
-panelDatas["green_rabbit"] = {text:'绿色兔子',num:0, rate:10};
-panelDatas["yellow_rabbit"] = {text:'黄色兔子',num:0, rate:10};
+panelDatas["red_rabbit"] = {text:'红色兔子',num:0, rate:8};
+panelDatas["green_rabbit"] = {text:'绿色兔子',num:0, rate:7};
+panelDatas["yellow_rabbit"] = {text:'黄色兔子',num:0, rate:4};
 
 $(function() {
 		$( "#radio" ).buttonset();
