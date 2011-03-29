@@ -7,12 +7,12 @@ using namespace Orz;
 extern "C" void dllStartPlugin(void)
 {
 	ComponentFactories::getInstance()
-		.addFactory("JsComponent", boost::factory<JsComponent*>());
+		.addFactory("Js", boost::factory<JsComponent*>());
 }
 
 extern "C" void dllStopPlugin(void)
 {
 
 	ComponentFactories::getInstance()
-		.removeFactory("JsComponent");
+		.removeFactory("Js");
 }
