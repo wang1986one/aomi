@@ -17,7 +17,6 @@ LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../CMake)
 INCLUDE(CPack)
 INCLUDE(OrzCMakeModule)
 INCLUDE(PrecompiledHeader)
-INCLUDE(OrzHunterGame)
 FIND_PACKAGE(OrzSDK)
 FIND_PACKAGE(Qt4 REQUIRED) # find and setup Qt4 for this project
 
@@ -53,3 +52,6 @@ INSTALL(CODE "FILE(APPEND ${CMAKE_INSTALL_PREFIX}/bin/release/plugins.cfg \"
 Plugin=ParticleUniverse
 Plugin=Plugin_OgreVideo
 \")")
+
+
+INCLUDE(OrzHunterGame)

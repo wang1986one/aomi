@@ -139,6 +139,7 @@ void OrzWindow::paintEvent(QPaintEvent* evt)
 
 bool OrzWindow::init(void)
 {
+
 	if(!_init)
 	{
 
@@ -153,7 +154,6 @@ bool OrzWindow::init(void)
 		_logic.reset(new LogicConfiger::LogicFacade());
 		LogicConfiger::ManualBuilder builder;
 		//
-		////loader->addPlugin("");
 		//增加两个个动态插件
 		builder.addPlugin("SanController");
 		builder.addPlugin("Model_Base");
@@ -170,10 +170,7 @@ bool OrzWindow::init(void)
 		builder.addPlugin("MyJobComponent");
 		//设置大厅
 		builder.setTheater("TheaterBase","main");
-		////builder.addDirector("AvatarEditorDirector", "avatar_editor");
-		////builder.setActiveDirector("avatar_editor");
-		//
-		builder.addDirector("WheelDirector","wheel"/*, p*/);
+		builder.addDirector("WheelDirector","wheel");
 		builder.setActiveDirector("wheel");
 
 		_logic->building(builder);
