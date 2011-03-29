@@ -1,7 +1,7 @@
 #include "QtExecute.h"
 #include "ControllerQt.h"
 #include <QDir>
-
+#include "JsInterface.h"
 #include <QWebFrame>
 
 //template<> QtExecute* Orz::Singleton<QtExecute>::_singleton = NULL;
@@ -11,7 +11,6 @@ QtExecute::QtExecute(QWidget *parent, Qt::WFlags flags)
 {
 	using namespace Orz;
 	_pm.reset(new PluginsManager());
-	PluginsManager pm;
 	
 	ui.setupUi(this);
 	QDir temDir("../html/panel.html");
@@ -37,14 +36,19 @@ void QtExecute::keyReleaseEvent(QKeyEvent* evt)
 
 bool QtExecute::init(void)
 {
+	using namespace Orz;
 	_pm->init();
 	
 	_jsComponent = Orz::ComponentFactories::getInstance().create("Js");
+	JsInterface * js = _jsComponent->queryInterface<JsInterface>();
+	assert(js);
 	return ui._orzWindow->init();
 }
 void QtExecute::shutdown(void)
 {
+	_jsComponent.reset();
 	_pm->shutdown();
+	_pm.reset();
 	return ui._orzWindow->shutdown();
 }
 size_t QtExecute::getHandle()
