@@ -10,18 +10,6 @@ QtExecute::QtExecute(QWidget *parent, Qt::WFlags flags)
 	using namespace Orz;
 	ui.setupUi(this);
 	
-	//startTimer(2);
-
-	
-	
-	//OgreWidget *swatch = new OgreWidget(tr("White"), this, 0 );
-//	addDockWidget(Qt::LeftDockWidgetArea, swatch);
-
-	//QMenu * help = addMenu(tr("&Dock Widgets"));
-	//menuBar()->insertItem( "&Help", help );
-
-	//help->insertItem( "&About", this, SLOT(about()), Key_F1 );
-    //params["externalWindowHandle"] = Ogre::StringConverter::toString((size_t)(HWND)winId());
 }
 
 //ÏûÏ¢ÏìÓ¦
