@@ -17,6 +17,9 @@ LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../CMake)
 INCLUDE(CPack)
 INCLUDE(OrzCMakeModule)
 INCLUDE(PrecompiledHeader)
+INCLUDE(FindOrzProjectBegin)
+
+
 FIND_PACKAGE(OrzSDK)
 FIND_PACKAGE(Qt4 REQUIRED) # find and setup Qt4 for this project
 
@@ -40,6 +43,7 @@ ${QT_BINARY_DIR}/phonon4.dll
  DESTINATION ./bin/Release)
  
  
+ADD_SUBDIRECTORY(JsComponent)
 ADD_SUBDIRECTORY(QtExecute)
 
 ORZ_POST_BUILD()
@@ -55,3 +59,5 @@ Plugin=Plugin_OgreVideo
 
 
 INCLUDE(OrzHunterGame)
+
+INCLUDE(FindOrzProjectEnd)
