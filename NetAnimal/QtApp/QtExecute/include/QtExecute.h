@@ -6,6 +6,11 @@
 #include "ControllerQt.h"
 
 #include <QtGui/QToolbar>
+
+#include <orz/Toolkit_Component_Task/Component/ComponentInterface.h>	
+#include <orz/Toolkit_Component_Task/Component/Component.h>	
+#include <orz/Toolkit_Component_Task/Component/ComponentFactories.h>
+#include <orz/Toolkit_Base/PluginsManager.h>
 class QtExecute : public QMainWindow//, public Orz::WindowInterface, public Orz::Singleton<QtExecute>
 {
 	Q_OBJECT
@@ -65,6 +70,13 @@ public:
 private:
 	Ui::QtExecuteClass ui;
 	QWidget* _orzWindow; 
+
+	Orz::ComponentPtr _jsComponent;
+
+	boost::scoped_ptr<Orz::PluginsManager> _pm;
+public slots:
+	void setupPanel(void);
+    void populateJavaScriptWindowObject(void);
 	
 };
 
