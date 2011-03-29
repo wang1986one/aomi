@@ -18,8 +18,6 @@
 namespace Orz
 {
 
-
-
 	class TheWindow:public WindowInterface
 	{
 	public:
@@ -122,7 +120,7 @@ QPaintEngine *OrzWindow:: paintEngine() const
 void OrzWindow::paintEvent(QPaintEvent* evt)
 {
 	
-	if(_init)
+	/*if(_init)
 	{
 
 		Orz::TimeType temp = _clock.elapsed();
@@ -134,7 +132,7 @@ void OrzWindow::paintEvent(QPaintEvent* evt)
 		_now = temp;
 		_system->update(interval);
 
-	}
+	}*/
 }
 
 bool OrzWindow::init(void)
@@ -144,12 +142,12 @@ bool OrzWindow::init(void)
 	{
 
 		//These attributes are the same as those use in a QGLWidget
-		setAttribute(Qt::WA_PaintOnScreen);
-		setAttribute(Qt::WA_NoSystemBackground);
+		//setAttribute(Qt::WA_PaintOnScreen);
+		//setAttribute(Qt::WA_NoSystemBackground);
 		using namespace Orz;
-
+/*
 		_system.reset(new SystemList<boost::mpl::list<SimpleTimerManager,OgreGraphicsManager, QtInputManager, PluginsManager,CEGUIManager, FmodSoundManager, SingleChipManager, EventWorldUpdate> >());
-		//SystemPtr system();
+	
 		_system->setParame("w32_mouse",Orz::Variant(true));
 		_logic.reset(new LogicConfiger::LogicFacade());
 		LogicConfiger::ManualBuilder builder;
@@ -192,28 +190,30 @@ bool OrzWindow::init(void)
 		_clock.restart();
 		_now =_clock.elapsed();
 		return ret;
+		*/
+		return true;
 
 	}
 	return false;
 }
 void OrzWindow::shutdown(void)
 {
-	_logic->unload();
-	_autoUpdateTimer->stop();
+	//_logic->unload();
+	//_autoUpdateTimer->stop();
 	
-	_system->shutdown();
+	//_system->shutdown();
 }
 void OrzWindow::resizeEvent(QResizeEvent* evt)
 {
 
-	if(width() == 0 || height() == 0)
+	/*if(width() == 0 || height() == 0)
 		return;
 
 	
 	this->setVisible(false);
 	_window->resize(width(), height());
 
-	this->setVisible(true);
+	this->setVisible(true);*/
 	
 }
 

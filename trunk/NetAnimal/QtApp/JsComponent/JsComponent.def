@@ -1,0 +1,4 @@
+LIBRARY	"JsComponent"
+EXPORTS	
+	dllStartPlugin
+	dllStopPlugin

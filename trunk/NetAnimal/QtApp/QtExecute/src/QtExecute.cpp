@@ -1,6 +1,6 @@
 #include "QtExecute.h"
 #include "ControllerQt.h"
-
+#include <QDir>
 
 //template<> QtExecute* Orz::Singleton<QtExecute>::_singleton = NULL;
 
@@ -9,6 +9,10 @@ QtExecute::QtExecute(QWidget *parent, Qt::WFlags flags)
 {
 	using namespace Orz;
 	ui.setupUi(this);
+	QDir temDir("../html/panel.html");
+	QString absDir = temDir.absolutePath();
+	QUrl url(QString("file:///")+ absDir);
+	ui.panle->setUrl(url);
 	
 }
 

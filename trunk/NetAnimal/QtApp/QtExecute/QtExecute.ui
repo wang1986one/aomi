@@ -103,7 +103,7 @@
          </property>
          <property name="url">
           <url>
-           <string>file:///D:/NetAnimal/OrzQt/bin/html/panel.html</string>
+           <string>about:blank</string>
           </url>
          </property>
         </widget>
