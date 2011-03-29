@@ -7,6 +7,7 @@ ADD_DEFINITIONS( -D_WIN32_WINNT=0x0500)
 INCLUDE_DIRECTORIES(
 include
 ${ORZ_PROJECT_INTERFACE_DIR}
+
 )
 
 # specify a precompiled header to use
