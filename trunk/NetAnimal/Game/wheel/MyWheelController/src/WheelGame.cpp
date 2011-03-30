@@ -28,8 +28,8 @@ _select(NULL)
 {
 	//_engine->addListener(this);
 	_clock->setListener(this);
-	_dataServer =  Orz::ComponentFactories::getInstance().create("DataServer");
-	
+	//_dataServer =  Orz::ComponentFactories::getInstance().create("DataServer");
+	_jsComp = Orz::ComponentFactories::getInstance().create("Js");
 	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
 
 	_select = (Ogre::OverlayContainer*)om.createOverlayElement( "Panel", "3in1");
@@ -39,6 +39,12 @@ _select(NULL)
 	_select->setHeight(1);
 	_select->hide();
 	getOverlay()->add2D(_select);
+}
+
+
+Orz::ComponentPtr WheelGame::getJs(void) const
+{
+	return _jsComp;
 }
 void WheelGame::addBottomToUI(void)
 {
@@ -107,10 +113,10 @@ Ogre::Overlay * WheelGame::getOverlay(void)
 }
 
 
-ComponentPtr WheelGame::getDataServer(void)
-{
-	return _dataServer;
-}
+//ComponentPtr WheelGame::getDataServer(void)
+//{
+//	return _dataServer;
+//}
 
 
 

@@ -62,7 +62,7 @@ sc::result ReadyLogic::react(const UpdateEvt & evt)
 sc::result ReadyLogic::react(const LogicEvent::AskTime & evt)
 {
 
-	ScoreManager::getInstance().ready();
+	//ScoreManager::getInstance().ready();
 	evt.resetClock(getOwner());
 	//evt.answerTime(getOwner());
 

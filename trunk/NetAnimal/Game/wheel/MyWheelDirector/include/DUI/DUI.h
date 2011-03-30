@@ -14,7 +14,7 @@ namespace Orz
 	{
 	public:
 
-		DUI(ComponentPtr dataServer);
+		DUI();
 		virtual ~DUI(void);
 
 

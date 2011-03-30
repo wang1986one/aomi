@@ -32,6 +32,7 @@ namespace Orz
 		//
 		//Orz::ComponentPtr _format;//Comp = Orz::ComponentFactories::getInstance().create("Format");
 		bool _gotoDan;
+		int _time;
 	
 	};
 }
