@@ -18,6 +18,18 @@ JsComponent::JsComponent(void):_jsInterface(new JsInterface()), _gameInterface(n
 	_jsInterface->subscribeSetTime = boost::bind(&Js::subscribeSetTime, Js::getInstancePtr(), _1);
 	_gameInterface->setTime = boost::bind(&Js::setTime, Js::getInstancePtr(), _1);
 
+	
+
+	_jsInterface->subscribeAskPanelData = boost::bind(&Js::subscribeAskPanelData, Js::getInstancePtr(), _1);
+	_gameInterface->askPanelData = boost::bind(&Js::askPanelData, Js::getInstancePtr());
+
+
+	
+	_gameInterface->subscribePostPanelData = boost::bind(&Js::subscribePostPanelData, Js::getInstancePtr(), _1);
+	_jsInterface->postPanelData = boost::bind(&Js::postPanelData, Js::getInstancePtr(), _1, _2);
+
+
+	
 
 }
 JsComponent::~JsComponent(void)

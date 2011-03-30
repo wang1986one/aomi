@@ -1,7 +1,7 @@
 ORZ_FIND(Wheel_Game WheelGame bin/debug/MyWheelController.dll)
-
-INCLUDE_DIRECTORIES(${Wheel_Game_INCLUDE_DIR} )
-LINK_DIRECTORIES(${Wheel_Game_LIBRARY_DIR} )
+MESSAGE(${Wheel_Game_DIR}/include)
+INCLUDE_DIRECTORIES(${Wheel_Game_DIR}/include )
+LINK_DIRECTORIES(${Wheel_Game_DIR}/lib )
 
 INSTALL(FILES ${Wheel_Game_BIN_DIR}/debug/WheelGobal.dll
 ${Wheel_Game_BIN_DIR}/debug/MyWheelDirector.dll

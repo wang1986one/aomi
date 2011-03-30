@@ -20,11 +20,22 @@ namespace UnitTest
 		{
 			std::cout<<"setTime"<<time<<std::endl;
 		}
+
+		void askPanelData(void)
+		{
+			std::cout<<"askPanelData"<<std::endl;
+		}
 	};
 	
 	class MyGame
 	{
-
+	public:
+		void postPanelData(JsInterface::ButtonId id, size_t num)
+		{
+		
+			std::cout<<"postPanelData"<<std::endl;
+		}
+		  
 	};
 }
 BOOST_AUTO_TEST_CASE(JsComponentUT)
@@ -32,7 +43,7 @@ BOOST_AUTO_TEST_CASE(JsComponentUT)
 	using namespace UnitTest;
 	using namespace Orz;
 	MyJs myJs;
-	//MyGame myGame;
+	MyGame myGame;
 //typedef boost::function<boost::signals2::connection  (const SignalType::slot_type &subscriber)> ResetSubscribeFunction;
 	
 	Orz::ComponentPtr jsComp = Orz::ComponentFactories::getInstance().create("Js");
@@ -44,11 +55,19 @@ BOOST_AUTO_TEST_CASE(JsComponentUT)
 	assert(js);
 	js->subscribeEnableButton(boost::bind(&MyJs::enableButton, &myJs, _1));
 	js->subscribeSetTime(boost::bind(&MyJs::setTime, &myJs, _1));
-
+	js->subscribeAskPanelData(boost::bind(&MyJs::askPanelData, &myJs));
 	
+
 	game->setButtonEnable(true);
 	game->setTime(123);
+	game->askPanelData();
 
+	
+
+	game->subscribePostPanelData(boost::bind(&MyGame::postPanelData, &myGame, _1, _2));
+	js->postPanelData(JsInterface::ButtonId(0), 123);
+
+	
 }
 
 #endif

@@ -19,7 +19,6 @@ INCLUDE(OrzCMakeModule)
 INCLUDE(PrecompiledHeader)
 INCLUDE(FindOrzProjectBegin)
 
-
 FIND_PACKAGE(OrzSDK)
 FIND_PACKAGE(Qt4 REQUIRED) # find and setup Qt4 for this project
 
