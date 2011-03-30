@@ -17,7 +17,6 @@ QtExecute::QtExecute(QWidget *parent, Qt::WFlags flags)
 	QString absDir = temDir.absolutePath();
 	QUrl url(QString("file:///")+ absDir);
 	ui.panle->setUrl(url);
-
 	connect(ui.panle->page()->mainFrame(), SIGNAL(javaScriptWindowObjectCleared()),
 		this, SLOT(populateJavaScriptWindowObject()));
 
