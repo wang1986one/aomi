@@ -13,7 +13,7 @@ QtExecute::QtExecute(QWidget *parent, Qt::WFlags flags)
 	_pm.reset(new PluginsManager());
 	
 	ui.setupUi(this);
-	QDir temDir("../html/panel.html");
+	QDir temDir("./html/panel.html");
 	QString absDir = temDir.absolutePath();
 	QUrl url(QString("file:///")+ absDir);
 	ui.panle->setUrl(url);
@@ -40,15 +40,22 @@ bool QtExecute::init(void)
 	
 	_jsComponent = Orz::ComponentFactories::getInstance().create("Js");
 	JsInterface * js = _jsComponent->queryInterface<JsInterface>();
+
+
 	assert(js);
+
+	js->subscribeEnableButton(boost::bind(&QtExecute::enableButton,this, _1));
+	js->subscribeSetTime(boost::bind(&QtExecute::setTime,this, _1));
+	js->subscribeAskPanelData(boost::bind(&QtExecute::askPanelData, this));
+
 	return ui._orzWindow->init();
 }
 void QtExecute::shutdown(void)
 {
 	_jsComponent.reset();
+	ui._orzWindow->shutdown();
 	_pm->shutdown();
 	_pm.reset();
-	return ui._orzWindow->shutdown();
 }
 size_t QtExecute::getHandle()
 {
@@ -86,9 +93,34 @@ void QtExecute::populateJavaScriptWindowObject(void)
 	ui.panle->page()->mainFrame()->addToJavaScriptWindowObject("QtExecute", this);
 
 }
+void QtExecute::enableButton(bool enable)
+{
+	std::cout<<"enableButton"<<std::endl;
+	if(enable)
+	{
+		
+		ui.panle->page()->mainFrame()->evaluateJavaScript("enableButton();");
+	}else
+	{
+		
+		ui.panle->page()->mainFrame()->evaluateJavaScript("disableButton();");
+	}
+}
 
+void QtExecute::setTime(int time)
+{
+	std::cout<<".."<<time<<std::endl;
+	std::string str("setTheTime("+boost::lexical_cast<std::string>(time)+");");
+	ui.panle->page()->mainFrame()->evaluateJavaScript(QString(str.c_str()));
+}
+
+void QtExecute::askPanelData(void)
+{
+	std::cout<<"askPanelData"<<std::endl;
+}
 
 void QtExecute::setupPanel(void)
 {
 	ui.panle->page()->mainFrame()->evaluateJavaScript("disableButton();");
+	ui.panle->page()->mainFrame()->evaluateJavaScript("setTheTime(30);");
 }

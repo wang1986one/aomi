@@ -42,6 +42,7 @@ boost::signals2::connection Js::subscribeEnableButton(const JsInterface::EnableB
 
 void Js::setTime(int time)
 {
+	std::cout<<"??"<<time<<std::endl;
 	_setTimeSignal(time);
 }
 
