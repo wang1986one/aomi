@@ -51,3 +51,26 @@ boost::signals2::connection Js::subscribeSetTime(const JsInterface::SetTimeSigna
 }
 
 
+
+
+void Js::askPanelData(void)
+{
+	_askPanelDataSignal();
+}
+
+boost::signals2::connection Js::subscribeAskPanelData(const JsInterface::AskPanelDataSignalType::slot_type &subscriber)
+{
+	return _askPanelDataSignal.connect(subscriber);
+}
+
+void Js::postPanelData(JsInterface::ButtonId id, size_t num)
+{
+	_postPanelDataSignal(id, num);
+}
+boost::signals2::connection Js::subscribePostPanelData(const GameInterface<0>::PostPanelDataSignalType::slot_type &subscriber)
+{
+	return _postPanelDataSignal.connect(subscriber);
+}
+
+//AskPanelDataSignalType
+//typedef boost::function<boost::signals2::connection  (const EnableButtonSignalType::slot_type &subscriber)> SubscribeAskPanelData;
