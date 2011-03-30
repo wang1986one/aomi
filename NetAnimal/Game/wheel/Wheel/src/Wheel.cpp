@@ -24,6 +24,7 @@ int main()
 	builder.addPlugin("MyWheelDirector");
 	builder.addPlugin("WheelAnimal2Model");
 	builder.addPlugin("CodingComponent");
+	builder.addPlugin("JsComponent");
 	builder.addPlugin("MyJobComponent");
  
 	/*builder.addPlugin("WheelAnimalModel");*/

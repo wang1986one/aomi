@@ -27,7 +27,7 @@ namespace Orz
 	public:
 		bool textAccepted(const CEGUI::EventArgs&) ;
 
-		Dan(DanListener * listener, ComponentPtr dataServer);
+		Dan(DanListener * listener);
 		void write(int i, int j, const std::string & text);
 		void show(void);
 		void hide(void);
@@ -49,11 +49,11 @@ namespace Orz
 		TimeType _time;
 		std::vector<LinePtr > _lines;
 		Orz::ComponentPtr _table;
-		Orz::ComponentPtr _coding;
+	//	Orz::ComponentPtr _coding;
 	/*	Orz::ComponentPtr _lockCoding;
 		Orz::ComponentPtr _lock;*/
 		
-		ComponentPtr _dataServer;
+	//	ComponentPtr _dataServer;
 		boost::signals2::connection _connection;
 		//ComponentPtr _dataServer;
 	};

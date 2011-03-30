@@ -44,18 +44,18 @@ namespace Orz
 		void setEndUIVisible(bool visible);
 		void updateClock(TimeType interval);
 		void update(TimeType interval);
-
+		
 		void runWinner(void);
 
 		EventWorld * getWorld(void) const;
-
+		Orz::ComponentPtr getJs(void) const;
 		
 		void enableScene(const std::string & name, bool second);
 		int answerTime(void);
 
 		Ogre::Overlay * getOverlay(void);
 	
-		ComponentPtr getDataServer(void);
+	//	ComponentPtr getDataServer(void);
 	private:
 
 		Ogre::OverlayContainer* _select;
@@ -63,7 +63,8 @@ namespace Orz
 		EventWorld * _world;
 		WheelClockPtr _clock;
 		boost::function< void (const std::string & , bool) >  _enableSceneFunction;
-		Orz::ComponentPtr _dataServer;
+		//Orz::ComponentPtr _dataServer;
+		Orz::ComponentPtr _jsComp;
 		
 	};
 

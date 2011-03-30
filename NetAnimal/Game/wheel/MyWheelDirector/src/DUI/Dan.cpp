@@ -25,7 +25,6 @@ bool Dan::textAccepted(const CEGUI::EventArgs&)
 {
 
 	
-	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
 	CEGUI::String text = CEGUI::WindowManager::getSingleton().getWindow("Dan/Bg/Text/Putin")->getText();
 
 	std::cout<<CEGUI::WindowManager::getSingleton().getWindow("Dan/Bg/Text/Putin")->getText()<<std::endl;
@@ -38,16 +37,16 @@ bool Dan::textAccepted(const CEGUI::EventArgs&)
 
 	}else
 	{	
-		format->clear();
-		LockInterface * lock = _dataServer->queryInterface<LockInterface>();
-		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+	
+	//	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+	//	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
 
-		std::string code = lock->getLockCode2();
-		format->decode10(code, 60);
-		unsigned int oCheck = format->getCheck8(60);
+	//	std::string code = lock->getLockCode2();
+	//	format->decode10(code, 60);
+	//	unsigned int oCheck = format->getCheck8(60);
 
 
-		if(data->loadCodingData())
+		/*if(data->loadCodingData())
 		{
 
 			CodingFormatInterface * lockData = _dataServer->queryInterface<CodingFormatInterface>();
@@ -80,31 +79,31 @@ bool Dan::textAccepted(const CEGUI::EventArgs&)
 				warning(L"无效开机码");
 			}
 		}else
-			{
-				warning(L"内部数据错误，请联系开发商！");
-			}
+		{
+			warning(L"内部数据错误，请联系开发商！");
+		}*/
 	
 	}
 	CEGUI::WindowManager::getSingleton().getWindow("Dan/Bg/Text/Putin")->setText("");
 	return true;
 }
 
-Dan::Dan(DanListener * listener, ComponentPtr dataServer):_time(-1.f),_callback(listener)
+Dan::Dan(DanListener * listener):_time(-1.f),_callback(listener)
 {
 
-	_dataServer = dataServer;
+	//_dataServer = dataServer;
 
 	_table = Orz::ComponentFactories::getInstance().create("F5Table");
-	_coding = Orz::ComponentFactories::getInstance().create("Format");
+//	_coding = Orz::ComponentFactories::getInstance().create("Format");
 	/*_lockCoding = Orz::ComponentFactories::getInstance().create("Format");
 	_lock = Orz::ComponentFactories::getInstance().create("Senselock");*/
+//
+//	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 
-	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
-
-	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
-	
-	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
-	format->_key = lock->key;
+//	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
+//
+//	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+//	format->_key = lock->key;
 
 
 	_win= CEGUI::WindowManager::getSingleton().loadWindowLayout("dan.layout");
@@ -136,7 +135,7 @@ Dan::Dan(DanListener * listener, ComponentPtr dataServer):_time(-1.f),_callback(
 }
 bool Dan::check(void)
 {
-	
+	/*
 	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 
 	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
@@ -185,7 +184,7 @@ bool Dan::check(void)
 			setText("Dan/Bg/Text/BzmText", L"?????,?????,?????,?????");
 		}
 		
-	}
+	}*/
 	return true;
 }
 
@@ -298,7 +297,7 @@ bool Dan::onKeyPressed(const KeyEvent & evt)
 
 	if(evt.getKey() == Orz::KC_B)
 	{
-		LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+	/*	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
 		
 		if(lock->check())
@@ -346,13 +345,13 @@ bool Dan::onKeyPressed(const KeyEvent & evt)
 				
 			data->save();
 			warning(L"报账码生成，成功！");
-			setText("Dan/Bg/Text/BzmText", wstr);
-		}else
+			setText("Dan/Bg/Text/BzmText", wstr);*/
+		/*}else
 		{
 			setText("Dan/Bg/Text/BzmText", L"?????,?????,?????,?????");
 			warning(L"请检查加密狗是否配置正确！");
 
-		}
+		}*/
 
 	}
 	return false;
@@ -370,12 +369,12 @@ void Dan::update(TimeType time)
 		{
 
 
-			LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+			/*LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 
 			if(!lock->check())
 				warning(L"请检查加密狗是否配置正确！",2.0);
 			else
-				warning(L"运行正常...");
+				warning(L"运行正常...");*/
 		}
 	}
 }

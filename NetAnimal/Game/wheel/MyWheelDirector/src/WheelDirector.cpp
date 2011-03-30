@@ -130,15 +130,15 @@ void WheelDirector::doEnable(void)
 
 	
 	_logic.init(_game.get());
-	_ui.reset(new DUI(_game->getDataServer()));
+	_ui.reset(new DUI());
  		getWorld()->comeIn(_autoEngine);
 	_keyTable = Orz::ComponentFactories::getInstance().create("F5TableKey");
 	enableUpdate();
-	ComponentPtr dataServer = _game->getDataServer();
+	/*ComponentPtr dataServer = _game->getDataServer();
 	DataServerInterface * data =dataServer->queryInterface<DataServerInterface>();
 	data->load();
 	LockInterface * lock = dataServer->queryInterface<LockInterface>();
-	lock->print();
+	lock->print();*/
 	
 }
 bool WheelDirector::onKeyPressed(const KeyEvent & evt)

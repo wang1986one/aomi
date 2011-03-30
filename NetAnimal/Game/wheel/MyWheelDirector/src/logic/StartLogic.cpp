@@ -7,60 +7,29 @@
 #include "CodingFormatInterface.h"
 #include "DataServerInterface.h"
 #include "logic/Dan1Logic.h"
+
+#include "GameInterface.h"
 using namespace Orz;
+
 void StartLogic::exit(void)
 {
 	
-	
-	ComponentPtr dataServer = getOwner()->getDataServer();
 
-	CodingFormatInterface * format = dataServer->queryInterface<CodingFormatInterface>();
-	LockInterface * lock = dataServer->queryInterface<LockInterface>();
-
-
-	std::string code = format->encode10(60, 20);
-	lock->setLockCode(code);
-	DataServerInterface * data = dataServer->queryInterface<DataServerInterface>();
-	data->save();
+	getOwner()->addBottomToUI();
+	GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
+	game->setButtonEnable(false);
 
 }
-StartLogic::StartLogic(my_context ctx):LogicAdv(ctx),_gotoDan(false)
+StartLogic::StartLogic(my_context ctx):LogicAdv(ctx),_gotoDan(false),_time(-1)
 {
 	
 	ORZ_LOG_NORMAL_MESSAGE("State In: StartLogic!");
 	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_START_ENABLE, WheelEvents::PROCESS_START_DISABLE));
 	getOwner()->setStartUIVisible(true);
 	getOwner()->resetClock();
-
-	ComponentPtr dataServer = getOwner()->getDataServer();
-	LockInterface * lock = dataServer->queryInterface<LockInterface>();
+	GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
+	game->setButtonEnable(true);
 	
-	CodingFormatInterface * format = dataServer->queryInterface<CodingFormatInterface>();
-	DataServerInterface * data = dataServer->queryInterface<DataServerInterface>();
-	if(lock->check())
-	{
-			
-		std::string code = lock->getLockCode();
-		if(!format->decode10(code, 60))
-		{
-			srand(time(NULL));
-			format->clear();
-			format->setLockTimes(0);
-			format->setLockID(rand()%256);
-			format->setLockLeavings(0);
-			format->setLockPass(0);
-			
-		}
-		if(!data->hasLevings())
-		{
-			_gotoDan = true;
-		}
-
-
-	}else
-	{
-		_gotoDan = true;
-	}
 }
 StartLogic::~StartLogic(void)
 {
@@ -83,31 +52,31 @@ sc::result StartLogic::react(const LogicEvent::Dan2 & evt)
 
 sc::result StartLogic::react(const LogicEvent::ClickButton & evt)
 {
-	ScoreManager::getInstance().clickButton(evt.getID(), evt.getButton());
+	//ScoreManager::getInstance().clickButton(evt.getID(), evt.getButton());
 	return forward_event();
 }
 sc::result StartLogic::react(const UpdateEvt & evt)
 {
 
-	//
-	//if(_gotoDan)
-	//{
-	//	return transit<Dan1Logic>();
-	//}
 	getOwner()->updateClock(evt.getInterval());
+	int time = getOwner()->answerTime();
 
-	if(getOwner()->answerTime() <= 0)
+	if(_time != time)
 	{
-		ScoreManager::getInstance().go();
-		getOwner()->addBottomToUI();
-		return transit<GameRunLogic>();
+		_time = time;
+			
+		GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
+		std::cout<<"!!"<<_time<<std::endl;
+		game->setTime(_time);
+		if(_time <= 0)
+		{
+			return transit<GameRunLogic>();
+		}
+	
 	}
-	
-	
 	if(_process->update(evt.getInterval()))
 		return forward_event();
 
-	//std::cout<<getOwner()->answerTime() <<std::endl;
 
 	return forward_event();
 

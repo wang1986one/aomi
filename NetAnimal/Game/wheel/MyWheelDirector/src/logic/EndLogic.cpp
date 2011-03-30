@@ -14,7 +14,7 @@ EndLogic::EndLogic(my_context ctx):LogicAdv(ctx), _allTime(0.f)
 	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_END_ENABLE, WheelEvents::PROCESS_END_DISABLE, 4.f));
 	getOwner()->setEndUIVisible(true);
 	
-	ScoreManager::getInstance().rebate();
+	//ScoreManager::getInstance().rebate();
 }
 
 
