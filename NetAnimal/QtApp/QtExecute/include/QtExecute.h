@@ -74,6 +74,10 @@ private:
 	Orz::ComponentPtr _jsComponent;
 
 	boost::scoped_ptr<Orz::PluginsManager> _pm;
+	
+	void enableButton(bool enable);
+	void setTime(int time);
+	void askPanelData(void);
 public slots:
 	void setupPanel(void);
     void populateJavaScriptWindowObject(void);
