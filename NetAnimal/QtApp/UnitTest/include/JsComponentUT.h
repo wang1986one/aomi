@@ -25,6 +25,28 @@ namespace UnitTest
 		{
 			std::cout<<"askPanelData"<<std::endl;
 		}
+
+		void addProfit(int profit)
+		{
+			std::cout<<"addProfit"<<std::endl;
+		}
+		void setProfit(int profit)
+		{
+			std::cout<<"setProfit"<<std::endl;
+		}
+
+		void rollProfit(void)
+		{
+			std::cout<<"rollProfit"<<std::endl;
+		}
+		
+		void setWinner(JsInterface::ButtonId id, int profit)
+		{
+			std::cout<<"setWinner"<<std::endl;
+		}
+
+
+
 	};
 	
 	class MyGame
@@ -68,6 +90,19 @@ BOOST_AUTO_TEST_CASE(JsComponentUT)
 	js->postPanelData(JsInterface::ButtonId(0), 123);
 
 	
+	js->subscribeAddProfit(boost::bind(&MyJs::addProfit, &myJs, _1));
+	js->subscribeSetProfit(boost::bind(&MyJs::setProfit, &myJs, _1));
+	js->subscribeRollProfit(boost::bind(&MyJs::rollProfit, &myJs));
+
+	
+	game->addProfit(123);
+	game->setProfit(0);
+	game->rollProfit();
+	
+	
+	js->subscribeSetWinner(boost::bind(&MyJs::setWinner, &myJs, _1, _2));
+	game->setWinner(JsInterface::ButtonId(0), 123);
+
 }
 
 #endif
