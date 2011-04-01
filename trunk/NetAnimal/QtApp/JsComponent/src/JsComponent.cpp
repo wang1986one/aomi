@@ -28,8 +28,28 @@ JsComponent::JsComponent(void):_jsInterface(new JsInterface()), _gameInterface(n
 	_gameInterface->subscribePostPanelData = boost::bind(&Js::subscribePostPanelData, Js::getInstancePtr(), _1);
 	_jsInterface->postPanelData = boost::bind(&Js::postPanelData, Js::getInstancePtr(), _1, _2);
 
+	
+	_jsInterface->subscribeAddProfit = boost::bind(&Js::subscribeAddProfit, Js::getInstancePtr(), _1);
+	_gameInterface->addProfit = boost::bind(&Js::addProfit, Js::getInstancePtr(), _1);
 
 	
+	_jsInterface->subscribeSetProfit = boost::bind(&Js::subscribeSetProfit, Js::getInstancePtr(), _1);
+	_gameInterface->setProfit = boost::bind(&Js::setProfit, Js::getInstancePtr(), _1);
+
+	
+	_jsInterface->subscribeRollProfit = boost::bind(&Js::subscribeRollProfit, Js::getInstancePtr(), _1);
+	_gameInterface->rollProfit = boost::bind(&Js::rollProfit, Js::getInstancePtr());
+
+
+	_jsInterface->subscribeSetWinner = boost::bind(&Js::subscribeSetWinner, Js::getInstancePtr(), _1);
+	_gameInterface->setWinner = boost::bind(&Js::setWinner, Js::getInstancePtr(), _1, _2);
+
+
+	
+
+
+
+
 
 }
 JsComponent::~JsComponent(void)

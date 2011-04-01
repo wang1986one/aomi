@@ -60,4 +60,4 @@ Plugin=Plugin_OgreVideo
 
 INCLUDE(OrzHunterGame)
 
-INCLUDE(FindOrzProjectEnd)
+INCLUDE(FindOrzProjectEnd)	

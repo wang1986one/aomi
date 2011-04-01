@@ -27,12 +27,12 @@ Js * Js::getInstancePtr(void)
 
 void Js::setButtonEnable(bool enable)
 {
-	_enableButtonSignal(enable);
+	_enableButton(enable);
 }
 
 boost::signals2::connection Js::subscribeEnableButton(const JsInterface::EnableButtonSignalType::slot_type &subscriber)
 {
-	return _enableButtonSignal.connect(subscriber);
+	return _enableButton.connect(subscriber);
 }
 
 
@@ -43,12 +43,12 @@ boost::signals2::connection Js::subscribeEnableButton(const JsInterface::EnableB
 void Js::setTime(int time)
 {
 	std::cout<<"??"<<time<<std::endl;
-	_setTimeSignal(time);
+	_setTime(time);
 }
 
 boost::signals2::connection Js::subscribeSetTime(const JsInterface::SetTimeSignalType::slot_type &subscriber)
 {
-	return _setTimeSignal.connect(subscriber);
+	return _setTime.connect(subscriber);
 }
 
 
@@ -56,12 +56,12 @@ boost::signals2::connection Js::subscribeSetTime(const JsInterface::SetTimeSigna
 
 void Js::askPanelData(void)
 {
-	_askPanelDataSignal();
+	_askPanelData();
 }
 
 boost::signals2::connection Js::subscribeAskPanelData(const JsInterface::AskPanelDataSignalType::slot_type &subscriber)
 {
-	return _askPanelDataSignal.connect(subscriber);
+	return _askPanelData.connect(subscriber);
 }
 
 void Js::postPanelData(JsInterface::ButtonId id, size_t num)
@@ -73,5 +73,44 @@ boost::signals2::connection Js::subscribePostPanelData(const GameInterface<0>::P
 	return _postPanelDataSignal.connect(subscriber);
 }
 
-//AskPanelDataSignalType
-//typedef boost::function<boost::signals2::connection  (const EnableButtonSignalType::slot_type &subscriber)> SubscribeAskPanelData;
+
+
+
+
+void Js::addProfit(int profit)
+{
+	_addProfit(profit);
+}
+boost::signals2::connection Js::subscribeAddProfit(const JsInterface::AddProfitSignalType::slot_type &subscriber)
+{
+	return _addProfit.connect(subscriber);
+}
+
+void Js::setProfit(int profit)
+{
+	_setProfit(profit);
+}
+boost::signals2::connection Js::subscribeSetProfit(const JsInterface::SetProfitSignalType::slot_type &subscriber)
+{
+	return _addProfit.connect(subscriber);
+}
+
+void Js::rollProfit(void)
+{
+	_rollProfit();
+}
+boost::signals2::connection Js::subscribeRollProfit(const JsInterface::RollProfitSignalType::slot_type &subscriber)
+{
+	return _rollProfit.connect(subscriber);
+}
+
+
+
+void Js::setWinner(JsInterface::ButtonId id, int profit)
+{
+	_setWinner(id, profit);
+}
+boost::signals2::connection Js::subscribeSetWinner(const JsInterface::SetWinnerSignalType::slot_type &subscriber)
+{
+	return _setWinner.connect(subscriber);
+}
