@@ -17,7 +17,8 @@ LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../CMake)
 INCLUDE(CPack)
 INCLUDE(OrzCMakeModule)
 INCLUDE(PrecompiledHeader)
-INCLUDE(FindOrzProjectBegin)
+INCLUDE(FindOrzProjectBeginInstall)
+INCLUDE(Ajax)
 
 FIND_PACKAGE(OrzSDK)
 FIND_PACKAGE(Qt4 REQUIRED) # find and setup Qt4 for this project
@@ -48,14 +49,50 @@ ADD_SUBDIRECTORY(UnitTest)
 
 ORZ_POST_BUILD()
 
-INSTALL(CODE "FILE(APPEND ${CMAKE_INSTALL_PREFIX}/bin/debug/plugins.cfg \"
+INSTALL(CODE "FILE(WRITE ${CMAKE_INSTALL_PREFIX}/bin/debug/plugins.cfg \"
+# Defines plugins to load
+
+# Define plugin folder
+PluginFolder=.
+
+# Define plugins
+ Plugin=RenderSystem_GL_d
+ Plugin=Plugin_ParticleFX_d
+ Plugin=Plugin_BSPSceneManager_d
+ Plugin=Plugin_CgProgramManager_d
+ Plugin=Plugin_PCZSceneManager_d
+ Plugin=Plugin_OctreeZone_d
+ Plugin=Plugin_OctreeSceneManager_d
+
 Plugin=ParticleUniverse_d
 Plugin=Plugin_OgreVideo_d
+
 \")")
-INSTALL(CODE "FILE(APPEND ${CMAKE_INSTALL_PREFIX}/bin/release/plugins.cfg \"
-Plugin=ParticleUniverse
-Plugin=Plugin_OgreVideo
+INSTALL(CODE "FILE(WRITE ${CMAKE_INSTALL_PREFIX}/bin/release/plugins.cfg \"
+# Defines plugins to load
+
+# Define plugin folder
+PluginFolder=.
+
+
+# Define plugins
+ Plugin=RenderSystem_GL
+ Plugin=Plugin_ParticleFX
+ Plugin=Plugin_BSPSceneManager
+ Plugin=Plugin_CgProgramManager
+ Plugin=Plugin_PCZSceneManager
+ Plugin=Plugin_OctreeZone
+ Plugin=Plugin_OctreeSceneManager
+ Plugin=ParticleUniverse
+ Plugin=Plugin_OgreVideo
 \")")
+
+
+
+INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/debug PATTERN "CVS" EXCLUDE PATTERN ".svn"  EXCLUDE)
+
+INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/release PATTERN "CVS" EXCLUDE PATTERN ".svn"  EXCLUDE)
+
 
 
 INCLUDE(OrzHunterGame)
