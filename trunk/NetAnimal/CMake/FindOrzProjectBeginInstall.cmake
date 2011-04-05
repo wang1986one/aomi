@@ -1,0 +1,20 @@
+ORZ_FIND(ORZ_PROJECT ORZ_PROJECT media/resources.cfg.in)
+UNSET(ORZ_PROJECT_BIN_DIR CACHE)
+UNSET(ORZ_PROJECT_INCLUDE_DIR CACHE)
+UNSET(ORZ_PROJECT_LIBRARY_DIR CACHE)
+FILE(TO_CMAKE_PATH ./media ORZ_MEDIA_DIR)
+message(${ORZ_MEDIA_DIR})
+configure_file(${ORZ_PROJECT_DIR}/media/resources.cfg.in ${ORZ_PROJECT_DIR}/media/resources.cfg)
+configure_file(${ORZ_PROJECT_DIR}/media/WheelScene.cfg.in ${ORZ_PROJECT_DIR}/media/WheelScene.cfg)
+configure_file(${ORZ_PROJECT_DIR}/media/WheelScene2.cfg.in ${ORZ_PROJECT_DIR}/media/WheelScene2.cfg)
+
+configure_file(${ORZ_PROJECT_DIR}/media/HunterScene.cfg.in ${ORZ_PROJECT_DIR}/media/HunterScene.cfg)
+
+
+FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/interface ORZ_PROJECT_INTERFACE_DIR)
+FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/component/bin ORZ_PROJECT_COMPONENT_BIN_DIR)
+FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/component/lib ORZ_PROJECT_COMPONENT_LIB_DIR)
+FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/component/include ORZ_PROJECT_COMPONENT_INCLUDE_DIR)
+
+INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/component/debug/ DESTINATION ./bin/debug/ PATTERN "CVS" EXCLUDE PATTERN ".svn" EXCLUDE)
+INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/component/release/ DESTINATION ./bin/release/ PATTERN "CVS" EXCLUDE PATTERN ".svn" EXCLUDE)
