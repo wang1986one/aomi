@@ -18,45 +18,45 @@
 <script type="text/javascript">
 //<!--
 
-$(document).ready(function() {
+    $(document).ready(function() {
 
-	$('#line0').html($('#line0').html()+getMsg('yl'));	
-	$('#line0').html($('#line0').html()+getMsg('time'));	
-	$('#line0').html($('#line0').html()+getMsg('tms'));	
-	
-	
-	$('#line1').html($('#line1').html()+getButton('zhuang'));	
-	$('#line1').html($('#line1').html()+getButton('he'));	
-	$('#line1').html($('#line1').html()+getButton('xian'));	
-	
-	$('#line2').html($('#line2').html()+getButton('red_lion'));	
-	$('#line2').html($('#line2').html()+getButton('green_lion'));	
-	$('#line2').html($('#line2').html()+getButton('yellow_lion'));
-	
-	$('#line2').html($('#line2').html()+getButton('red_panda'));	
-	$('#line2').html($('#line2').html()+getButton('green_panda'));	
-	$('#line2').html($('#line2').html()+getButton('yellow_panda'));
-	
-	
-	
-	$('#line3').html($('#line3').html()+getButton('red_monkey'));	
-	$('#line3').html($('#line3').html()+getButton('green_monkey'));	
-	$('#line3').html($('#line3').html()+getButton('yellow_monkey'));
-	
-	$('#line3').html($('#line3').html()+getButton('red_rabbit'));	
-	$('#line3').html($('#line3').html()+getButton('green_rabbit'));	
-	$('#line3').html($('#line3').html()+getButton('yellow_rabbit'));
+        $('#line0').html($('#line0').html() + getMsg('yl'));
+        $('#line0').html($('#line0').html() + getMsg('time'));
+        $('#line0').html($('#line0').html() + getMsg('tms'));
 
-	
-	setupButton();
-	enableButton();
-	clearButton();
-	
-	setupMsgButton();
-	setYL(100);
-	startRoll();
 
-});
+        $('#line1').html($('#line1').html() + getButton('zhuang'));
+        $('#line1').html($('#line1').html() + getButton('he'));
+        $('#line1').html($('#line1').html() + getButton('xian'));
+
+        $('#line2').html($('#line2').html() + getButton('red_lion'));
+        $('#line2').html($('#line2').html() + getButton('green_lion'));
+        $('#line2').html($('#line2').html() + getButton('yellow_lion'));
+
+        $('#line2').html($('#line2').html() + getButton('red_panda'));
+        $('#line2').html($('#line2').html() + getButton('green_panda'));
+        $('#line2').html($('#line2').html() + getButton('yellow_panda'));
+
+
+
+        $('#line3').html($('#line3').html() + getButton('red_monkey'));
+        $('#line3').html($('#line3').html() + getButton('green_monkey'));
+        $('#line3').html($('#line3').html() + getButton('yellow_monkey'));
+
+        $('#line3').html($('#line3').html() + getButton('red_rabbit'));
+        $('#line3').html($('#line3').html() + getButton('green_rabbit'));
+        $('#line3').html($('#line3').html() + getButton('yellow_rabbit'));
+
+
+        setupButton();
+        enableButton();
+        clearButton();
+
+        setupMsgButton();
+       
+        QtExecute.setupPanel();
+
+    });
 //-->
 
 </script>
