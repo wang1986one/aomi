@@ -218,9 +218,6 @@ bool Orz::NewGameSceneComponent::load(void)
 	//_nodeGold=sm->getRootSceneNode()->createChildSceneNode("gold",Ogre::Vector3(-540, -100, -150));ÍÂ½ðµÄÎ»ÖÃ
 	_nodeGold=sm->getRootSceneNode()->createChildSceneNode("gold",Ogre::Vector3(0,0, 50));
 
-	//_nodeFeiting=sm->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0,1017.04f,-2546.1f));
-	//_nodeFeiting->setScale(150,150,150);
-	//_nodeFeiting->setOrientation(0.7071f, 0.00308532f, -0.7071f, 0.00308532f);
 	_nodeFeiting=sm->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(726,750,-1540));
 	_nodeFeiting->setScale(40,40,40);
 	ent=sm->createEntity("planeqq","planeqq.mesh");
@@ -230,17 +227,6 @@ bool Orz::NewGameSceneComponent::load(void)
 	ent=sm->createEntity("feitingNum","feitingNum.mesh");
 	_nodefeitingNum->attachObject(ent);
 	_nodeFeiting->setVisible(false);
-
-	//Ogre::Plane * plane=Ogre::
-	//	Ogre::Mesh* p=Ogre::MeshManager::createPlane("planeqq","general","",512,512);
-	//bbsetQQ = sm->createBillboardSet("bbsetQQ",1);
-	//bbsetQQ->setMaterialName("qiqiuBB");
-	//bbsetQQ->setDefaultDimensions(512,512);
-	//bbQQ = bbsetQQ->createBillboard(0,0,-500);
-	//Ogre::SceneNode* _nodesubFeiting = _nodeFeiting->createChildSceneNode();
-	//_nodesubFeiting->setInheritScale(false);
-	//_nodesubFeiting->setScale(1.5,1.5,1.5);
-	//_nodesubFeiting->attachObject(bbsetQQ);
 
 
 	Ogre::Light * light = Orz::OgreGraphicsManager::getSingleton().getSceneManager()->createLight();
