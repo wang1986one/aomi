@@ -18,68 +18,68 @@ namespace Orz
 
 
 
-	class _OrzMyWheelControlleExport ScoreManager
-	{
-	public:
-		ScoreManager(void):_strategy(new ScoreStrategyNomal()),_canButton(false)
-		{
-			size_t size = Orz::SingleChipManager::getSingleton().getSCMAmount();
-			_scmDatas.resize(8);
-		}
-		~ScoreManager(void)
-		{
+	//class _OrzMyWheelControlleExport ScoreManager
+	//{
+	//public:
+	//	ScoreManager(void):_strategy(new ScoreStrategyNomal()),_canButton(false)
+	//	{
+	//		size_t size = Orz::SingleChipManager::getSingleton().getSCMAmount();
+	//		_scmDatas.resize(8);
+	//	}
+	//	~ScoreManager(void)
+	//	{
 
-		}
+	//	}
 
-		inline void ready(void)
-		{	
-			for(size_t i = 0; i< _scmDatas.size(); ++i)
-			{
-				_scmDatas.at(i).clear();
-			}
-			_strategy->ready(_data);
-			_canButton = true;
-		}
-		inline void clickButton(int id, int button)
-		{
-			if(!_canButton || id < 0 ||size_t( id) >= _scmDatas.size())
-				return;
+	//	inline void ready(void)
+	//	{	
+	//		for(size_t i = 0; i< _scmDatas.size(); ++i)
+	//		{
+	//			_scmDatas.at(i).clear();
+	//		}
+	//		_strategy->ready(_data);
+	//		_canButton = true;
+	//	}
+	//	inline void clickButton(int id, int button)
+	//	{
+	//		if(!_canButton || id < 0 ||size_t( id) >= _scmDatas.size())
+	//			return;
 
-			_scmDatas.at(id).clickButton(button);
-		}
+	//		_scmDatas.at(id).clickButton(button);
+	//	}
 
 
 
-		inline void go(void)
-		{
+	//	inline void go(void)
+	//	{
 
-			_canButton = false;
-			
-			_strategy->go(_data, _scmDatas);
+	//		_canButton = false;
+	//		
+	//		_strategy->go(_data, _scmDatas);
 
-		}
-		inline void rebate(void)
-		{
-			BOOST_FOREACH(const SCMData & data, _scmDatas)
-			{
-				std::cout<<_strategy->rebate(data)<<std::endl;
-			}
-			
-			
-		}
-		ScoreStrategy  * getStrategy(void)
-		{
-			return _strategy.get();
-		}
+	//	}
+	//	inline void rebate(void)
+	//	{
+	//		BOOST_FOREACH(const SCMData & data, _scmDatas)
+	//		{
+	//			std::cout<<_strategy->rebate(data)<<std::endl;
+	//		}
+	//		
+	//		
+	//	}
+	//	ScoreStrategy  * getStrategy(void)
+	//	{
+	//		return _strategy.get();
+	//	}
 
-		static ScoreManager & getInstance(void);
-		static ScoreManager * getInstancePtr(void);
-	private:
-		ScoreData _data;
-		ScoreStrategyPtr _strategy;
-		SCMDataList _scmDatas;
-		bool _canButton;
-	};
+	//	static ScoreManager & getInstance(void);
+	//	static ScoreManager * getInstancePtr(void);
+	//private:
+	//	ScoreData _data;
+	//	ScoreStrategyPtr _strategy;
+	//	SCMDataList _scmDatas;
+	//	bool _canButton;
+	//};
 
 
 }
