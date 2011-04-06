@@ -11,14 +11,26 @@
 #include "GameInterface.h"
 using namespace Orz;
 
-StartLogic::StartLogic(my_context ctx):LogicAdv(ctx)
+void GetDataLogic::exit(void)
 {
 	
-	
+
+}
+GetDataLogic::GetDataLogic(my_context ctx):LogicAdv(ctx)
+{
+
 	
 }
-StartLogic::~StartLogic(void)
+GetDataLogic::~GetDataLogic(void)
 {
 	
+
 	
+}
+
+sc::result GetDataLogic::react(const UpdateEvt & evt)
+{
+
+	return forward_event();
+
 }
