@@ -52,24 +52,7 @@ namespace Orz
 				key->setRotation(q[i%6]);
 			}
 
-				//key =_track->createNodeKeyFrame(16.f); // startposition
-				//key->setTranslate(start->getPosition());
-				//key->setRotation(start->getOrientation());
-				//key->setScale(Ogre::Vector3::UNIT_SCALE);
-				//key->setRotation(q[6]);
-			
-
-		//	key = _track->createNodeKeyFrame(1.f);
-		//	key->setTranslate(start->getPosition());
-		//	//key->setRotation(q0);
-
-		//	key = _track->createNodeKeyFrame(2.f);
-		//	key->setTranslate(start->getPosition());
-		////	key->setRotation(q1);
-		//	
-		//	key = _track->createNodeKeyFrame(6.f);
-		//	key->setTranslate(start->getPosition());
-		//	key->setRotation(q2);
+				
 
 			//// Create a new animation state to track this
 			_animState = sm->createAnimationState(name);
