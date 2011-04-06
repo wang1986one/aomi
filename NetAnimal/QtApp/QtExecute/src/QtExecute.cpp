@@ -93,9 +93,16 @@ void QtExecute::populateJavaScriptWindowObject(void)
 	ui.panle->page()->mainFrame()->addToJavaScriptWindowObject("QtExecute", this);
 
 }
+
+void QtExecute::answerPanelData(int id, int data)
+{
+		
+	using namespace Orz;
+	JsInterface * js = _jsComponent->queryInterface<JsInterface>();
+	js->postPanelData(JsInterface::ButtonId(id), data);
+}
 void QtExecute::enableButton(bool enable)
 {
-	std::cout<<"enableButton"<<std::endl;
 	if(enable)
 	{
 		
@@ -117,6 +124,7 @@ void QtExecute::setTime(int time)
 void QtExecute::askPanelData(void)
 {
 	std::cout<<"askPanelData"<<std::endl;
+	ui.panle->page()->mainFrame()->evaluateJavaScript("askPanelData();");
 }
 
 void QtExecute::setupPanel(void)
