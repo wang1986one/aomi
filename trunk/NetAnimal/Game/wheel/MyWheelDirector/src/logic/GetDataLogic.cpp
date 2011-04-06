@@ -10,13 +10,17 @@
 
 #include "GameInterface.h"
 using namespace Orz;
-int i = 0;
 void GetDataLogic::exit(void)
 {
 	
 	_connection.disconnect();
+	
+	int num = getOwner()->addAndGetNum();
 
-	switch(i%11)
+	WinData::getInstance().setBonus(rand()%1000 +1000);
+	WinData::getInstance().setWinner(WheelEnum::Winner(rand()%3));
+	WinData::getInstance().clear();
+	switch(num%11)
 	{
 	case 0:
 		WinData::getInstance().setWinMode(WheelEnum::NONE);
@@ -78,7 +82,6 @@ void GetDataLogic::exit(void)
 	}
 	
 	getOwner()->addBottomToUI();
-	i++;
 	//game->setWinner(false);
 }
 
