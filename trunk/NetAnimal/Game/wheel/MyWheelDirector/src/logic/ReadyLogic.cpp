@@ -6,42 +6,20 @@
 using namespace Orz;
 	
 
-//sc::result ReadyLogic::react(const LogicEvent::AskState & evt)
-//{	
-//	evt.execute(getOwner(), 0x05);
-//	//Hardware::getSingleton().answerState(0x05);
-//	return forward_event();
-//}
-	
 ReadyLogic::ReadyLogic(my_context ctx):LogicAdv(ctx)
 {
 	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_READY_ENABLE, WheelEvents::PROCESS_READY_DISABLE));
 	
-	//LockInterface * lock = _lock->queryInterface<LockInterface>();
-	//CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
-	//if(!lock->check());
 
 	ORZ_LOG_NORMAL_MESSAGE("State In: ReadyLogic!");
 }
 
-//sc::result ReadyLogic::react(const LogicEvent::FindSC & evt)
-//{
-//	
-//	MyHardware::getInstance().findPC();
-//	return forward_event();
-//}
 
 ReadyLogic::~ReadyLogic(void)
 {
 	
 	ORZ_LOG_NORMAL_MESSAGE("State Out: ReadyLogic!");
-	//getOwner().resetClock();
-	//TutoriaLogic  & mainLogic  = context< TutoriaLogic>();
-	//MyClock & clock =  mainLogic.getClock();
-	//clock.reset();
-	//
-	//Hardware::getSingleton().answerTime(clock.getLastSecond());
-
+	
 }
 
 
@@ -62,17 +40,6 @@ sc::result ReadyLogic::react(const UpdateEvt & evt)
 sc::result ReadyLogic::react(const LogicEvent::AskTime & evt)
 {
 
-	//ScoreManager::getInstance().ready();
 	evt.resetClock(getOwner());
-	//evt.answerTime(getOwner());
-
-	/*	getOwner().resetClock();
-	TutoriaLogic  & mainLogic  = context< TutoriaLogic>();
-	MyClock & clock =  mainLogic.getClock();
-	clock.reset();
-	
-	Hardware::getSingleton().answerTime(clock.getLastSecond());*/
-
 	return transit<StartLogic>();
-	//return forward_event();
 }

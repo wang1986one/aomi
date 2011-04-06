@@ -23,14 +23,6 @@ sc::result ProRunLogic::react(const UpdateEvt & evt)
 {
 	if(_process->update(evt.getInterval()))
 		return forward_event();
-		//return forward_event();
 	return transit<RunLogic>();	
 }
 
-
-//sc::result ProRunLogic::react(const LogicEvent::AskState & evt)
-//{	
-//	evt.execute(getOwner(), 0x01);
-//	//Hardware::getSingleton().answerState(0x01);
-//	return forward_event();
-//}

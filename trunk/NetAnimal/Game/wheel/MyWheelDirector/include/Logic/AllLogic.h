@@ -5,7 +5,7 @@
 //#include "MenuLogic.h"
 //#include "SetupLogic.h"
 
-
+#include "TimeLogic.h"
 #include "LogoLogic.h"
 #include "GameRunLogic.h"
 #include "ReadyLogic.h"

@@ -1,6 +1,6 @@
 #ifndef __Orz_MyWheelDirectorStableHeaders_h__
 #define __Orz_MyWheelDirectorStableHeaders_h__	
-
+#pragma warning(disable:4996)
 #include <orz/Toolkit_Base/Global.h>
 
 #include <orz/Toolkit_Base/FSMLogic.h>
