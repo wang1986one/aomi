@@ -81,6 +81,7 @@ private:
 public slots:
 	void setupPanel(void);
     void populateJavaScriptWindowObject(void);
+	void answerPanelData(int id, int data);
 	
 };
 
