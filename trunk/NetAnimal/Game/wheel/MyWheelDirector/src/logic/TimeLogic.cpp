@@ -64,7 +64,7 @@ sc::result TimeLogic::react(const UpdateEvt & evt)
 		game->setTime(_time);
 		if(_time <= 0)
 		{
-			return transit<GameRunLogic>();
+			return transit<GetDataLogic>();
 		}
 	
 	}

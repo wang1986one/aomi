@@ -5,6 +5,7 @@
 #include "TasksManager.h"
 #include "StartLogic.h"
 #include "WheelAnimalProcess.h"
+#include "JsInterface.h"
 namespace Orz
 {
 
@@ -17,7 +18,11 @@ namespace Orz
 		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;
 		sc::result react(const UpdateEvt & evt)	;
 		void exit(void);
+
+		void postData(JsInterface::ButtonId, int profit);
 	private:
+		boost::signals2::connection _connection;
+		bool _over;
 	};
 }
 #endif
