@@ -10,13 +10,11 @@
 
 #include "GameInterface.h"
 using namespace Orz;
-
+int i = 0;
 void GetDataLogic::exit(void)
 {
 	
 	_connection.disconnect();
-	static int i = 0;
-
 
 	switch(i%11)
 	{
@@ -78,7 +76,8 @@ void GetDataLogic::exit(void)
 
 	
 	}
-
+	
+	getOwner()->addBottomToUI();
 	i++;
 	//game->setWinner(false);
 }
