@@ -54,7 +54,7 @@ namespace Orz
 		int answerTime(void);
 
 		Ogre::Overlay * getOverlay(void);
-	
+		int addAndGetNum();
 	//	ComponentPtr getDataServer(void);
 	private:
 
@@ -65,6 +65,7 @@ namespace Orz
 		boost::function< void (const std::string & , bool) >  _enableSceneFunction;
 		//Orz::ComponentPtr _dataServer;
 		Orz::ComponentPtr _jsComp;
+		int _num;
 		
 	};
 

@@ -39,6 +39,7 @@ _select(NULL)
 	_select->setHeight(1);
 	_select->hide();
 	getOverlay()->add2D(_select);
+	_num = 0;
 }
 
 
@@ -96,6 +97,11 @@ int WheelGame::answerTime(void)
 	return _clock->getLastSecond();
 }
 
+int WheelGame::addAndGetNum()
+{
+	++_num;
+	return _num;
+}
 Ogre::Overlay * WheelGame::getOverlay(void)
 {
 	Ogre::Overlay *  overlay = NULL;
