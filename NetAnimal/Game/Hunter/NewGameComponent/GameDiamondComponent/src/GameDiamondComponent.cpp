@@ -388,17 +388,25 @@ void GameDiamondComponent::loadAnimals()
 	_entAnimals[CGameDiamondInterface::Panda] = sm->createEntity("SelectAnimal_Panda","coney01.mesh");
 	tempnode = _nodeAnimal->createChildSceneNode();
 	tempnode->attachObject(_entAnimals[CGameDiamondInterface::Panda] );
-	tempnode ->setScale(2.3f,2.3f,2.3f);
+	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
+
+
 	_entAnimals[CGameDiamondInterface::Crocodile] = sm->createEntity("SelectAnimal_Crocodile","panda.mesh");
 	tempnode = _nodeAnimal->createChildSceneNode();
 	tempnode->attachObject(_entAnimals[CGameDiamondInterface::Crocodile] );
+	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
+
+
 	_entAnimals[CGameDiamondInterface::Elephant] = sm->createEntity("SelectAnimal_Elephant","lion01.mesh");
 	tempnode = _nodeAnimal->createChildSceneNode();
 	tempnode->attachObject(_entAnimals[CGameDiamondInterface::Elephant] );
+	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 4.2f);
+
 	_entAnimals[CGameDiamondInterface::Tiger] = sm->createEntity("SelectAnimal_Tiger","monkey01.mesh");
 	tempnode = _nodeAnimal->createChildSceneNode();
 	tempnode->attachObject(_entAnimals[CGameDiamondInterface::Tiger] );
-	tempnode ->setScale(2.3f,2.3f,2.3f);
+	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 4.2f);
+
 	for (int i=0;i<4;i++)
 	{
 		_entAnimals[i]->setVisible(false);
