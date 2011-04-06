@@ -15,7 +15,6 @@ void TimeLogic::exit(void)
 {
 	
 
-	getOwner()->addBottomToUI();
 	GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
 	game->setButtonEnable(false);
 
