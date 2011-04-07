@@ -21,8 +21,17 @@ namespace Orz
 
 		void postData(JsInterface::ButtonId, int profit);
 	private:
+		int getProfit(JsInterface::ButtonId id);
+		void send2Js(void);
+		void sendWinner(void);
+		
+		void  sendAnimal(void);
 		boost::signals2::connection _connection;
 		bool _over;
+		typedef std::map<JsInterface::ButtonId, int> Map;
+			
+		Map _buttons;
+
 	};
 }
 #endif
