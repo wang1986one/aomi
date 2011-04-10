@@ -45,7 +45,10 @@ namespace UnitTest
 			std::cout<<"setWinner"<<std::endl;
 		}
 
-
+		void setState(JsInterface::State state)
+		{
+			std::cout<<"setState"<<std::endl;	
+		}
 
 	};
 	
@@ -93,12 +96,13 @@ BOOST_AUTO_TEST_CASE(JsComponentUT)
 	js->subscribeAddProfit(boost::bind(&MyJs::addProfit, &myJs, _1));
 	js->subscribeSetProfit(boost::bind(&MyJs::setProfit, &myJs, _1));
 	js->subscribeRollProfit(boost::bind(&MyJs::rollProfit, &myJs));
+	js->subscribeSetState(boost::bind(&MyJs::setState, &myJs, _1));
 
 	
 	game->addProfit(123);
 	game->setProfit(0);
 	game->rollProfit();
-	
+	game->setState(JsInterface::Start);
 	
 	js->subscribeSetWinner(boost::bind(&MyJs::setWinner, &myJs, _1, _2));
 	game->setWinner(JsInterface::ButtonId(0), 123);

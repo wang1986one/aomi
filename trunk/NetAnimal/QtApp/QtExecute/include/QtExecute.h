@@ -4,7 +4,7 @@
 #include <QtGui/QMainWindow>
 #include "ui_QtExecute.h"
 #include "ControllerQt.h"
-
+#include "JsInterface.h"
 #include <QtGui/QToolbar>
 
 #include <orz/Toolkit_Component_Task/Component/ComponentInterface.h>	
@@ -75,9 +75,12 @@ private:
 
 	boost::scoped_ptr<Orz::PluginsManager> _pm;
 	
+	
+	void setWinner(Orz::JsInterface::ButtonId id, int profit);
 	void enableButton(bool enable);
 	void setTime(int time);
 	void askPanelData(void);
+	void setState(Orz::JsInterface::State state);
 public slots:
 	void setupPanel(void);
     void populateJavaScriptWindowObject(void);

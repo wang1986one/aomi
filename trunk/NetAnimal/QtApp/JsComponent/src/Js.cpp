@@ -66,10 +66,12 @@ boost::signals2::connection Js::subscribeAskPanelData(const JsInterface::AskPane
 
 void Js::postPanelData(JsInterface::ButtonId id, size_t num)
 {
+	std::cout<<"()"<<id<<std::endl;		
 	_postPanelDataSignal(id, num);
 }
 boost::signals2::connection Js::subscribePostPanelData(const GameInterface<0>::PostPanelDataSignalType::slot_type &subscriber)
 {
+	std::cout<<"================"<<std::endl;
 	return _postPanelDataSignal.connect(subscriber);
 }
 
@@ -114,3 +116,17 @@ boost::signals2::connection Js::subscribeSetWinner(const JsInterface::SetWinnerS
 {
 	return _setWinner.connect(subscriber);
 }
+
+
+
+void Js::setState(JsInterface::State state)
+{
+	_setState(state);
+}
+boost::signals2::connection Js::subscribeSetState(const JsInterface::SetStateSignalType::slot_type &subscriber)
+{
+	return _setState.connect(subscriber);
+}
+
+
+

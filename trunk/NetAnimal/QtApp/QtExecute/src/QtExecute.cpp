@@ -33,6 +33,74 @@ void QtExecute::keyReleaseEvent(QKeyEvent* evt)
 }
 
 
+void QtExecute::setWinner(Orz::JsInterface::ButtonId id, int profit)
+{
+
+	using namespace Orz;
+	
+	std::string str;
+	switch(id)
+	{
+	case JsInterface::ButtonZhuang:
+		str = "setWinner('zhuang' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonXian:
+		str = "setWinner('xian' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonHe:
+		str = "setWinner('he' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+
+
+	case JsInterface::ButtonRedRabbit:
+		str = "setWinner('red_rabbit' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonRedMonkey:
+		str = "setWinner('red_monkey' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonRedPanda:
+		str = "setWinner('red_panda' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonRedLoin:
+		str = "setWinner('red_lion' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+
+
+
+		
+	case JsInterface::ButtonGreenRabbit:
+		str = "setWinner('green_rabbit' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonGreenMonkey:
+		str = "setWinner('green_monkey' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonGreenPanda:
+		str = "setWinner('green_panda' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonGreenLoin:
+		str = "setWinner('green_lion' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+
+
+
+	case JsInterface::ButtonYellowRabbit:
+		str = "setWinner('yellow_rabbit' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonYellowMonkey:
+		str = "setWinner('yellow_monkey' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonYellowPanda:
+		str = "setWinner('yellow_panda' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+	case JsInterface::ButtonYellowLoin:
+		str = "setWinner('yellow_lion' ,"+boost::lexical_cast<std::string>(profit)+");";
+		break;
+
+	}
+	
+	ui.panle->page()->mainFrame()->evaluateJavaScript(QString(str.c_str()));
+
+}
 bool QtExecute::init(void)
 {
 	using namespace Orz;
@@ -47,8 +115,17 @@ bool QtExecute::init(void)
 	js->subscribeEnableButton(boost::bind(&QtExecute::enableButton,this, _1));
 	js->subscribeSetTime(boost::bind(&QtExecute::setTime,this, _1));
 	js->subscribeAskPanelData(boost::bind(&QtExecute::askPanelData, this));
+	js->subscribeSetWinner(boost::bind(&QtExecute::setWinner, this, _1, _2));
+	js->subscribeSetState(boost::bind(&QtExecute::setState, this, _1));
 
 	return ui._orzWindow->init();
+}
+
+void QtExecute::setState(Orz::JsInterface::State state)
+{
+	
+	std::string str("setState("+boost::lexical_cast<std::string>(state)+");");
+	ui.panle->page()->mainFrame()->evaluateJavaScript(QString(str.c_str()));
 }
 void QtExecute::shutdown(void)
 {
@@ -99,6 +176,7 @@ void QtExecute::answerPanelData(int id, int data)
 		
 	using namespace Orz;
 	JsInterface * js = _jsComponent->queryInterface<JsInterface>();
+	std::cout<<"!"<<id<<";"<<data<<std::endl;
 	js->postPanelData(JsInterface::ButtonId(id), data);
 }
 void QtExecute::enableButton(bool enable)

@@ -47,6 +47,9 @@ namespace Orz
 		void setWinner(JsInterface::ButtonId, int profit);
 		boost::signals2::connection subscribeSetWinner(const JsInterface::SetWinnerSignalType::slot_type &subscriber);
 
+		void setState(JsInterface::State);
+		boost::signals2::connection subscribeSetState(const JsInterface::SetStateSignalType::slot_type &subscriber);
+
 
 
 
@@ -66,6 +69,7 @@ namespace Orz
 		JsInterface::SetWinnerSignalType _setWinner;
 
 		GameInterface<0>::PostPanelDataSignalType _postPanelDataSignal;
+		JsInterface::SetStateSignalType _setState;
 
 
 
