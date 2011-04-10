@@ -31,7 +31,7 @@ void GetDataLogic::exit(void)
 		WinData::getInstance().push_back(WheelEnum::AnimalItem(WheelEnum::MONKEY, WheelEnum::Red), 13);
 		break;
 	case 2:
-		WinData::getInstance().setWinMode(WheelEnum::NONE);
+		WinData::getInstance().setWinMode(WheelEnum::NONE);        
 		WinData::getInstance().push_back(WheelEnum::AnimalItem(WheelEnum::PANDA, WheelEnum::Green), 20);
 		break;
 	case 3:
@@ -80,13 +80,17 @@ void GetDataLogic::exit(void)
 
 
 	}
-	WinData::getInstance().getWinner();
+	_connection.disconnect();
+
 	getOwner()->addBottomToUI();
 
 	send2Js();
 }
 
 
+//<<<<<<< .mine
+//void GetDataLogic::postData(JsInterface::ButtonId id, int profit)
+//=======
 void GetDataLogic::send2Js(void)
 {
 	sendWinner();
@@ -206,8 +210,10 @@ void GetDataLogic::postData(JsInterface::ButtonId id, int profit)
 GetDataLogic::GetDataLogic(my_context ctx):LogicAdv(ctx),_over(false)
 {
 	GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
+	_connection = game->subscribePostPanelData(boost::bind(&GetDataLogic::postData, this, _1, _2));
 	game->askPanelData();
 	game->subscribePostPanelData(boost::bind(&GetDataLogic::postData, this, _1, _2));
+
 	_over = true;
 
 }
