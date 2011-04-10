@@ -63,6 +63,8 @@ int main()
 
 	builder.addPlugin("CodingComponent");
 	builder.addPlugin("MyJobComponent");
+	builder.addPlugin("JsComponent");
+	
 	//ÉèÖÃ´óÌü
 	builder.setTheater("TheaterBase","main");
 
