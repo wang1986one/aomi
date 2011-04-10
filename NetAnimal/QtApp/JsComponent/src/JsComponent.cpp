@@ -44,6 +44,10 @@ JsComponent::JsComponent(void):_jsInterface(new JsInterface()), _gameInterface(n
 	_jsInterface->subscribeSetWinner = boost::bind(&Js::subscribeSetWinner, Js::getInstancePtr(), _1);
 	_gameInterface->setWinner = boost::bind(&Js::setWinner, Js::getInstancePtr(), _1, _2);
 
+	
+	_jsInterface->subscribeSetState = boost::bind(&Js::subscribeSetState, Js::getInstancePtr(), _1);
+	_gameInterface->setState = boost::bind(&Js::setState, Js::getInstancePtr(), _1);
+
 
 	
 

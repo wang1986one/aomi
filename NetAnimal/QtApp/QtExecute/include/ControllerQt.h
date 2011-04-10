@@ -9,6 +9,10 @@
 #include "QtInputManager.h"
 #include "QtLogManager.h"
 #include <orz/View_Fmod/FmodSoundManager.h>
+
+#include <orz/Toolkit_Component_Task/Component/ComponentInterface.h>	
+#include <orz/Toolkit_Component_Task/Component/Component.h>	
+#include <orz/Toolkit_Component_Task/Component/ComponentFactories.h>
 namespace Orz
 {
 
