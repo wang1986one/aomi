@@ -49,11 +49,13 @@
 
 
         setupButton();
-        enableButton();
         clearButton();
 
         setupMsgButton();
-       
+        setWinner("red_rabbit", 12);
+        setWinner("green_rabbit", 0);
+        disableButton();
+        flashButton();
         QtExecute.setupPanel();
 
     });
