@@ -43,7 +43,7 @@ function enableButton()
 
 var allTime = 0;
 var light = true;
-
+var flashing = false;
 function lightButton(key, state) {
 
     $("#" + key).html('<span class="ui-button-text">' + getText(key, state) + "</span>");
@@ -70,11 +70,12 @@ function flashingButton() {
 
 
     }
-    light = !light;
-    allTime -= 100;
-    if (allTime > 0) {
+    if (flashing) {
         setTimeout('flashingButton()', 100);
-    } 
+    }else
+    {
+        disableButton();
+    }
 }
 function flashButton() {
     for (var key in panelDatas) {
@@ -85,7 +86,7 @@ function flashButton() {
         setYL(getYL() + panelDatas[key].profit)
         }
     }
-    allTime = 1000;
+    flashing = true;
     setTimeout('flashingButton()', 100);
    
 }
@@ -158,4 +159,24 @@ function askPanelData()
 function setWinner(id, profit) 
 {
     panelDatas[id].profit = profit;
+}
+
+function setState(state) {
+
+    static(state){
+    case 0:
+        
+    break;
+    case 1:
+        flashButton();
+    break;
+    case 2:
+        startRoll();
+    break;
+    case 3:
+        flashing = false;
+        stopRoll();
+        clearButton();
+    break; 
+    }
 }
