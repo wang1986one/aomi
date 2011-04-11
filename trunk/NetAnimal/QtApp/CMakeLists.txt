@@ -96,5 +96,5 @@ INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/release PATTERN "CV
 
 
 INCLUDE(OrzHunterGame)
-
+INCLUDE(WheelGame)
 INCLUDE(FindOrzProjectEnd)	
