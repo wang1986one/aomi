@@ -52,19 +52,18 @@ function lightButton(key, state) {
 function flashingButton() {
 
     for (var key in panelDatas) {
-        if (panelDatas[key].profit == 0) {
-            if (light)
-                lightButton(key, 2);
-            else {
-                lightButton(key, 0);
-            }
-
-        } 
         if (panelDatas[key].profit > 0) {
             if (light)
                 lightButton(key, 1);
             else {
                 lightButton(key, 0);
+            }
+
+        } else if (panelDatas[key].profit == 0) {
+            if (light)
+                $("#" + key, ".demo").button("disable");
+            else {
+                $("#" + key, ".demo").button("enable");
             }
 
         }
@@ -83,11 +82,12 @@ function flashButton() {
             continue;
         } else {
         $("#" + key, ".demo").button("enable");
-       
+        setYL(getYL() + panelDatas[key].profit)
         }
     }
     allTime = 1000;
     setTimeout('flashingButton()', 100);
+   
 }
 function disableButton()
 {
