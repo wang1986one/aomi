@@ -29,7 +29,9 @@ function setYL(num)
 	panelMsg.yl.num = num;
 	refushMsgButton();
 }
-
+function getYL() {
+    return panelMsg.yl.num;
+}
 function setAll(yl, time, tms)
 {
 	panelMsg.yl.num = num;
