@@ -163,7 +163,7 @@ function setWinner(id, profit)
 
 function setState(state) {
 
-    static(state){
+    switch(state){
     case 0:
         
     break;
@@ -171,12 +171,12 @@ function setState(state) {
         flashButton();
     break;
     case 2:
-        startRoll();
+        //startRoll();
     break;
-    case 3:
-        flashing = false;
-        stopRoll();
-        clearButton();
+//    case 3:
+//        flashing = false;
+//        stopRoll();
+//        clearButton();
     break; 
     }
 }
