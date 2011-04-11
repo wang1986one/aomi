@@ -2,6 +2,7 @@
 #include "MyWheelDirectorStableHeaders.h"
 #include "logic/AllLogic.h"
 #include "WheelEvents.h"
+#include "GameInterface.h"
 using namespace Orz;
 	
 LogoLogic::LogoLogic(my_context ctx):LogicAdv(ctx),_gotoReady(true)
@@ -42,7 +43,8 @@ sc::result LogoLogic::react(const LogicEvent::AskTime & evt)
 
 void LogoLogic::exit(void)
 {
-	
+	GameInterface<> * game = getOwner()->getJs()->queryInterface<GameInterface<> >();
+	game->setState(JsInterface::Reset);
 	getOwner()->setLogoShow(false);
 	ORZ_LOG_NORMAL_MESSAGE("State Out: LogoLogic!");
 }

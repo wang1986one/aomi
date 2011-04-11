@@ -13,7 +13,7 @@ WinLogic::WinLogic(my_context ctx):LogicAdv(ctx)
 	ORZ_LOG_NORMAL_MESSAGE("State In: WinLogic!");
 	
 	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_WIN_ENABLE, WheelEvents::PROCESS_WIN_DISABLE));
-	GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
+	GameInterface<> * game = getOwner()->getJs()->queryInterface<GameInterface<> >();
 	game->setState(JsInterface::ShowWinner);
 }
 
