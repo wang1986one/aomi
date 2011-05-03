@@ -60,7 +60,7 @@ void SanUI::writeMenuXY(int x, int y, unsigned long n)//写入目录数据
 
 }
 void SanUI::setLogoShow(bool visible)//设置logo是否显示
-{	
+{	 
 	if( _logoInterface  == NULL)
 	{
 		if(visible)
@@ -144,8 +144,8 @@ void SanUI::update(TimeType interval)//更新ui
 {
 	_weiShuWu->update(interval);
 	_money->update(interval);
-	if(_logoInterface)
-		_logoInterface->update(interval);
+	//if(_logoInterface)
+		//_logoInterface->update(interval);
 	//if(_endUIInterface)
 	//	_endUIInterface->update(interval);
 }

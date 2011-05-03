@@ -3,6 +3,7 @@
 #include <QDir>
 #include "JsInterface.h"
 #include <QWebFrame>
+#include <qevent.h>
 
 //template<> QtExecute* Orz::Singleton<QtExecute>::_singleton = NULL;
 
@@ -27,11 +28,62 @@ QtExecute::QtExecute(QWidget *parent, Qt::WFlags flags)
 //消息响应
 void QtExecute::keyPressEvent(QKeyEvent* evt)
 {
+	//bin.wang 2011.04.17
+	//红色
+	if (evt->key()==Qt::Key_Q)
+	{
+		setMarkNum("red_lion");		
+	}else if (evt->key()==Qt::Key_W)
+	{
+		setMarkNum("red_panda");	
+	}else if (evt->key()==Qt::Key_E)
+	{
+		setMarkNum("red_monkey");	
+	}else if (evt->key()==Qt::Key_R)
+	{
+		setMarkNum("red_rabbit");	
+	}
+	//黄色
+	else if (evt->key()==Qt::Key_A)
+	{
+		setMarkNum("yellow_lion");	
+	}else if (evt->key()==Qt::Key_S)
+	{
+		setMarkNum("yellow_panda");	
+	}else if (evt->key()==Qt::Key_D)
+	{
+		setMarkNum("yellow_monkey");	
+	}else if (evt->key()==Qt::Key_F)
+	{
+		setMarkNum("yellow_rabbit");	
+	}
+	//绿色
+	else if (evt->key()==Qt::Key_Z)
+	{
+		setMarkNum("green_lion");	
+	}else if (evt->key()==Qt::Key_X)
+	{
+		setMarkNum("green_panda");	
+	}else if (evt->key()==Qt::Key_C)
+	{
+		setMarkNum("green_monkey");	
+	}else if (evt->key()==Qt::Key_V)
+	{
+		setMarkNum("green_rabbit");	
+	}
 }
 void QtExecute::keyReleaseEvent(QKeyEvent* evt)
 {
+
+	std::cout<<evt->text().toStdString()<<std::endl;
 }
 
+//bin.wang 2011.04.17 
+void QtExecute::setMarkNum(const std::string  &name)
+{
+	std::string str = "setMarkNum('" + name + "');";
+	ui.panle->page()->mainFrame()->evaluateJavaScript(QString(str.c_str()));
+}
 
 void QtExecute::setWinner(Orz::JsInterface::ButtonId id, int profit)
 {

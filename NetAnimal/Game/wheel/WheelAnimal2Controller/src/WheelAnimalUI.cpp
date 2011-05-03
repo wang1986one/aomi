@@ -149,11 +149,11 @@ void WheelAnimalUI::x2(void)
 
 void WheelAnimalUI::update(TimeType interval)
 {
-	_time->update(interval);
-	_bonus->update(interval);
-	_banker->update(interval);
-	_logo->update(interval);
-	_winBg->update(interval);
+	//_time->update(interval);
+	//_bonus->update(interval);
+	//_banker->update(interval);
+	//_logo->update(interval);
+	//_winBg->update(interval);
 }
 
 
