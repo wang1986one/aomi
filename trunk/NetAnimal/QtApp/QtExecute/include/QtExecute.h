@@ -75,7 +75,10 @@ private:
 
 	boost::scoped_ptr<Orz::PluginsManager> _pm;
 	
-	
+
+	//bin.wang 2011.04.17 
+	void setMarkNum(const std::string& name);
+
 	void setWinner(Orz::JsInterface::ButtonId id, int profit);
 	void enableButton(bool enable);
 	void setTime(int time);

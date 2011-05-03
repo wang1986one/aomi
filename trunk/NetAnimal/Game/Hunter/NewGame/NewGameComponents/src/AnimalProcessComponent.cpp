@@ -184,7 +184,7 @@ bool AnimalProcessComponent::init(AnimalEnum::ANIMAL_TYPE type, Ogre::SceneNode 
 		break;
 	case 1:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "monkey01.mesh", node);
-		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.2f);
+		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
 		break;
 	case 2:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "lion01.mesh", node);

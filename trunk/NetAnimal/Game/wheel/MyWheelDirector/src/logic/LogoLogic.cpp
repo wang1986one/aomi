@@ -9,8 +9,8 @@ LogoLogic::LogoLogic(my_context ctx):LogicAdv(ctx),_gotoReady(true)
 {
 
 	ORZ_LOG_NORMAL_MESSAGE("State In: LogoLogic!");
-	getOwner()->setLogoShow(true);
-	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_LOGO_ENABLE, WheelEvents::PROCESS_LOGO_DISABLE, 5.f));
+	getOwner()->setLogoShow(false);
+	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_LOGO_ENABLE, WheelEvents::PROCESS_LOGO_DISABLE, 0.5f));
 
 	
 

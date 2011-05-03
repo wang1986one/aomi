@@ -80,7 +80,7 @@ void GetDataLogic::exit(void)
 
 
 	}
-	_connection.disconnect();
+	//_connection.disconnect();
 
 	getOwner()->addBottomToUI();
 
@@ -212,7 +212,7 @@ GetDataLogic::GetDataLogic(my_context ctx):LogicAdv(ctx),_over(false)
 	GameInterface<0> * game = getOwner()->getJs()->queryInterface<GameInterface<0> >();
 	_connection = game->subscribePostPanelData(boost::bind(&GetDataLogic::postData, this, _1, _2));
 	game->askPanelData();
-	game->subscribePostPanelData(boost::bind(&GetDataLogic::postData, this, _1, _2));
+	//game->subscribePostPanelData(boost::bind(&GetDataLogic::postData, this, _1, _2));
 
 	_over = true;
 

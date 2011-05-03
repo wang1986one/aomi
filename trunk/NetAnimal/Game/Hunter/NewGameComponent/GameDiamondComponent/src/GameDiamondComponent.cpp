@@ -402,10 +402,11 @@ void GameDiamondComponent::loadAnimals()
 	tempnode->attachObject(_entAnimals[CGameDiamondInterface::Elephant] );
 	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 5.0f);
 
+
 	_entAnimals[CGameDiamondInterface::Tiger] = sm->createEntity("SelectAnimal_Tiger","monkey01.mesh");
 	tempnode = _nodeAnimal->createChildSceneNode();
 	tempnode->attachObject(_entAnimals[CGameDiamondInterface::Tiger] );
-	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 4.2f);
+	tempnode ->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
 
 	for (int i=0;i<4;i++)
 	{

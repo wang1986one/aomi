@@ -5,35 +5,56 @@ var panelDatas = new Array();
 
 
 
-panelDatas["zhuang"] = {id:0, text:'装',num:0, rate:2, profit: -1};
-panelDatas["xian"] = { id: 1, text: '闲', num: 0, rate: 2, profit: -1 };
-panelDatas["he"] = { id: 2, text: '和', num: 0, rate: 8, profit: -1 };
+panelDatas["zhuang"] = {id:0, text:'装',num:0, rate:2, profit: -1
+,image:'<img src="./icon/zhuang.png" width="40" height="40" longdesc="">' };
+panelDatas["xian"] = { id: 1, text: '闲', num: 0, rate: 2, profit: -1 
+,image:'<img src="./icon/xian.png" width="40" height="40" longdesc="">' };
+panelDatas["he"] = { id: 2, text: '和', num: 0, rate: 8, profit: -1 
+,image:'<img src="./icon/he.png" width="40" height="40" longdesc="">' };
 
-panelDatas["red_lion"] = { id: 3, text: '红色狮子', num: 0, rate: 46, profit: -1 };
-panelDatas["green_lion"] = { id: 4, text: '绿色狮子', num: 0, rate: 40, profit: -1 };
-panelDatas["yellow_lion"] = { id: 5, text: '黄色狮子', num: 0, rate: 25, profit: -1 };
+panelDatas["red_lion"] = { id: 3, text: '红色狮子', num: 0, rate: 46, profit: -1
+,image:'<img src="./icon/lion_red.png" width="40" height="40" longdesc="">' };
+panelDatas["green_lion"] = { id: 4, text: '绿色狮子', num: 0, rate: 40, profit: -1 
+,image:'<img src="./icon/lion_green.png" width="40" height="40" longdesc="">' };
+panelDatas["yellow_lion"] = { id: 5, text: '黄色狮子', num: 0, rate: 25, profit: -1 
+,image:'<img src="./icon/lion_yellow.png" width="40" height="40" longdesc="">' };
 
-panelDatas["red_panda"] = { id: 5, text: '红色熊猫', num: 0, rate: 23, profit: -1 };
-panelDatas["green_panda"] = { id: 6, text: '绿色熊猫', num: 0, rate: 20, profit: -1 };
-panelDatas["yellow_panda"] = { id: 7, text: '黄色熊猫', num: 0, rate: 12, profit: -1 };
+panelDatas["red_panda"] = { id: 5, text: '红色熊猫', num: 0, rate: 23, profit: -1 
+,image:'<img src="./icon/panda_red.png" width="40" height="40" longdesc="">' };
+panelDatas["green_panda"] = { id: 6, text: '绿色熊猫', num: 0, rate: 20, profit: -1 
+,image:'<img src="./icon/panda_green.png" width="40" height="40" longdesc="">' };
+panelDatas["yellow_panda"] = { id: 7, text: '黄色熊猫', num: 0, rate: 12, profit: -1 
+,image:'<img src="./icon/panda_yellow.png" width="40" height="40" longdesc="">' };
 
-panelDatas["red_monkey"] = { id: 8, text: '红色猴子', num: 0, rate: 13, profit: -1 };
-panelDatas["green_monkey"] = { id: 9, text: '绿色猴子', num: 0, rate: 11, profit: -1 };
-panelDatas["yellow_monkey"] = { id: 10, text: '黄色猴子', num: 0, rate: 7, profit: -1 };
+panelDatas["red_monkey"] = { id: 8, text: '红色猴子', num: 0, rate: 13, profit: -1  
+,image:'<img src="./icon/monkey_red.png" width="40" height="40" longdesc="">' };
+panelDatas["green_monkey"] = { id: 9, text: '绿色猴子', num: 0, rate: 11, profit: -1  
+,image:'<img src="./icon/monkey_green.png" width="40" height="40" longdesc="">' };
+panelDatas["yellow_monkey"] = { id: 10, text: '黄色猴子', num: 0, rate: 7, profit: -1  
+,image:'<img src="./icon/monkey_yellow.png" width="40" height="40" longdesc="">' };
 
-panelDatas["red_rabbit"] = { id: 11, text: '红色兔子', num: 0, rate: 8, profit: -1 };
-panelDatas["green_rabbit"] = { id: 12, text: '绿色兔子', num: 0, rate: 7, profit: -1 };
-panelDatas["yellow_rabbit"] = { id: 13, text: '黄色兔子', num: 0, rate: 4, profit: -1 };
+panelDatas["red_rabbit"] = { id: 11, text: '红色兔子', num: 0, rate: 8, profit: -1   
+,image:'<img src="./icon/rabblt_green.png" width="40" height="40" longdesc="">'};
+panelDatas["green_rabbit"] = { id: 12, text: '绿色兔子', num: 0, rate: 7, profit: -1   
+,image:'<img src="./icon/rabblt_red.png" width="40" height="40" longdesc="">'};
+panelDatas["yellow_rabbit"] = { id: 13, text: '黄色兔子', num: 0, rate: 4, profit: -1   
+,image:'<img src="./icon/rabblt_yellow.png" width="40" height="40" longdesc="">'};
+
+var allTime = 0;
+var light = true;
+var flashing = false;
+var bMarkBegin = false;
 
 
 function setupButton()
 {
 	for (var key in panelDatas) { 
 		$( "#" + key, ".demo" ).button();
-	} 
+	}
 }
 function enableButton()
 {
+	bMarkBegin = true;
 	for (var key in panelDatas) { 
 		$( "#" + key, ".demo" ).button("enable");
 		$( "#" + key, ".demo" ).bind("click", $("#" + key), handle);
@@ -41,9 +62,6 @@ function enableButton()
 }
 
 
-var allTime = 0;
-var light = true;
-var flashing = false;
 function lightButton(key, state) {
 
     $("#" + key).html('<span class="ui-button-text">' + getText(key, state) + "</span>");
@@ -74,7 +92,7 @@ function flashingButton() {
         setTimeout('flashingButton()', 100);
     }else
     {
-        disableButton();
+       disableButton();
     }
 }
 function flashButton() {
@@ -92,6 +110,7 @@ function flashButton() {
 }
 function disableButton()
 {
+	bMarkBegin = false;
 	for (var key in panelDatas) { 
 		$( "#" + key, ".demo" ).button("disable");
 		$( "#" + key, ".demo" ).unbind("click");
@@ -103,14 +122,16 @@ function disableButton()
 function refushButton()
 {
 	for (var key in panelDatas) {
-	    $("#" + key).html('<span class="ui-button-text">' + getText(key, 0) + "</span>");
+	    $("#" + key).html(getText(key, 0) );
+	 //	$("#" + key).html(  panelDatas[key].image);
 	} 
 }
 
 
 function tText(id, color1, color2, color3) {
 
-    return "<font  color='" + color1 + "'>" + panelDatas[id].rate + "</font> <font  color='black'>|</font> <font  color='" + color2 + "'>" + panelDatas[id].text + "</font> <font  color='black'>|</font><font  color='"+color3+"'>" + panelDatas[id].num + "</font>";
+    return "<font  color='" + color1 + "'>" + panelDatas[id].rate + panelDatas[id].image + "<font  color='"+color3+"'>" 
+	+ panelDatas[id].num + "</font>";
 }
 function getText(id, state) {
     if (state == 1)
@@ -159,6 +180,21 @@ function askPanelData()
 function setWinner(id, profit) 
 {
     panelDatas[id].profit = profit;
+}
+//bin.wang 2011.04.17
+function setMarkNum(id) 
+{
+	if(bMarkBegin)
+	{
+    panelDatas[id].num += 1;
+  	if(panelMsg.tms.num > 0)
+		{
+			panelMsg.tms.num--;
+			$("#" + id).html('<span class="ui-button-text">' + getText(id, 0) + "</span>");
+			$("#tms").html('<span class="ui-button-text">'+getMsgText("tms")+"</span>");	
+		
+		}
+	}
 }
 
 function setState(state) {
