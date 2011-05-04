@@ -64,39 +64,41 @@ void SingleChipManager::loadXML(rapidxml::xml_node<> * node)
 
 void SingleChipManager::shutdown(void)
 {
-
-
 	BOOST_FOREACH(SingleChipPtr sc, _SCMs)
 	{
 		sc->disable();
 	}
-
-
 	if(_thread)
 	{
 		_thread->join();
 		_thread.reset();
 	}	
 	_SCMs.clear();
-	//_impl->shutdown();
-	
 }
 
 
 
 bool SingleChipManager::write(int id, const MsgBuffer & buffer)
 {
+	if(id>=_SCMs.size()||id<0)
+		return false;
 	return _SCMs.at(id)->write(buffer);
 }
 
 
-bool SingleChipManager::write(int id, unsigned char * data, int num)
+bool SingleChipManager::write(int id, const unsigned char * data, int num)
 {
+	if(id>=_SCMs.size()||id<0)
+		return false;
 	return _SCMs.at(id)->write(data, num);
 }
 
-bool SingleChipManager::write(int id, char * data, int num)
+bool SingleChipManager::write(int id, const char * data, int num)
 {
+
+	
+	if(id>=_SCMs.size()||id<0)
+		return false;
 	return _SCMs.at(id)->write(data, num);
 
 }
@@ -117,16 +119,8 @@ bool SingleChipManager::update(TimeType i)
 	}
 
 
-	//BOOST_FOREACH(SCMList::value_type it, _SCMs)
-	//{
-	//	it.second->update(i);
-	//}
-	return true;//_impl->update(i);
+	return true;
 }
-//void SingleChipManager::addListener(SingleChipListener * listener)
-//{
-//	_impl->addListener(listener);
-//}
 
 
 void SingleChipManager::addListener(unsigned int id, SingleChipListener * listener)
@@ -176,17 +170,8 @@ void SingleChipManager::removeListener(SingleChipListener * listener)
 	
 }
 
-//void SingleChipManager::removeListener(SingleChipListener * listener)
-//{
-//	_impl->removeListener(listener);
-//}
 
 void SingleChipManager::threadUpdate()
 {
-	/*BOOST_FOREACH(SingleChipPtr sc, _SCMs)
-	{
-		sc->_writeToBuffer();
-	}*/
-    //boost::asio::async_read(*_sp, boost::asio::buffer(_buf), boost::bind(&SingleChipManagerImpl::_writeToBuffer, this, _buf, _1, _2)); 
 	_ioService.run();
 }
