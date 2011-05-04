@@ -101,7 +101,7 @@ namespace Orz
 
 
 
-		bool write(unsigned char * data, int num)
+		bool write(const unsigned char * data, int num)
 		{
 			if(_serialPort)
 			{
@@ -120,7 +120,7 @@ namespace Orz
 			}
 			return false;
 		}
-		bool write(char * data, int num)
+		bool write(const char * data, int num)
 		{
 			if(_serialPort)
 			{

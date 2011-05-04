@@ -26,8 +26,8 @@ public:
 	~SingleChipManager(void);
 	bool init(void);
 	void shutdown(void);
-	bool write(int id, unsigned char * data, int num);
-	bool write(int id, char * data, int num);
+	bool write(int id, const unsigned char * data, int num);
+	bool write(int id, const char * data, int num);
 	bool write(int id, const MsgBuffer & buffer);
 
 	bool update(TimeType i);
