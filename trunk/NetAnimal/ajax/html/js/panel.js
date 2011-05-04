@@ -1,5 +1,14 @@
 
+function run()
+{
+	setTimeout('run()', 20);
+	update();
+}
 
+function update()
+{
+	
+}
 
 var panelDatas = new Array();
 
