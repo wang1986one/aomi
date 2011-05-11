@@ -9,7 +9,7 @@ using namespace Orz;
 Dan2::Dan2(DanListener * listener):KeyListener(true),_n(0), _time(-1.f),_callback(listener)
 {
 
-	_f6table = Orz::ComponentFactories::getInstance().create("F5Table");
+	_f6table = Orz::ComponentFactories::getInstance().create("Table");
 	_win= CEGUI::WindowManager::getSingleton().loadWindowLayout("Dan2.layout");
 	_win->setAlwaysOnTop(true);
 	_win->hide();

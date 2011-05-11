@@ -1,5 +1,5 @@
 #include "WheelGobalStableHeaders.h"
-#include "EntityLoader.h"
+#include "EntityLoader.h"/*
 #include <orz/Toolkit_Base/Exception.h>
 #include <orz/Toolkit_Base/PluginsManager.h>
 #include <tinyxml/tinyxml.h>
@@ -118,4 +118,4 @@ void EntityLoader::loadScene(const std::string & typeName, const std::string & n
 void EntityLoader::loadActor(const std::string & typeName, const std::string & name, NameValueList * parameter)
 {
 	addEntity(Orz::GameFactories::getInstance().createActor(typeName, name, parameter));
-}
+}*/

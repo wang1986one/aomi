@@ -128,7 +128,8 @@ void WheelAnimalSceneObj::load(const std::string & filename)
   
 void WheelAnimalSceneObj::setTable(int n, int table)
 {
-	std::cout<<n<<":"<<table<<std::endl;
+
+
 
 	Ogre::Entity *  ent = getEntity(SceneItemMark(TABLE_0+n));
 	if(ent)
@@ -137,7 +138,6 @@ void WheelAnimalSceneObj::setTable(int n, int table)
 
 void WheelAnimalSceneObj::setTableLiang(int n, int table)
 {
-	std::cout<<n<<":"<<table<<std::endl;
 
 	Ogre::Entity *  ent = getEntity(SceneItemMark(TABLE_0+n));
 	if(ent)
@@ -146,7 +146,6 @@ void WheelAnimalSceneObj::setTableLiang(int n, int table)
 
 void WheelAnimalSceneObj::setTableAn(int n, int table)
 {
-	std::cout<<n<<":"<<table<<std::endl;
 
 	Ogre::Entity *  ent = getEntity(SceneItemMark(TABLE_0+n));
 	if(ent)

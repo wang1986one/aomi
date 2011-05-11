@@ -9,7 +9,7 @@ namespace Orz
 {
 
 
-	//游戏的logo
+	//游戏的
 	class Dan1Logic: public FSM::LogicAdv<Dan1Logic, GameLogic>//, public UpdateToEnable<LogiLogo>
 	{
 	public:

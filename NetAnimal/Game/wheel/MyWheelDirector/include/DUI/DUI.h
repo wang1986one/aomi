@@ -2,6 +2,7 @@
 #define __Orz_DUI_h__	
 
 #include "DUI/DanListener.h"
+#include "GSMInterface.h"
 //#include "WheelAnimalControllerConfig.h"
 //#include "WheelUIInterface.h"
 //#include "WheelEnum.h"
@@ -14,7 +15,7 @@ namespace Orz
 	{
 	public:
 
-		DUI();
+		DUI(ComponentPtr dataServer, GSMInterface * gsm);
 		virtual ~DUI(void);
 
 

@@ -11,6 +11,8 @@
 #include "Gold.h"
 #include "WinEffect.h"
 #include "AnimalManager.h"
+
+#include "TableUpdate.h"
 #include <orz/View_OGRE3D/OgreGraphicsManager.h>
 using namespace Orz;
 namespace Orz
@@ -37,7 +39,7 @@ WheelAnimalGame::WheelAnimalGame(void)
 		std::cout<<e.what()<<std::endl;
 	}
 	Ogre::Root::getSingleton().getAutoCreatedWindow()->getViewport(0)->setCamera(_scene->getCamera());
-	
+
 
 
 	ObjectLightsPtr objLights(new ObjectLights(_scene));
@@ -96,27 +98,13 @@ WheelAnimalGame::WheelAnimalGame(void)
 	RotateAnimationPtr needle(new RotateAnimation("_needle", _scene->getNeedle(),Orz::OgreGraphicsManager::getSingleton().getSceneManager(), true ));
 	RotateAnimationPtr rotate(new RotateAnimation("_rotate", _scene->getBaseCenter(),Orz::OgreGraphicsManager::getSingleton().getSceneManager(), false ));
 
-
+	TableUpdatePtr tableUpdate(new TableUpdate(_scene));
 
 
 	for(int i =0; i<24; ++i)
 	{
 		_scene->getAnimal(i)->play(WheelEnum::ACTION1);
 	}
-
-	//ObjectLightsPtr objLights(new ObjectLights(_scene));
-
-	/*	
-	boost::shared_ptr<RotateAnimation> _rotate;
-	boost::shared_ptr<RotateAnimation> _needle;
-
-	boost::shared_ptr<AnimalChange> _ac;
-	boost::shared_ptr<ColorChange> _cc;
-	boost::shared_ptr<TV> _tv;
-
-	boost::shared_ptr<Gold> _gold;
-	ObjectLightsPtr _objLights;
-	WinEffectPtr _effect;*/
 
 
 	_processManager.reset(new WheelAnimalProcessManager(
@@ -128,7 +116,9 @@ WheelAnimalGame::WheelAnimalGame(void)
 		tv,
 		gold,
 		objLights,
-		effect));
+		effect,
+		tableUpdate
+		));
 }
 WheelAnimalGame::~WheelAnimalGame(void)
 {

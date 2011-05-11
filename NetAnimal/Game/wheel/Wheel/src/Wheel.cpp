@@ -24,7 +24,6 @@ int main()
 	builder.addPlugin("MyWheelDirector");
 	builder.addPlugin("WheelAnimal2Model");
 	builder.addPlugin("CodingComponent");
-	builder.addPlugin("JsComponent");
 	builder.addPlugin("MyJobComponent");
  
 	/*builder.addPlugin("WheelAnimalModel");*/
@@ -38,9 +37,8 @@ int main()
 	logic->building(builder);
 
 	//SystemInterface::getSingleton().setParame<std::string>("AomiUI_MediaDirectory", std::string("..\\..\\media\\animalUI"));
-	SystemInterface::getSingleton().setParame<std::string>("SingleChip_Port", std::string("COM3"));
-	SystemInterface::getSingleton().setParame<int>("SingleChip_BaudRate", 19200);
 	SystemInterface::getSingleton().setParame<bool>("SILENT", true);
+	SystemInterface::getSingleton().setParame<bool>("OGRE_NO_OUT", true);
 	//SystemInterface::getSingleton().setParame<bool>("w32_mouse", true);
 	//SystemInterface::getSingleton().setParame<bool>("CEGUI_LOGO", true);
 

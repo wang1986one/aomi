@@ -20,25 +20,31 @@
 #ifndef _OGREOSMSCENE_H_
 #define _OGREOSMSCENE_H_
 
+#include <boost/property_tree/detail/rapidxml.hpp>
 #include "WheelGobalConfig.h"
-
 #include <Ogre/Ogre.h>
-#include <Ogre/OgreSharedPtr.h>
-#include <TinyXML/tinyxml.h>
 
 #include "IOSMSceneCallbacks.h"
 #include "OSMAnimSerializer.h"
 
 #define OSM_RENDERTEXTURE_GROUP "OSM_RENDERTEXTURE_GROUP_"
 
-class _OrzWheelGobalExport TiXmlDocumentPtr : public Ogre::SharedPtr<TiXmlDocument> {
-public:
-	TiXmlDocumentPtr() : Ogre::SharedPtr<TiXmlDocument>() {}	
-	explicit TiXmlDocumentPtr(TiXmlDocument* rep) : Ogre::SharedPtr<TiXmlDocument>(rep) {}
-	
-};
+//class boost::shared_ptr<rapidxml::xml_document<> > : public Ogre::SharedPtr<rapidxml::xml_document<>> {
+//public:
+//	boost::shared_ptr<rapidxml::xml_document<> >() : Ogre::SharedPtr<rapidxml::xml_document<>>() {}	
+//	explicit boost::shared_ptr<rapidxml::xml_document<> >(rapidxml::xml_document<>* rep) : Ogre::SharedPtr<rapidxml::xml_document<>>(rep) {}
+//	
+//};
 
-typedef struct _OrzWheelGobalExport TAG_SCENE_HEADER_PROPS {
+
+inline const char * GetAttrString(rapidxml::xml_attribute<> * attr)
+{
+	if(attr)
+		return attr->value();
+	return NULL;
+}
+
+typedef struct TAG_SCENE_HEADER_PROPS {
 	TAG_SCENE_HEADER_PROPS() : version(0), unitsPerMasterRef(1) {}
 
 	float version;
@@ -86,28 +92,28 @@ public:
 
 protected:
 	// Create node from information
-	Ogre::SceneNode* createNode(TiXmlElement* pElem, Ogre::SceneNode* pSceneRoot);
+	Ogre::SceneNode* createNode(rapidxml::xml_node<> * pElem, Ogre::SceneNode* pSceneRoot);
 
 	// Create SceneManager
-	Ogre::SceneNode* initSceneManager(TiXmlElement* sceneProp, bool& bHandled);
-	//Ogre::SceneNode* createSceneManager(TiXmlElement* sceneProp, bool& bHandled);
+	Ogre::SceneNode* initSceneManager(rapidxml::xml_node<> * sceneProp, bool& bHandled);
+	//Ogre::SceneNode* createSceneManager(rapidxml::xml_node<> * sceneProp, bool& bHandled);
 
 	// Set scene properties
-	void setSceneProperties(TiXmlElement* sceneProp);
+	void setSceneProperties(rapidxml::xml_node<> * sceneProp);
 
 	// Creation helpers		
-	void	createEntities(TiXmlElement* pEntityNode, Ogre::SceneNode* pSceneRoot);
-	void	createLights(TiXmlElement* pLightNode, Ogre::SceneNode* pSceneRoot);
-	void	createCameras(TiXmlElement* pCameraNode, Ogre::SceneNode* pSceneRoot);
-	void	createStaticGeometry(TiXmlElement* pStaticGeom);
-	void	createHelpers(TiXmlElement* pLightNode, Ogre::SceneNode* pSceneRoot);
-	void	createShapes(TiXmlElement* pHelperNode);
-	void	createRenderTexture(TiXmlElement* pRenderTexNode);
+	void	createEntities(rapidxml::xml_node<> * pEntityNode, Ogre::SceneNode* pSceneRoot);
+	void	createLights(rapidxml::xml_node<> * pLightNode, Ogre::SceneNode* pSceneRoot);
+	void	createCameras(rapidxml::xml_node<> * pCameraNode, Ogre::SceneNode* pSceneRoot);
+	void	createStaticGeometry(rapidxml::xml_node<> * pStaticGeom);
+	void	createHelpers(rapidxml::xml_node<> * pLightNode, Ogre::SceneNode* pSceneRoot);
+	void	createShapes(rapidxml::xml_node<> * pHelperNode);
+	void	createRenderTexture(rapidxml::xml_node<> * pRenderTexNode);
 	
 	typedef std::set<unsigned int> SkeletonHandles;
-	void	loadAnimations(TiXmlElement* animationsNode, SkeletonHandles& handles);
+	void	loadAnimations(rapidxml::xml_node<> * animationsNode, SkeletonHandles& handles);
 
-	void	loadMaterialAnimations(TiXmlElement* animationsNode);
+	void	loadMaterialAnimations(rapidxml::xml_node<> * animationsNode);
 
 	void	setRenderTextureNodes(Ogre::RenderTexture* rTex, const EntityList* showNodes, const EntityList* hideNodes);
 
@@ -133,7 +139,8 @@ protected:
 	static unsigned long mNextGeneratedNameExt;
 
 	// Scene XML document
-	TiXmlDocumentPtr mXMLDoc;
+	boost::shared_ptr<rapidxml::xml_document<> > mXMLDoc;
+	std::string _data;
 };
 
 #endif // _OGREOSMSCENE_H_

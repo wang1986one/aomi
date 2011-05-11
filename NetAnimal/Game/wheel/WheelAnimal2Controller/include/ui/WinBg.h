@@ -529,7 +529,7 @@ namespace Orz
 			CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Winner/Table")->hide();
 			if(WinData::getInstance().getWinMode() == WheelEnum::GOLD)
 			{
-				_number.show(WinData::getInstance().getBonus());
+				_number.show(WinData::getInstance().getBonus().bonus);
 				CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Bonus")->show();
 				CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Winner/Anim/King")->show();
 			}
@@ -541,7 +541,7 @@ namespace Orz
 				if(WinData::getInstance().getWinMode() == WheelEnum::NONE)
 				{
 
-						int table = WinData::getInstance().getSecondWinnerId() +1;
+					int table = WinData::getInstance().getTable() +1;
 					if(table >=0 &&  table <=8)
 					{
 					

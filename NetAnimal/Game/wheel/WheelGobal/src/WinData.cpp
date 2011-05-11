@@ -101,31 +101,32 @@ WheelEnum::STATUS WinData::getAnimalStatus(void) const
 
 WinData::WinData(void):
 _winner(WheelEnum::Dealer),
-_bonus(0),
+_bonus(),
 _rate(WheelEnum::MODE0),
 _winMode(WheelEnum::NONE),
-_secondWinner(false)
+_hasTable(false),
+_table(-1)
 {
 	
 }
 
-void WinData::setSecondWinnerId(int Id)
-{
-	_secondWinnerId = Id;
-}
-int WinData::getSecondWinnerId(void) const
-{
-	return _secondWinnerId;
-}
-bool WinData::getSecondWinner(void) const
-{
-	return _secondWinner;
-}
-
-void WinData::setSecondWinner(bool secondWinner)
-{
-	_secondWinner = secondWinner;
-}
+//void WinData::setSecondWinnerId(int Id)
+//{
+//	_secondWinnerId = Id;
+//}
+//int WinData::getSecondWinnerId(void) const
+//{
+//	return _secondWinnerId;
+//}
+//bool WinData::getSecondWinner(void) const
+//{
+//	return _secondWinner;
+//}
+//
+//void WinData::setSecondWinner(bool secondWinner)
+//{
+//	_secondWinner = secondWinner;
+//}
 
 WheelEnum::TYPE WinData::getType(int i) const
 {
@@ -141,7 +142,7 @@ WinData & WinData::getInstance(void)
 
 WinDataClone & WinData::getClone(void)
 {
-	_clone.init(_winner, getLightColor(0), _winMode, getType(0), size(), _secondWinnerId);
+	_clone.init(_winner, getLightColor(0), _winMode, getType(0), size(), _table);
 	return _clone;
 }
 
@@ -211,7 +212,7 @@ WheelEnum::AnimalType WinData::getAnimalType(int i) const
 	return WheelEnum::AnimalType(getType(i), getAnimalStatus());
 
 }
-int WinData::getBonus(void) const
+WinData::Bonus WinData::getBonus(void) const
 {
 	return _bonus;
 }
@@ -221,7 +222,7 @@ int WinData::getBonus(void) const
 
 void WinData::clear(void)
 {
-	_secondWinnerId = -1;
+	_table = -1;
 	_items.clear();
 }
 void WinData::push_back(const WheelEnum::AnimalItem & animal, int rate)
@@ -238,11 +239,29 @@ void WinData::setWinMode(WheelEnum::WIN_MODE winMode)
 {
 	_winMode = winMode;
 }
-void WinData::setBonus(int bonus)
+void WinData::setBonus(
+			bool has,
+			int bonus,
+			int invest,
+			int profitForPerInvest)
 {
-	_bonus = bonus;
+	_bonus.has = has;
+	_bonus.bonus = bonus;
+	_bonus.invest = invest;
+	_bonus.profitForPerInvest = profitForPerInvest;
+
 }
 void WinData::setWinner(WheelEnum::WINNER winner)
 {
 	_winner = winner;
+}
+
+void WinData::setTable(int table)
+{
+	_table = table;
+}
+
+int WinData::getTable(void) const
+{
+	return _table;
 }

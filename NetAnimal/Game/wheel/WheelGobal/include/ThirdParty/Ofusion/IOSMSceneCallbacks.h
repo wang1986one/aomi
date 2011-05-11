@@ -20,10 +20,9 @@
 #ifndef _IOSMSCENECALLBACKS_H_
 #define _IOSMSCENECALLBACKS_H_
 
-#include "WheelGobalConfig.h"
 typedef std::deque<Ogre::SceneNode*>	NodeList;
 
-class _OrzWheelGobalExport oPassAnimation {
+class oPassAnimation {
 public:
 
 	oPassAnimation() : index(0), alphaLength(0) {}
@@ -36,7 +35,7 @@ public:
 	float alphaLength;
 };
 
-class _OrzWheelGobalExport oMaterialAnimation {
+class oMaterialAnimation {
 public:
 
 	oMaterialAnimation() : techniqueIndex(0) {}
@@ -52,25 +51,25 @@ public:
 
 // Callback interface. Use this if you want to set special properties on the 
 // objects during creation (and/or read custom attribute values).
-class _OrzWheelGobalExport OSMSceneCallbacks
+class OSMSceneCallbacks
 {
 public:
 	virtual ~OSMSceneCallbacks() {};
 
 	// Called when a node has been created
-	virtual void OnNodeCreate(Ogre::SceneNode *pNode, TiXmlElement* pNodeDesc) {};
+	virtual void OnNodeCreate(Ogre::SceneNode *pNode, rapidxml::xml_node<> * pNodeDesc) {};
 
 	// Called when an entity has been created
-	virtual void OnEntityCreate(Ogre::Entity *pEntity, TiXmlElement* pEntityDesc) {};
+	virtual void OnEntityCreate(Ogre::Entity *pEntity, rapidxml::xml_node<> * pEntityDesc) {};
 
 	// Called when a camera has been created
-	virtual void OnCameraCreate(Ogre::Camera *pCamera, TiXmlElement* pCameraDesc) {};
+	virtual void OnCameraCreate(Ogre::Camera *pCamera, rapidxml::xml_node<> * pCameraDesc) {};
 
 	// Called when a light has been created
-	virtual void OnLightCreate(Ogre::Light *pLight, TiXmlElement* pLightDesc) {};
+	virtual void OnLightCreate(Ogre::Light *pLight, rapidxml::xml_node<> * pLightDesc) {};
 
 	// Called when a helper has been created
-	virtual void OnHelperCreated(Ogre::SceneNode* pHelper, TiXmlElement* pHelperDesc) {};
+	virtual void OnHelperCreated(Ogre::SceneNode* pHelper, rapidxml::xml_node<> * pHelperDesc) {};
 
 	// Called when a shape has been loaded	
 	virtual void OnShapeLoaded(const Ogre::SimpleSpline& spline, 
@@ -82,7 +81,7 @@ public:
 	};
 
 	// Called when a render to texture has been created
-	virtual void OnRenderTextureCreate(Ogre::RenderTexture* pRenderTex, TiXmlElement* pRenderTexDesc) {};
+	virtual void OnRenderTextureCreate(Ogre::RenderTexture* pRenderTex, rapidxml::xml_node<> * pRenderTexDesc) {};
 
 	// Called when a static geometry has been created
 	virtual bool OnStaticGeometryCreated(Ogre::StaticGeometry* pStatic, const NodeList& nodeList) 
@@ -95,8 +94,6 @@ public:
 
 	// Called when a Material animator has been loaded
 	virtual void OnMaterialAnimatorLoaded(const oMaterialAnimation& materialAnim) {}
-
-	virtual void OnSceneNodeAniamtionLoaded(Ogre::SceneNode* sn, const Ogre::String & aniName) {}
 
 };
 

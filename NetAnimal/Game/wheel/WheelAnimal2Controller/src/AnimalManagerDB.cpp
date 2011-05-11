@@ -10,36 +10,36 @@ using namespace Orz;
 
 std::string AnimalManagerDB::getMeshName(WheelEnum::AnimalType type)
 {
-	 if(type.second == WheelEnum::PEOPLE)
+	/* if(type.second == WheelEnum::PEOPLE)
+	{*/
+	switch(type.first)
 	{
-		switch(type.first)
-		{
-		case WheelEnum::LION:
-			return "lion01.mesh";
-		case WheelEnum::RABBIT:
-			return "coney01.mesh";
-		case WheelEnum::MONKEY:
-			return "monkey01.mesh";
-		case WheelEnum::PANDA:
-			return "panda.mesh";
-		}
+	case WheelEnum::LION:
+		return "lion01.mesh";
+	case WheelEnum::RABBIT:
+		return "coney01.mesh";
+	case WheelEnum::MONKEY:
+		return "monkey01.mesh";
+	case WheelEnum::PANDA:
+		return "panda.mesh";
 	}
+	/*}
 
 	if(type.second == WheelEnum::KING)
 	{
-		switch(type.first)
-		{
-		case WheelEnum::LION:
-			return "lion_jin.mesh";
-		case WheelEnum::RABBIT:
-			return "coney01_jin.mesh";
-		case WheelEnum::MONKEY:
-			return "monkey01_jin.mesh";
-		case WheelEnum::PANDA:
-			return "panda_jin.mesh";
-		}
-		
+	switch(type.first)
+	{
+	case WheelEnum::LION:
+	return "lion_jin.mesh";
+	case WheelEnum::RABBIT:
+	return "coney01_jin.mesh";
+	case WheelEnum::MONKEY:
+	return "monkey01_jin.mesh";
+	case WheelEnum::PANDA:
+	return "panda_jin.mesh";
 	}
+
+	}*/
 	return "cube.mesh";
 }
 
@@ -82,7 +82,7 @@ void AnimalManagerDB::insertAnimationRabbit(AnimalPtr ani)
 	ani->insertAnimation(WheelEnum::ACTION1, animState);
 
 	//静止
-    animState = ent->getAnimationState("coney_bd");
+	animState = ent->getAnimationState("coney_bd");
 	animState->setEnabled(false);
 	animState->setLoop(true);
 	ani->insertAnimation(WheelEnum::ACTION2, animState);
@@ -228,7 +228,7 @@ void AnimalManagerDB::insertAnimationMonkeyBoss(AnimalPtr ani)
 }
 
 //黄金熊猫
- void AnimalManagerDB::insertAnimationPandaBoss(AnimalPtr ani)
+void AnimalManagerDB::insertAnimationPandaBoss(AnimalPtr ani)
 {
 	//待机
 	Ogre::Entity * ent  =  ani->getEntity();
@@ -260,72 +260,85 @@ AnimalPtr AnimalManagerDB::createAnimal(WheelEnum::AnimalType type, Ogre::SceneN
 	static int id = 0;
 	Ogre::Entity * ent = Orz::OgreGraphicsManager::getSingleton().getSceneManager()->createEntity("animal"+Ogre::StringConverter::toString(++id), getMeshName(type));
 
+	std::string goldMaterialName;
 	if(type.second == WheelEnum::KING)
 	{
 		switch(type.first)
 		{
 		case WheelEnum::PANDA:
-			ent->setMaterialName("panda_jin");
+			goldMaterialName = "panda_jin";
 			break;
 		case WheelEnum::MONKEY:
-			ent->setMaterialName("monkey_jin");
+			goldMaterialName = "monkey_jin";
 			break;
 		case WheelEnum::RABBIT:
-			ent->setMaterialName("coney_jin");
+			goldMaterialName = "coney_jin";
 			break;
 		case WheelEnum::LION:
-			ent->setMaterialName("lion_jin");
+			goldMaterialName = "lion_jin";
 			break;
-		
+
 		}
 	}
-	Ogre::SceneNode * node = sn->createChildSceneNode(Ogre::Vector3(0.0f, 15.f, 0.f));
 
-	//调整模型的大小
-	node->scale(3.5f, 3.5f, 3.5f);
+
+	Ogre::SceneNode * node = sn->createChildSceneNode(Ogre::Vector3(0.0f, 15.f, 0.f));
+#ifdef _GAME1
+	if(type.first == WheelEnum::LION)
+	{
+		//调整模型的大小
+		node->scale(3.5f * 1.3f, 3.5f* 1.3f, 3.5f* 1.3f);
+	}
+	else
+#else
+#endif
+	{
+		//调整模型的大小
+		node->scale(3.5f, 3.5f, 3.5f);
+	}
 
 	node->attachObject(ent);
 	node->yaw(Ogre::Radian(Ogre::Math::PI));
 
-	AnimalPtr ani(new Animal(type,node, ent));
+	AnimalPtr ani(new Animal(type,node, ent , ent->getMesh()->getSubMesh(0)->getMaterialName(), goldMaterialName));
 
-	if(type.second == WheelEnum::PEOPLE)
+	/*if(type.second == WheelEnum::PEOPLE)
+	{*/
+	switch(type.first)
 	{
-		switch(type.first)
-		{
-		case WheelEnum::LION:
-			insertAnimationLion(ani);
-			break;
-		case WheelEnum::RABBIT:
-			insertAnimationRabbit(ani);	
-			break;
-		case WheelEnum::MONKEY:
-			insertAnimationMonkey(ani);
-			break;
-		case WheelEnum::PANDA:
-			insertAnimationPanda(ani);   
-			break;
-		}
+	case WheelEnum::LION:
+		insertAnimationLion(ani);
+		break;
+	case WheelEnum::RABBIT:
+		insertAnimationRabbit(ani);	
+		break;
+	case WheelEnum::MONKEY:
+		insertAnimationMonkey(ani);
+		break;
+	case WheelEnum::PANDA:
+		insertAnimationPanda(ani);   
+		break;
 	}
+	/*}
 
 	if(type.second == WheelEnum::KING)
 	{
-		switch(type.first)
-		{
-		case WheelEnum::LION:
-			insertAnimationLionBoss(ani);   
-			break;
-		case WheelEnum::RABBIT:
-			insertAnimationRabbitBoss(ani);	
-			break;
-		case WheelEnum::MONKEY:
-			insertAnimationMonkeyBoss(ani);   
-			break;
-		case WheelEnum::PANDA:
-			insertAnimationPandaBoss(ani);   
-			break;
-		}
+	switch(type.first)
+	{
+	case WheelEnum::LION:
+	insertAnimationLionBoss(ani);   
+	break;
+	case WheelEnum::RABBIT:
+	insertAnimationRabbitBoss(ani);	
+	break;
+	case WheelEnum::MONKEY:
+	insertAnimationMonkeyBoss(ani);   
+	break;
+	case WheelEnum::PANDA:
+	insertAnimationPandaBoss(ani);   
+	break;
 	}
+	}*/
 	return ani;
 
 }

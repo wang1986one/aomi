@@ -3,6 +3,10 @@ ORZ_PRE_BUILD_EVENT(WheelAnimal2Model)
 
 ADD_DEFINITIONS( -D_CONSOLE )
 
+IF(GAME1)
+	ADD_DEFINITIONS(-D_GAME1)
+ENDIF( GAME1)
+
 
 INCLUDE_DIRECTORIES(
 include
@@ -29,7 +33,6 @@ TARGET_LINK_LIBRARIES(${LIB_NAME}
 WheelAnimal2Controller
 Framework_Base 
 Toolkit_Base 
-
 Toolkit_Component_Task
 WheelGobal
 )

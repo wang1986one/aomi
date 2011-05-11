@@ -24,10 +24,10 @@ AutoEngineDecorator::~AutoEngineDecorator(void)
 }
 
 
-void AutoEngineDecorator::clickButton(int id, int button)
-{
-	_engine->clickButton(id, button);
-}
+//void AutoEngineDecorator::clickButton(int id, int button)
+//{
+//	_engine->clickButton(id, button);
+//}
 
 //void AutoEngineDecorator::pushMessage(MsgBuffer & buffer)
 //{

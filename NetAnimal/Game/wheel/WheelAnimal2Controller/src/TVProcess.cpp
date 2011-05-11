@@ -10,6 +10,7 @@ void TVShowWinner::enable()
 	Orz::WheelAnimalUI::getSingleton().showTVUI(true);
 	_ai = WinData::getInstance().getAnimalItem();
 	up(_winner, WinData::getInstance().getLightColor());
+	_hardware  =NULL;
 }
 
 void TVShowWinner::clear()
@@ -31,34 +32,25 @@ TVShowWinner::~TVShowWinner(void)
 
 
 TVShowWinner::TVShowWinner(
-						     boost::shared_ptr<WheelAnimalSceneObj> scene,  boost::shared_ptr<TV> tv, int winner, 
+						   boost::shared_ptr<WheelAnimalSceneObj> scene,  boost::shared_ptr<TV> tv, int winner, 
 						   boost::shared_ptr<RotateAnimation> needle, 
 						   boost::shared_ptr<RotateAnimation> rotate,
 						   ObjectLightsPtr objectLights
 						   ):_scene(scene), _winner(winner),
 						   _needle(needle), _rotate(rotate),
 						   _winNumber(0), 
-						   _objectLights(objectLights),_tv(tv)
+						   _objectLights(objectLights),_tv(tv),_hardware(NULL)
 {
-	switch(WinData::getInstance().getWinMode())
-	{
-	case WheelEnum::MANY:
-		_all = _winNumber = WinData::getInstance().size() -1;
-		break;
-	/*case WheelEnum::TWO:
-		_all = _winNumber = 2;
-		break;
-	case WheelEnum::THREE:
-		_all = _winNumber = 3;
-		break;
-	case WheelEnum::FOUR:
-		_all = _winNumber = 4;
-		break;
-	case WheelEnum::FIVE:
-		_all = _winNumber = 5;
-		break;*/
 
-	}
+	_all = _winNumber = WinData::getInstance().size() -1;
+	_hardwareComp = Orz::ComponentFactories::getInstance().create("WMHardware");
+
+	
+	ComponentPtr scoreComp = Orz::ComponentFactories::getInstance().create("Score");
+	ScoreInterface  * score = scoreComp->queryInterface<ScoreInterface>();
+	
+	const ScoreInterface::ScoreResult &  result = score->getResult();
+	_prototype = result.prototype;
 }
 
 
@@ -69,6 +61,9 @@ void TVShowWinner::up(int winner, WheelEnum::LIGHT_COLOR color)
 	_winnerAnim.reset(new WinnerAnimationNoMove("TVShowWinner", _scene->getBase(winner)));
 	_scene->showBaseLight(winner, color);
 	_clear.push_back(winner);
+	_hardware = _hardwareComp->queryInterface<WMHardwareInterface>();
+	_hardware->setManyPrototype(_prototype);
+	_hardware->start(WMHardwareInterface::StepMany);
 }
 int TVShowWinner::needleRotate(WheelEnum::AnimalType at, WheelEnum::LIGHT_COLOR color)
 {
@@ -82,9 +77,6 @@ int TVShowWinner::needleRotate(WheelEnum::AnimalType at, WheelEnum::LIGHT_COLOR 
 	float rAngle = c.getRotate() *15.f;
 	float nAngle = c.getNeedle() *15.f;
 
-	//_needle->reset();
-	//_rotate->reset();
-
 	_needle->play(  RotateAnimation::getStartAll(_needle->getAngle(), nAngle), 15.f);
 	_rotate->play(  RotateAnimation::getStartAll(_rotate->getAngle(), rAngle), 20.f);
 	return winner;
@@ -97,8 +89,22 @@ int TVShowWinner::needleRotate(WheelEnum::AnimalType at, WheelEnum::LIGHT_COLOR 
 
 bool TVShowWinner::update(TimeType interval)
 {
-
+	//@@@@#
 	_update2enable();
+
+	if(_hardware)
+	{
+		if(_hardware->wait(interval))
+		{
+			return true;
+		}
+		else
+		{
+			_hardware->end();
+			_hardware->nextManyN();
+			_hardware = NULL;
+		}
+	}
 	if(_winnerAnim)
 	{
 		if(_winnerAnim->update(interval)) 
@@ -113,10 +119,10 @@ bool TVShowWinner::update(TimeType interval)
 				return false;
 			}
 
-			 _ai = WinData::getInstance().getAnimalItem(_all - _winNumber +1);//WheelData::getInstance().getTVNext(WinData::getInstance().getWinMode(), WinData::getInstance().getAnimalItem(),_all - _winNumber +1);
-			//_ai = Orz::WheelEnum::getSingleton().getTVNext();
+			_ai = WinData::getInstance().getAnimalItem(_all - _winNumber +1);//WheelData::getInstance().getTVNext(WinData::getInstance().getWinMode(), WinData::getInstance().getAnimalItem(),_all - _winNumber +1);
 			_winnerAnim.reset();
 			_winner = needleRotate(WheelEnum::AnimalType(_ai.first, WheelEnum::PEOPLE), _ai.second);
+
 			_color = _ai.second;
 			_winNumber--;
 			return true;
@@ -304,30 +310,8 @@ bool TVGameRotate::update(TimeType interval)
 			return true;
 		else
 		{
-			switch(WinData::getInstance().getWinMode())
-			{
-			case WheelEnum::MANY:
-
-				_tv->setNumber(WinData::getInstance().size() -1);
-				break;
-			/*case WheelEnum::TWO:
-
-				_tv->setNumber(2);
-				break;
-			case WheelEnum::THREE:
-
-				_tv->setNumber(3);
-				break;
-			case WheelEnum::FOUR:
-
-				_tv->setNumber(4);
-				break;
-			case WheelEnum::FIVE:
-
-				_tv->setNumber(5);
-				break;*/
-
-			}
+			
+			_tv->setNumber(WinData::getInstance().size() -1);
 			return false;
 		}
 	}
@@ -405,7 +389,7 @@ void TVProcess5::clear(void)
 
 ProcessFactoryTV::ProcessFactoryTV(
 
-								    
+
 								   boost::shared_ptr<WheelAnimalSceneObj> scene,
 								   boost::shared_ptr<TV> tv,
 								   boost::shared_ptr<RotateAnimation> needle,

@@ -3,7 +3,6 @@
 
 #include <Ogre/OgreEntity.h>
 
-#include "WheelGobalConfig.h"
 typedef std::vector<Ogre::Entity*>	EntityList;
 
 typedef struct TAG_RENDERTEXTURE_PROPS {
@@ -27,7 +26,7 @@ typedef struct TAG_RENDERTEXTURE_PROPS {
 	
 } oRenderTextureProps;
 
-class _OrzWheelGobalExport oRenderTextureListener : public Ogre::RenderTargetListener {
+class oRenderTextureListener : public Ogre::RenderTargetListener {
 public:
 
 	typedef std::vector<Ogre::Entity*>	EntityList;

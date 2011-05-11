@@ -54,6 +54,10 @@ namespace Orz
 		{
 			if(i<=5 && i>=1)
 				ISoundManager::getSingleton().quickPlay("Countdown.wav");
+			else if(i == 0)
+			{
+				ISoundManager::getSingleton().quickPlay("Countdown_2.wav");
+			}
 			_number.show(i);
 		}
 		void update(TimeType i)

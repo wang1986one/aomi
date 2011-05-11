@@ -13,7 +13,7 @@ namespace Orz
 {
 	class WheelEngineInterface;
 
-	
+	class SMS;
 	
 	typedef boost::shared_ptr<WheelEngineInterface> WheelEngineInterfacePtr;
 	//typedef boost::shared_ptr<WheelGameInterface> WheelGameInterfacePtr;
@@ -22,10 +22,17 @@ namespace Orz
 	class _OrzMyWheelControlleExport WheelGame:  public WheelGameInterface, public WheelClockListener
 	{
 	public:
-		//typedefounction<> ;
-	public:
+#ifdef _GAME1
+		void enableScene(int i);
+		typedef boost::function< void (int i) >  EnableSceneFunction;
+#else
+		void enableScene(const std::string & name, bool second);
+		typedef boost::function< void (const std::string & , bool) >;
+#endif
+
+
 		virtual ~WheelGame(void);
-		WheelGame(EventWorld * world, WheelEngineInterfacePtr engine, WheelClockPtr clock, boost::function< void (const std::string & , bool) >  enableSceneFunction);
+		WheelGame(EventWorld * world, WheelEngineInterfacePtr engine, WheelClockPtr clock, EnableSceneFunction  enableSceneFunction);
 	
 	public:
 
@@ -44,29 +51,46 @@ namespace Orz
 		void setEndUIVisible(bool visible);
 		void updateClock(TimeType interval);
 		void update(TimeType interval);
-		
-		void runWinner(void);
 
+		void runWinner(void);
+		ComponentPtr getHardware(void) const;
+		ComponentPtr getGameLevel(void) const;
+		ComponentPtr getGSM(void) const;
 		EventWorld * getWorld(void) const;
-		Orz::ComponentPtr getJs(void) const;
-		
-		void enableScene(const std::string & name, bool second);
+
+
 		int answerTime(void);
 
 		Ogre::Overlay * getOverlay(void);
-		int addAndGetNum();
-	//	ComponentPtr getDataServer(void);
+	
+		ComponentPtr getDataServer(void);
+		void reportEarnings(void);
 	private:
+
+		bool report(std::string & result);
+		bool extend(int coins, std::string & result);
+		bool clearData(std::string & result);
+		
+		void getSms(const SMS & sms);
 
 		Ogre::OverlayContainer* _select;
 		WheelEngineInterfacePtr _engine;
 		EventWorld * _world;
 		WheelClockPtr _clock;
-		boost::function< void (const std::string & , bool) >  _enableSceneFunction;
-		//Orz::ComponentPtr _dataServer;
-		Orz::ComponentPtr _jsComp;
-		int _num;
+
+
+		Orz::ComponentPtr _dataServer;
+		Orz::ComponentPtr _hardware;
+		Orz::ComponentPtr _pool;
+		ComponentPtr _gsmComp;
+		ComponentPtr _gameGsmComp;
+		ComponentPtr _gameLevel;
+		ComponentPtr _table;
+
+		EnableSceneFunction _enableSceneFunction;
+		boost::signals2::connection _gsmConnection;
 		
+
 	};
 
 	
@@ -74,26 +98,4 @@ namespace Orz
 
 #endif
 
-
-//
-//#ifndef __Orz_WheelGame_h__
-//#define __Orz_WheelGame_h__	
-//
-//
-//#include "WheelControllerConfig.h"
-//#include "WheelGameInterface.h"
-//#include "WheelAnimalProcess.h"
-//namespace Orz
-//{
-//	class _OrzMyWheelControlleExport WheelGame:public WheelGameInterface
-//	{
-//	public:
-//		WheelGame();
-//		~WheelGame(void);
-//	private:
-//		EventWorld * _world;
-//	};
-//}
-//
-//#endif
 

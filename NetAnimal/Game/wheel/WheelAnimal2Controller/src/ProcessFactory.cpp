@@ -21,17 +21,6 @@ ProcessFactory::ProcessFactory( boost::shared_ptr<WheelAnimalSceneObj> scene, Ob
 
 }
 
-//ProcessFactory::ProcessFactory(WheelEnum::AnimalType at, WheelEnum::LIGHT_COLOR color, boost::shared_ptr<WheelAnimalSceneObj> scene, ObjectLightsPtr objLights):_scene(scene),_objLights(objLights)
-//{
-//	_winner = scene->findRandomAnimal(at);
-//	_offset = objLights->getRandomLight(color);
-//
-//	ComputeWinner c;
-//
-//	c.compute(_winner, _offset, 5);
-//	_rAngle = c.getRotate() *15;
-//	_nAngle = c.getNeedle() *15;
-//}
 ProcessFactory::~ProcessFactory(void)
 {
 
@@ -50,8 +39,6 @@ ProcessPtr ProcessFactory::createProcess(WheelAnimalProcess::PROCESS process)
 		return createProcess3();
 	case WheelAnimalProcess::PROCESS4:
 		return createProcess4();
-	//case WheelAnimalProcess::PROCESS5:
-	//	return createProcess5();
 	
 	}
 	return ProcessPtr();

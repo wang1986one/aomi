@@ -11,6 +11,8 @@ namespace Orz
 	class LightRunning : public Process0LightRunning
 	{
 
+	private:
+		typedef boost::function<void (void)> ActionFunction;
 	public:
 		LightRunning(boost::shared_ptr<ObjectLights> lights);
 		virtual ObjectLights * getLights(void);
@@ -26,6 +28,9 @@ namespace Orz
 		boost::shared_ptr<ObjectLights> _lights;
 
 
+		typedef std::vector<std::pair<Orz::TimeType, ActionFunction> > ActionList;
+		ActionList _actionList;
+		ActionList::iterator _it;
 	};
 
 }

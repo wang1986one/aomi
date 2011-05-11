@@ -5,6 +5,7 @@
 //#include "LogiEvent.h"
 #include "MyWheelDirectorStableHeaders.h"
 #include "WheelGame.h"
+#include "CommunicateInterface.h"
 #include "logic/LogicEvent.h"
 namespace Orz
 {
@@ -16,8 +17,7 @@ namespace Orz
 	class LogoLogic;
 	
 	class SelectLogic;
-
-	class WheelLogic: public FSM::MainLogic<WheelLogic, WheelGame, GameLogic/**/> , public KeyListener
+	class WheelLogic: public FSM::MainLogic<WheelLogic, WheelGame, SelectLogic/**/> 
 	{
 	public:
 		typedef boost::mpl::list< sc::custom_reaction< LogicEvent::WheelStart >, sc::custom_reaction< LogicEvent::SetTime >  > reactions;
@@ -27,9 +27,7 @@ namespace Orz
 
 		WheelLogic(void);
 		~WheelLogic(void);
-		virtual bool onKeyPressed(const KeyEvent & evt);
-		virtual bool onKeyReleased(const KeyEvent & evt);
-	
+
 	};
 
 

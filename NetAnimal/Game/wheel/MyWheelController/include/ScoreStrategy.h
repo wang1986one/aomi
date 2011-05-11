@@ -7,7 +7,6 @@
 #include "ScoreData.h"
 #include "SCMData.h"
 #include "WinDataPrototype.h"
-#include "ScoreBouns.h"
 #include "ScoreSecondWinner.h"
 #include <boost/random.hpp>
 namespace Orz
@@ -38,13 +37,13 @@ namespace Orz
 	//	WinList _bigWinDatas;
 	//	ScoreAnimalPtr _scoreAnimal;
 	//	ScoreWinnerPtr _scoreWinner;
-	//	ScoreBounsPtr _scoreBouns;
+	//	ScoreBonusPtr _scoreBonus;
 	//	WinDataPrototypePtr _winner;
 	////	CoinPoolPtr _coinPool;
 	//	//CoinPoolPtr _earningsPool;
 	////	CoinPoolPtr _rebatePool;
 	//	//CoinPoolPtr _prizePool;
-	////	CoinPoolPtr _bounsPool;
+	////	CoinPoolPtr _bonusPool;
 	//	WinDataPrototypePtr _mustWinData;
 	//	
 	//	Orz::ComponentPtr _table;

@@ -5,9 +5,9 @@
 //#include "MenuLogic.h"
 //#include "SetupLogic.h"
 
-#include "GetDataLogic.h"
-#include "TimeLogic.h"
+
 #include "LogoLogic.h"
+#include "TimeLogic.h"
 #include "GameRunLogic.h"
 #include "ReadyLogic.h"
 #include "StartLogic.h"
@@ -19,5 +19,13 @@
 #include "Dan1Logic.h"
 #include "Dan2Logic.h"
 
+#include "GetWinMsg.h"
+#include "SetWinMsg.h"
+#include "SetupHardwareLogic.h"
+#include "SetupRateLogic.h"
 #include "EndLogic.h"
+#include "GameLogic.h"
+#include "HardwareLogic.h"
+#include "SetupDataLogic.h"
+
 #endif

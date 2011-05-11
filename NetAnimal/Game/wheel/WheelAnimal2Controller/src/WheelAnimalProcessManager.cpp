@@ -12,6 +12,7 @@
 #include "AllColorProcess.h"
 #include "NoneProcess.h"
 #include "ReferenceCount.h"
+#include "TableUpdate.h"
 #include <orz/Toolkit_Base/LogSystem.h>
 using namespace Orz;
 
@@ -25,7 +26,8 @@ WheelAnimalProcessManager::WheelAnimalProcessManager(
 	TVPtr tv,
 	GoldPtr gold,
 	ObjectLightsPtr objLights,
-	WinEffectPtr effect
+	WinEffectPtr effect,
+	TableUpdatePtr tableUpdate
 	):
 _scene(scene),
 _rotate(rotate),
@@ -35,7 +37,8 @@ _cc(cc),
 _tv(tv),
 _gold(gold),
 _objLights(objLights),
-_effect(effect)
+_effect(effect),
+_tableUpdate(tableUpdate)
 {
 
 	_process0.reset(new LightRunning(_objLights));
@@ -98,7 +101,6 @@ void WheelAnimalProcessManager::resetProcess(Orz::Event * evt)
 
 	boost::scoped_ptr<ProcessFactory> factory;
 
-	//Orz::WinTypePtr wintype = Orz::Hardware::getSingleton().getWinType();
 
 	switch(WinData::getInstance().getWinMode())
 	{
@@ -117,24 +119,18 @@ void WheelAnimalProcessManager::resetProcess(Orz::Event * evt)
 		break;
 
 	case WheelEnum::MANY:
-		/*case WheelEnum::TWO:
-		case WheelEnum::THREE:
-		case WheelEnum::FOUR:
-		case WheelEnum::FIVE:*/
 		factory.reset(new ProcessFactoryTV(_scene, _tv, _needle, _rotate, _objLights));
 		break;
 
 	}
 	if(!factory)	
-		factory.reset(new ProcessFactoryNone( _scene, _effect, _needle, _rotate, _objLights));
+		factory.reset(new ProcessFactoryNone( _scene, _effect, _needle, _rotate, _objLights, _tableUpdate));
 
 	for(size_t i = 0; i<_processes.size(); ++i)
 	{
 
 		_processes.at(i).reset();
 		_processes.at(i) =  factory->createProcess(static_cast<WheelAnimalProcess::PROCESS>(WheelAnimalProcess::PROCESS1 + i));
-		/*	it->second.reset();
-		it->second =  factory->createProcess(it->first);*/
 	}
 }
 void WheelAnimalProcessManager::update(TimeType interval)
@@ -190,7 +186,14 @@ void WheelAnimalProcessManager::runProcess(WheelAnimalProcess::PROCESS process,O
 {
 	_referenced = evt->getData<ReferenceCount *>()->reference();
 	ProcessPtr pro = _processes.at(process);
+	//if(PROCESS2 == process)
+	//{
+	//	_tableUpdate.setup(pro);
+	//	_updateFun = boost::bind(&TableUpdate::update, &_tableUpdate, _1);
+	//}else
+	//{
 	_updateFun = boost::bind(&WheelAnimalProcess::update, pro.get(), _1);
+	//}
 }
 void WheelAnimalProcessManager::notice(Orz::Event * evt)
 {
@@ -227,7 +230,6 @@ void WheelAnimalProcessManager::sound(Orz::Event * evt)
 			if(_music)
 				_music->unload();
 			_music.reset();
-			ISoundManager::getSingleton().quickPlay("Countdown_2.wav");
 		}
 		break;
 	case WheelEvents::PROCESS_LOGO_DISABLE:

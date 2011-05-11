@@ -5,7 +5,7 @@
 #include <CEGUI/cegui.h>
 #include "DanListener.h"
 #include <Ogre/Ogre.h>
-
+#include "GSMInterface.h"
 #include "F5TableInterface.h"
 namespace Orz
 {	
@@ -27,7 +27,7 @@ namespace Orz
 	public:
 		bool textAccepted(const CEGUI::EventArgs&) ;
 
-		Dan(DanListener * listener);
+		Dan(DanListener * listener, ComponentPtr dataServer, GSMInterface * gsm);
 		void write(int i, int j, const std::string & text);
 		void show(void);
 		void hide(void);
@@ -40,7 +40,7 @@ namespace Orz
 		void warning(const std::wstring & text, TimeType time = 1.0f);
 		bool onKeyPressed(const KeyEvent & evt);
 		bool onKeyReleased(const KeyEvent & evt);
-		void refresh(F5TableInterface::ID id, F5TableInterface::ACCOUNTS_ITEM item);
+		//void refresh(F5TableInterface::ID id, F5TableInterface::ACCOUNTS_ITEM item);
 		void refresh(void);
 		void setText(const std::string & window, const std::wstring & str);
 		void setText(const std::string & window, const std::string & str);
@@ -49,13 +49,12 @@ namespace Orz
 		TimeType _time;
 		std::vector<LinePtr > _lines;
 		Orz::ComponentPtr _table;
-	//	Orz::ComponentPtr _coding;
-	/*	Orz::ComponentPtr _lockCoding;
-		Orz::ComponentPtr _lock;*/
+		Orz::ComponentPtr _coding;
 		
-	//	ComponentPtr _dataServer;
+		ComponentPtr _dataServer;
 		boost::signals2::connection _connection;
-		//ComponentPtr _dataServer;
+
+		GSMInterface * _gsm;
 	};
 }
 

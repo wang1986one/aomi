@@ -17,7 +17,7 @@ namespace Orz
 	{
 
 	public:
-		AnimalSceneCallback(void);
+		AnimalSceneCallback(int lions);
 		virtual ~AnimalSceneCallback(void);
 		
 		bool check(bool fill);

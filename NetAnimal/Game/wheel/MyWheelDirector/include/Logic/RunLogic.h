@@ -17,6 +17,7 @@ namespace Orz
 
 		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt >  > reactions;
 		sc::result react(const UpdateEvt & evt);
+		void exit(void);
 	private:
 		ProcessPtr _process;
 

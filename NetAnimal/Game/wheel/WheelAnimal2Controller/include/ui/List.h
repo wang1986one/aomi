@@ -38,6 +38,7 @@ namespace Orz
 		CEGUI::Window * _table;
 		std::map<std::pair<WheelEnum::TYPE, WheelEnum::LIGHT_COLOR>, std::string> _picture;
 		WinDataClone _winData;
+		bool _visible;
 	};
 	class List
 	{
@@ -46,28 +47,7 @@ namespace Orz
 		~List(void);
 		void show(void);
 		void hide(void);
-		void add(void)
-		{
-			
-			ListType::iterator it;
-			WinDataClone  wt = Orz::WinData::getInstance().getClone();
-			for(it = _list.begin(); it != _list.end(); ++it)
-			{
-
-				if(it->isVisible())
-				{
-					const WinDataClone temp = it->getData();
-					it->show(wt);
-					wt = temp;
-				}
-				else
-				{
-					it->show(wt);
-					break;
-				}
-			}
-			
-		}
+		void add(void);
 	private:
 		typedef std::vector<ListItem>  ListType;
 		ListType _list;

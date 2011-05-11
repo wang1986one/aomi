@@ -6,16 +6,16 @@
 #include "WheelEngineInterface.h"
 namespace Orz
 {
-class _OrzMyWheelControlleExport MyHardwareEngineDecorator: public SingleChipListener, public WheelEngineInterface, public EventHandler
+class _OrzMyWheelControlleExport MyHardwareEngineDecorator: /*public SingleChipListener, */public WheelEngineInterface, public EventHandler
 {
 public:
 	MyHardwareEngineDecorator(WheelEngineInterfacePtr engine);
 	~MyHardwareEngineDecorator(void);
 	
-	void dealMassage(HardwareMsg & msg);
-	void readFromSCM(unsigned int id, unsigned char c);
+	//void dealMassage(HardwareMsg & msg);
+	//void readFromSCM(unsigned int id, unsigned char c);
 	
-	virtual void read(boost::circular_buffer<unsigned char> & data){}
+//	virtual void read(boost::circular_buffer<unsigned char> & data){}
 	void startGame(size_t time);
 	//void pushRate(void);
 	void runGame(void);
@@ -23,7 +23,7 @@ public:
 	virtual TimeType getTime(void) const;
 
 	
-void clickButton(int id, int button);
+//void clickButton(int id, int button);
 
 		
 	///重载，被用于处理消息调用
@@ -41,7 +41,7 @@ void clickButton(int id, int button);
 	virtual void doFrame(unsigned int step);
 
 private:
-	MyHandler _handler;
+	//MyHandler _handler;
 	WheelEngineInterfacePtr _engine;
 	TimeType _currTime;
 	ComponentPtr _f6table;

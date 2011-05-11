@@ -24,7 +24,6 @@ namespace Orz
 
 	private:
 		ProcessPtr _process;
-
 	};
 }
 #endif

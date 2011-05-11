@@ -19,6 +19,8 @@ namespace Orz
 	private:
 		ProcessPtr _process;
 		TimeType _allTime;
+		
+		CommunicateInterface * _communicate;
 	};
 }
 #endif

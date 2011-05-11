@@ -74,7 +74,7 @@ void GlodShowWinner::clear()
 	_effect->clear();
 	_camAnimation->setEnabled(true);   
 	_camAnimation->setTimePosition(0.f);
-
+	_scene->getAnimal(_winner)->gold(false);
 	_scene->clearLight();
 }
 
@@ -128,6 +128,9 @@ bool GlodShowWinner::update(TimeType interval)
 
 void GlodShowWinner::enable(void)
 {
+	
+	_scene->getAnimal(_winner)->gold(true);
+	Orz::WheelAnimalUI::getSingleton().setGold(WinData::getInstance().getBonus().bonus);
 	_effect->show(WinEffect::Effect4);
 	_scene->showBaseLight(_winner, WinData::getInstance().getLightColor(), true);
 	_scene->clearLight();
@@ -161,9 +164,8 @@ void GlodPlayAnimation::clear(void)
 }
 void GlodPlayAnimation::enable(void)
 {
-	Orz::WheelAnimalUI::getSingleton().setGold(WinData::getInstance().getBonus());
 	Orz::WheelAnimalUI::getSingleton().setWinnerShow(false);
-	_gold->setNumber(WinData::getInstance().getBonus());
+	_gold->setNumber(WinData::getInstance().getBonus().bonus);
 	_gold->show();
 	_time = 0.f;
 	_scene->getAnimal(_winner)->play(WheelEnum::ACTION3);

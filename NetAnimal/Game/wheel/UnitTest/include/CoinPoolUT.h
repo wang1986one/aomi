@@ -29,13 +29,13 @@ BOOST_AUTO_TEST_CASE(CoinPoolUT)
 	CoinPoolPtr earningsPool(new CoinPool(4));
 	CoinPoolPtr rebatePool(new CoinPool(96));
 	CoinPoolPtr prizePool(new CoinPool(48));
-	CoinPoolPtr bounsPool(new CoinPool(48));
+	CoinPoolPtr bonusPool(new CoinPool(48));
 
 	coinPool->link(earningsPool, 4);
 	coinPool->link(rebatePool, CoinPool::AllOther);
 
 	rebatePool->link(prizePool, 48);
-	rebatePool->link(bounsPool, CoinPool::AllOther);
+	rebatePool->link(bonusPool, CoinPool::AllOther);
 
 	for(int i = 0; i<200; ++i)
 	{
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(CoinPoolUT)
 	BOOST_CHECK_EQUAL(earningsPool->total(), 8);
 	BOOST_CHECK_EQUAL(rebatePool->total(), 0);
 	BOOST_CHECK_EQUAL(prizePool->total(), 96);
-	BOOST_CHECK_EQUAL(bounsPool->total(), 96);
+	BOOST_CHECK_EQUAL(bonusPool->total(), 96);
 
 	WinDataPrototype wdp(Orz::WheelEnum::NONE);
 	wdp.push_back(WheelEnum::AnimalItem(WheelEnum::TYPE0, WheelEnum::Red));

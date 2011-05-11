@@ -4,7 +4,7 @@
 #include "WinData.h"
 using namespace Orz;
 
-NoneProRun::NoneProRun(void):_time(0.f)
+NoneProRun::NoneProRun(TableUpdatePtr tableUpdate, float nAngle):_tableUpdate(tableUpdate),_time(0.f),_nAngle(nAngle)
 {
 	std::cout<<"*********************NoneProRun::NoneProRun***********************"<<std::endl;
 }
@@ -13,9 +13,9 @@ bool NoneProRun::update(TimeType interval)
 
 	_update2enable();
 	_time += interval;
-	if(_time > 7.5f)
+	bool ret = _tableUpdate->update(interval);
+	if((!ret) && _time > 7.5f)
 	{
-
 		if(_NoneGameRotateMusic )
 			_NoneGameRotateMusic->unload();
 		return false;
@@ -29,6 +29,11 @@ NoneProRun::~NoneProRun(void)
 
 void NoneProRun::enable(void)
 {
+
+	
+	int n = (int(_nAngle/15) + 5);
+
+	_tableUpdate->reset(n%24);
 	_NoneGameRotateMusic = ISoundManager::getSingleton().createPlayer("S_Pointer.wav",true);
 
 	_NoneGameRotateMusic->load();
@@ -159,9 +164,9 @@ NoneShowWinner::NoneShowWinner(  boost::shared_ptr<WheelAnimalSceneObj> scene, i
 void NoneShowWinner::enable(void)
 {
 	std::cout<<"*********************NoneShowWinner::NoneShowWinner***********************"<<std::endl;
-	std::cout<<_nAngle<<"!"<<(int((_nAngle/15))%24)<<std::endl;
+
 	int n = (int(_nAngle/15) + 5);
-	int table = WinData::getInstance().getSecondWinnerId();
+	int table = WinData::getInstance().getTable();
 	_scene->setTableLiang((n)%24, table);
 	_NoneGameMusic =  ISoundManager::getSingleton().createPlayer("Win_2.wav", true);
 	_NoneGameMusic->load();
@@ -404,9 +409,10 @@ ProcessFactoryNone::ProcessFactoryNone(
 									   WinEffectPtr effect,
 									   boost::shared_ptr<RotateAnimation> needle,
 									   boost::shared_ptr<RotateAnimation> rotate,
-									   ObjectLightsPtr objLights
+									   ObjectLightsPtr objLights,
+									   TableUpdatePtr tableUpdate
 									   ):ProcessFactory( scene, objLights),_effect(effect),
-									   _needle(needle),_rotate(rotate)
+									   _needle(needle),_rotate(rotate),_tableUpdate(tableUpdate)
 {
 
 }
@@ -423,7 +429,7 @@ Process0Ptr ProcessFactoryNone::createProcess0(void)
 
 ProcessPtr ProcessFactoryNone::createProcess1(void)
 {
-	return ProcessPtr(new NoneProRun());
+	return ProcessPtr(new NoneProRun(_tableUpdate, _nAngle));
 }
 
 ProcessPtr ProcessFactoryNone::createProcess2(void)

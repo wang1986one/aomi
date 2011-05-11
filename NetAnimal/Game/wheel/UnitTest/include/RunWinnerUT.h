@@ -6,14 +6,14 @@
 #include "WinData.h"
 #include <boost/random.hpp>
 #include <boost/lambda/lambda.hpp>
-#include "ScoreBouns.h"
+#include "ScoreBonus.h"
 /*
 
 #include "Engine.h"
 #include "KeyToMessage.h"
 #include "SingleChipToMessage.h"*/
 
-#include "ScoreBouns.h"
+#include "ScoreBonus.h"
 
 BOOST_AUTO_TEST_CASE(RunWinnerUT)
 {
@@ -94,14 +94,7 @@ BOOST_AUTO_TEST_CASE(RunWinnerUT)
 	BOOST_CHECK_EQUAL( animal.getInt(animal.getAnimal(10)), 10);
 	BOOST_CHECK_EQUAL( animal.getInt(animal.getAnimal(11)), 11);
 
-	ScoreBouns sb;
-	//	all * 100/scm.getAnimal().getTotal();
-
-	std::cout<<data.getAnimal().getTotal()<<std::endl;
-	//std::cout<<sb.getBounsAmount(1000, data.getAnimal().getTotal(), 0.01f)<<std::endl;
-	//sb.isBouns(1000);
-	////sb.getBounsAmount()
-	//WinDataPrototype win = sb.getWinData(WinDataPrototype windata);
+	ScoreBonus sb;
 	data.clear();
 	BOOST_CHECK_EQUAL( data.getWinner().get(WheelEnum::Dealer), 0);
 	BOOST_CHECK_EQUAL( data.getWinner().get(WheelEnum::Player), 0);
@@ -114,13 +107,7 @@ BOOST_AUTO_TEST_CASE(RunWinnerUT)
 
 
 	
-	BOOST_CHECK_EQUAL( sb.getBounsAmount(101, data.getAnimal().getTotal(), 0.01f), -1);
-//	RunWinnerPtr rw(new RunWinner());
-	/*rw->calculate(WheelEnum::Player, 1);
-	rw->calculate(WheelEnum::Dealer, 1);*/
-//	rw->calculate(WheelEnum::Draw, 1);
-//	rw->getWinner(1,1,1,100);
-//
+	BOOST_CHECK_EQUAL( sb.getBonusAmount(101, data.getAnimal().getTotal(), 0.01f), -1);
 }
 
 #endif
