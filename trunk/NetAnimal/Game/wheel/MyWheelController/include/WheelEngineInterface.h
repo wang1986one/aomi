@@ -23,7 +23,7 @@ namespace Orz
 		virtual void runGame(void) = 0;
 		virtual TimeType getTime(void) const  = 0;
 		
-		virtual void clickButton(int id, int button) = 0;
+		//virtual void clickButton(int id, int button) = 0;
 
 	};
 

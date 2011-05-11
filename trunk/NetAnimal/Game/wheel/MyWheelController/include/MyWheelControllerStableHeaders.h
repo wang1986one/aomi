@@ -8,6 +8,7 @@
 #include <orz/Toolkit_Component_Task/Component/ComponentFactories.h>
 #include <queue>
 
+#include "WheelEnum.h"
 #include <boost/multi_array.hpp>
 #include <orz/View_SingleChip/SingleChipManager.h>
 #endif

@@ -41,7 +41,7 @@ namespace Orz
 		virtual void startGame(size_t time);
 		//virtual void pushRate(void);
 		virtual void runGame(void);
-		virtual void clickButton(int id, int button);
+		//virtual void clickButton(int id, int button);
 
 		virtual TimeType getTime(void) const;
 

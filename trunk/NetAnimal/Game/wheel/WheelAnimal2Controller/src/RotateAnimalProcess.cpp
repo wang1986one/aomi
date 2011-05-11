@@ -89,8 +89,6 @@ void RotateAnimalGameRotate::clear(void)
 	{
 		_scene->getAnimal(i)->play(WheelEnum::ACTION1);
 	}
-	/*_needle->reset();
-	_rotate->reset(); */
 }
 
 RotateAnimalGameRotate::~RotateAnimalGameRotate(void)

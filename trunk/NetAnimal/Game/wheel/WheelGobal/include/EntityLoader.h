@@ -2,7 +2,7 @@
 #define __Orz_EntityLoader_h__	
 
 
-#include "WheelGobalConfig.h"
+#include "WheelGobalConfig.h"/*
 namespace Orz
 {
 	class _OrzWheelGobalExport EntityLoader
@@ -23,7 +23,7 @@ namespace Orz
 		EventWorld * _world;
 	
 	};
-}
+}*/
 
 #endif
 

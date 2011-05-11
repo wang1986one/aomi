@@ -17,7 +17,8 @@ _main(main),
 _banker(banker),
 _king(king),
 _double(theDouble),
-_table(table)
+_table(table),
+_visible(false)
 {
 	_picture.insert(std::make_pair(
 		std::make_pair(WheelEnum::LION, WheelEnum::Green),
@@ -85,6 +86,7 @@ _table(table)
 }
 void ListItem::hide(void)
 {
+	_visible = false;
 	_all->hide();
 }
 
@@ -95,6 +97,7 @@ const WinDataClone & ListItem::getData(void) const
 }
 void ListItem::show(const WinDataClone & data)
 {
+	_visible = true;
 	_winData = data;
 
 
@@ -208,7 +211,7 @@ ListItem::~ListItem(void)
 }
 bool ListItem::isVisible(void) const
 {
-	return _all->isVisible();
+	return _visible;
 }
 //
 //const WinData & ListItem::getWinData(void) 
@@ -255,4 +258,30 @@ void List::show(void)
 void List::hide(void)
 {
 	CEGUI::WindowManager::getSingleton().getWindow("AnimalUI/Bottom")->hide();
+}
+
+
+
+
+void List::add(void)
+{
+	
+	ListType::iterator it;
+	WinDataClone  wt = Orz::WinData::getInstance().getClone();
+	for(it = _list.begin(); it != _list.end(); ++it)
+	{
+
+		if(it->isVisible())
+		{
+			const WinDataClone temp = it->getData();
+			it->show(wt);
+			wt = temp;
+		}
+		else
+		{
+			it->show(wt);
+			break;
+		}
+	}
+	
 }

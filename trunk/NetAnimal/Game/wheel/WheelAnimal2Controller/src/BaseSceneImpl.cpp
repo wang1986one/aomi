@@ -3,6 +3,7 @@
 //#include "Test1SceneCallback.h"
 #include "AnimalSceneCallback.h"
 #include "AnimalManager.h"
+#include "WheelData.h"
 #include "ThirdParty/Ofusion/OgreOSMScene.h"
 #include <orz/View_OGRE3D/OgreGraphicsManager.h>
 //#include "WheelDB.h"
@@ -25,7 +26,7 @@ boost::shared_ptr<BaseSceneImpl> BaseSceneImpl::create(boost::shared_ptr<OSMScen
 	if(filename == "test.osm")
 	{
 
-		boost::shared_ptr<AnimalSceneCallback> callback(new AnimalSceneCallback());
+		boost::shared_ptr<AnimalSceneCallback> callback(new AnimalSceneCallback(WheelData::getInstance().getLions()));
 		osm_cb = callback;
 		base_scene = callback;
 		

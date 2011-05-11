@@ -5,40 +5,40 @@
 using namespace Orz;
 
 
-
-//    =r =h =g  
-// 1  6  6  6
-// 2  10 10 10
-// 3  15 15 15 
-// 4  31 31 31
-
-
-//    +r -h =g  
-// 1  7  5  6
-// 2  11 8 10
-// 3  17 14 15 
-// 4  35 28 31
-
-
-//    +r =h -g  
-// 1  7  6  5
-// 2  11 10 8
-// 3  17 15 14 
-// 4  35 31 28
-
-
-//    -r +h =g  
-// 1  5  7  6
-// 2  8  11 10
-// 3  14 17 15 
-// 4  28 35 31
-
-
-//    =r +h -g  
-// 1  6  7  5
-// 2  10 11 8
-// 3  15 17 14 
-// 4  31 35 28
+//
+////    =r =h =g  
+//// 1  6  6  6
+//// 2  10 10 10
+//// 3  15 15 15 
+//// 4  31 31 31
+//
+//
+////    +r -h =g  
+//// 1  7  5  6
+//// 2  11 8 10
+//// 3  17 14 15 
+//// 4  35 28 31
+//
+//
+////    +r =h -g  
+//// 1  7  6  5
+//// 2  11 10 8
+//// 3  17 15 14 
+//// 4  35 31 28
+//
+//
+////    -r +h =g  
+//// 1  5  7  6
+//// 2  8  11 10
+//// 3  14 17 15 
+//// 4  28 35 31
+//
+//
+////    =r +h -g  
+//// 1  6  7  5
+//// 2  10 11 8
+//// 3  15 17 14 
+//// 4  31 35 28
 //
 //static const int RATE[] = 
 //{
@@ -96,9 +96,9 @@ using namespace Orz;
 //	return rate;
 //}
 //
-//void WinDataPrototype::setBouns(int bouns)
+//void WinDataPrototype::setBonus(int bonus)
 //{
-//	if(bouns == -1)
+//	if(bonus == -1)
 //	{
 //		using namespace boost;
 //		
@@ -107,13 +107,13 @@ using namespace Orz;
 //		boost::uniform_int<> distribution(3000,19999);
 //
 //	    variate_generator<mt19937, uniform_int<> > myrandom (engine, distribution);
-//		bouns = myrandom();
+//		bonus = myrandom();
 //	}
 //
-//	WinData::getInstance().setBonus(bouns);
+//	WinData::getInstance().setBonus(bonus);
 //}
 //
-//WinDataPrototypePtr WinDataPrototype::gatBounsData(void) const
+//WinDataPrototypePtr WinDataPrototype::gatBonusData(void) const
 //{
 //	
 //	assert(_winMode == Orz::WheelEnum::NONE);

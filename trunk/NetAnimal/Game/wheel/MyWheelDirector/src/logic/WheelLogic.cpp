@@ -5,34 +5,6 @@
 //#include "Logic/AllLogic.h"
 using namespace Orz;
 
-bool WheelLogic::onKeyPressed(const KeyEvent & evt)
-{
-
-	switch(evt.getKey())
-	{
-	case Orz::KC_F1:
-			
-		getStateMachine().process_event(LogicEvent::ClickButton(0,0));
-		break;
-	case Orz::KC_F2:
-			
-		getStateMachine().process_event(LogicEvent::ClickButton(0,1));
-		break;
-	case Orz::KC_F3:
-			
-		getStateMachine().process_event(LogicEvent::ClickButton(0,2));
-		break;
-	}
-
-	return false;
-}
-
-bool WheelLogic::onKeyReleased(const KeyEvent & evt)
-{
-
-	
-	return true;
-}
 
 
 
@@ -51,10 +23,8 @@ sc::result WheelLogic::react(const LogicEvent::SetTime & evt)
 
 WheelLogic::WheelLogic(void)
 {
-	Orz::IInputManager::getSingleton().addKeyListener(this);
 }
 WheelLogic::~WheelLogic(void)
 {
 
-	Orz::IInputManager::getSingleton().removeKeyListener(this);
 }

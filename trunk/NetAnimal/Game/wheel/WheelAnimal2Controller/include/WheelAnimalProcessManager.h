@@ -9,7 +9,7 @@
 
 #include "ReferenceCount.h"
 #include "WinData.h"
-
+#include "TableUpdate.h"
 #include <orz/Toolkit_Base/FSMLogic.h>
 
 
@@ -40,9 +40,7 @@ namespace Orz
 	typedef  boost::shared_ptr<ObjectLights> ObjectLightsPtr;
 	typedef  boost::shared_ptr<WinEffect> WinEffectPtr;
 	typedef  boost::shared_ptr<WheelAnimalSceneObj> WheelAnimalScenePtr;
-	typedef boost::shared_ptr< WheelAnimalUI> WheelAnimalUIPtr;
-
-
+	typedef  boost::shared_ptr< WheelAnimalUI> WheelAnimalUIPtr;
 
 	class _OrzWheelAnimal2ControllerExport WheelAnimalProcessManager
 	{
@@ -61,7 +59,8 @@ namespace Orz
 				TVPtr tv,
 				GoldPtr gold,
 				ObjectLightsPtr objLights,
-				WinEffectPtr effect
+				WinEffectPtr effect,
+				TableUpdatePtr tableUpdate
 				);
 		~WheelAnimalProcessManager(void);
 		void notice(Orz::Event * evt);
@@ -92,10 +91,10 @@ namespace Orz
 		WheelAnimalUIPtr _ui;
 
 		WheelAnimalScenePtr _scene;
-		//WinData WinData::getSingleton();
-		
 		ProcessArray _processes;
 		ReferenceCount::Referenced _referenced;
+
+		TableUpdatePtr _tableUpdate;
 	private:
 		
 		SoundPlayerPtr _music;

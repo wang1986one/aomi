@@ -11,21 +11,23 @@
 #include "WinnerAnimation.h"
 #include "ColorChange.h"
 #include "ProcessFactory.h"
+#include "TableUpdate.h"
 namespace Orz
 {
 	class NoneProRun: public WheelAnimalProcess , public UpdateToEnable<NoneProRun>
 	{
 	public:
 
-		NoneProRun(void);
+		NoneProRun(TableUpdatePtr tableUpdate, float nAngle);
 		virtual bool update(TimeType interval);
 		virtual ~NoneProRun(void);
 		void clear(void);
 		virtual void enable(void);
 	private:
 		TimeType _time;
-		
+		const float _nAngle;
 		SoundPlayerPtr _NoneGameRotateMusic;
+		TableUpdatePtr _tableUpdate;
 
 	};
 
@@ -117,7 +119,8 @@ namespace Orz
 			WinEffectPtr effect,
 			boost::shared_ptr<RotateAnimation> needle,
 			boost::shared_ptr<RotateAnimation> rotate,
-			ObjectLightsPtr objLights
+			ObjectLightsPtr objLights,
+			TableUpdatePtr tableUpdate
 			);
 
 		virtual ~ProcessFactoryNone(void);
@@ -131,6 +134,7 @@ namespace Orz
 		boost::shared_ptr<RotateAnimation> _rotate;
 		boost::shared_ptr<RotateAnimation> _needle;	
 		WinEffectPtr _effect;
+		TableUpdatePtr _tableUpdate;
 
 	};
 

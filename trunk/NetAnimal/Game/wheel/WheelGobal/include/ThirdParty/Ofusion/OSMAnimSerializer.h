@@ -14,8 +14,7 @@
 #ifndef _OSMANIMSERIALIZER_H_
 #define _OSMANIMSERIALIZER_H_
 
-#include "WheelGobalConfig.h"
-class _OrzWheelGobalExport OSMAnimSerializer : public Ogre::Serializer {
+class OSMAnimSerializer : public Ogre::Serializer {
 public:
 
 	OSMAnimSerializer();

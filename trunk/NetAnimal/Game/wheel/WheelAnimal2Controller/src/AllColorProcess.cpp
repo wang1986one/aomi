@@ -12,10 +12,6 @@ ColorProRun::ColorProRun(boost::shared_ptr<WheelAnimalSceneObj> scene, boost::sh
 	_allColorProRunMusic = ISoundManager::getSingleton().createPlayer("Pre_1.wav", true);
 	_allColorProRunMusic->load();
 	_allColorProRunMusic->play(1);
-
-	//_as = scene->getSceneAnimation(SCENE_ANIMATION_0);
-	//_as->setEnabled(true);
-	//_as->setLoop(false);
 }
 
 bool ColorProRun::update(TimeType interval)

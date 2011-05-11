@@ -10,7 +10,7 @@
 #include "WheelAnimalProcess.h"
 #include "ProcessFactory.h"
 #include "WinnerAnimation.h"
-
+#include "WMHardwareInterface.h"
 #include "TV.h"
 namespace Orz
 {
@@ -48,6 +48,10 @@ namespace Orz
 		std::vector<int> _clear; 
 		boost::shared_ptr<TV>  _tv; 
 		AnimalEnum::ANIMAL_ITEM _ai;
+		ComponentPtr _hardwareComp;
+		
+		ScoreInterface::WinPrototypePtr _prototype;// _scoreComp;
+		WMHardwareInterface * _hardware;
 
 	};
 
@@ -104,7 +108,6 @@ namespace Orz
 		float _isDown;
 		Ogre::AnimationState * _as;
 		bool _isContinue;
-
 		SoundPlayerPtr _TVGameRotateMusic;
 
 	};

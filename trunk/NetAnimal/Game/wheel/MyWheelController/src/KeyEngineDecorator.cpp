@@ -8,11 +8,11 @@ using namespace Orz;
 
 KeyEngineDecorator::KeyEngineDecorator(WheelEngineInterfacePtr engine):_engine(engine)
 {
-	Orz::IInputManager::getSingleton().addKeyListener(this);
+	//Orz::IInputManager::getSingleton().addKeyListener(this);
 }
 KeyEngineDecorator::~KeyEngineDecorator(void)
 {
-	Orz::IInputManager::getSingleton().removeKeyListener(this);
+	//Orz::IInputManager::getSingleton().removeKeyListener(this);
 }
 
 bool KeyEngineDecorator::onKeyPressed(const KeyEvent & evt)
@@ -30,7 +30,7 @@ bool KeyEngineDecorator::onKeyPressed(const KeyEvent & evt)
 	case Orz::KC_B:  
 		{
 			WinData::getInstance().setWinMode(WheelEnum::NONE);
-			WinData::getInstance().setBonus(1000);
+			WinData::getInstance().setBonus(false, 1000, 0,0 );
 			WinData::getInstance().setWinner(WheelEnum::Player);
 			WinData::getInstance().clear();
 			WinData::getInstance().push_back(WheelEnum::AnimalItem(WheelEnum::TYPE0, WheelEnum::Yellow), 20);
@@ -76,10 +76,10 @@ void KeyEngineDecorator::runGame(void)
 	_engine->runGame();
 }
 
-void KeyEngineDecorator::clickButton(int id, int button)
-{
-	_engine->clickButton(id, button);
-}
+//void KeyEngineDecorator::clickButton(int id, int button)
+//{
+//	_engine->clickButton(id, button);
+//}
 TimeType KeyEngineDecorator::getTime(void) const
 {
 	return _engine->getTime();

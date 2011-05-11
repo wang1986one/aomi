@@ -13,7 +13,7 @@ namespace Orz
 	class Dan2Logic: public FSM::LogicAdv<Dan2Logic, GameLogic>//, public UpdateToEnable<LogiLogo>
 	{
 	public:
-		typedef boost::mpl::list<sc::custom_reaction< LogicEvent::Dan2 > > reactions;
+		typedef boost::mpl::list<sc::custom_reaction< LogicEvent::Dan2 >  > reactions;
 	
 		Dan2Logic(my_context ctx);
 		~Dan2Logic(void);

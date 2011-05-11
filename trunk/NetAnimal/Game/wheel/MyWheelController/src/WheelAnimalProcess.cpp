@@ -32,8 +32,9 @@ bool Process::update(TimeType interval)
 	if(_time < _minTime)
 		return true;
 	if(_time > _maxTime)
+	{
 		return false;
-	
+	}
 	if(!_count->hasReferenced())
 	{
 		return false;

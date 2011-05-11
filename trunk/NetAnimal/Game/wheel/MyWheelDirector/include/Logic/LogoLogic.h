@@ -5,6 +5,7 @@
 #include "TasksManager.h"
 #include "GameLogic.h"
 #include "WheelAnimalProcess.h"
+#include "WMHardwareInterface.h"
 namespace Orz
 {
 
@@ -28,6 +29,9 @@ namespace Orz
 		ProcessPtr _process;
 		bool _gotoReady;
 		
+		bool _ret;
+	/*	WMHardwareInterface * _hardware;
+		bool _updateHardware;*/
 	};
 }
 #endif

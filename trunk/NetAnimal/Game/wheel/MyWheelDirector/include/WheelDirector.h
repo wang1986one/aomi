@@ -21,25 +21,27 @@ namespace Orz
 	class WheelDirector: public Director, public KeyListener
 	{
 	public:
-		WheelDirector(const std::string & name/* , const std::string & xmlFile*/);
+		WheelDirector(const std::string & name);
 		virtual ~WheelDirector(void);
 
 		void doExecute(Event * evt);
 		void doEnable(void);
 		void doDisable(void);
 		void doFrame(unsigned int step);
+#ifdef _GAME1
+		void enableScene(int i);
+#else
 		void enableScene(const std::string & name, bool second);
-		
+#endif
 		///通知键盘按下事件
 		virtual bool onKeyPressed(const KeyEvent & evt);
 		///通知键盘释放事件
 		virtual bool onKeyReleased(const KeyEvent & evt);
+
+		
 	private:
 		boost::scoped_ptr<WheelGame> _game;
 		boost::scoped_ptr<EntityLoader> _loader;
-	//	boost::scoped_ptr<MyHardwareCode> _code;
-		//
-	//	boost::scoped_ptr<WheelMediator> _mediator;
 		boost::scoped_ptr<DUI> _ui;
 		FSMLogicHandler<WheelGame, WheelLogic> _logic;
 		ScenePtr _scene;

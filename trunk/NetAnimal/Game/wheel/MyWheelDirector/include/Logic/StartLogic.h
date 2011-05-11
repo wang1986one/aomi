@@ -5,30 +5,26 @@
 #include "TasksManager.h"
 #include "GameLogic.h"
 #include "WheelAnimalProcess.h"
+#include "CommunicateInterface.h"
 namespace Orz
 {
 
 
 	class TimeLogic;
-	class StartLogic: public FSM::LogicAdv<StartLogic, GameLogic, TimeLogic>
+	class SetupHardwareLogic;
+	class StartLogic: public FSM::LogicAdv<StartLogic, GameLogic, SetupHardwareLogic>//, public UpdateToEnable<LogiLogo>
 	{
 	public:
+		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;
+		sc::result react(const UpdateEvt & evt)	;
 		StartLogic(my_context ctx);
 		~StartLogic(void);
-		//typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > , sc::custom_reaction< LogicEvent::ClickButton > , sc::custom_reaction< LogicEvent::Dan1 >, sc::custom_reaction< LogicEvent::Dan2 >/* *//*, sc::custom_reaction< SetMode> ,sc::custom_reaction< HowWin >, sc::custom_reaction< AskTime > , */> reactions;
-		//sc::result react(const UpdateEvt & evt)	;
-		//sc::result react(const LogicEvent::ClickButton & evt);
-		//sc::result react(const LogicEvent::Dan1 & evt);
-		//sc::result react(const LogicEvent::Dan2 & evt);
-		//void exit(void);
+		void exit(void);
+		
 	private:
 
-	/*	
-		SoundPlayerPtr _startMusic; 
 		ProcessPtr _process;
-		bool _gotoDan;
-		int _time;*/
-	
+		
 	};
 }
 #endif

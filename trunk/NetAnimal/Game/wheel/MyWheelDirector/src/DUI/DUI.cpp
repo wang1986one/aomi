@@ -3,14 +3,14 @@
 #include <CEGUI/cegui.h>
 #include <orz/Toolkit_Base/LogSystem.h>
 
-
+#include "GSMInterface.h"
 #include "DUI/Dan.h"
 #include "DUI/Dan2.h"
 using namespace Orz;
 template<> DUI* Singleton<DUI>::_singleton = NULL;
 
  
-DUI::DUI()
+DUI::DUI(ComponentPtr dataServer, GSMInterface * gsm)
 {
 	using namespace CEGUI;
 	CEGUI::SchemeManager::getSingleton().create("TaharezLook.scheme");
@@ -23,7 +23,7 @@ DUI::DUI()
 	//CEGUI::System::getSingleton().setGUISheet(CEGUI::WindowManager::getSingleton().loadWindowLayout("AnimalUI.layout"));
 	//CEGUI::System::getSingleton().updateWindowContainingMouse();
 
-	_dan.reset(new Dan(this));
+	_dan.reset(new Dan(this, dataServer, gsm));
 	_dan2.reset(new Dan2(this));
 
 }

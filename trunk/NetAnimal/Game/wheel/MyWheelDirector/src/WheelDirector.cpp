@@ -14,10 +14,13 @@
 #include "MyHardwareCode.h"
 #include "WinData.h"
 #include "DUI/DUI.h"
-#include "F5TableComponent.h"
-#include "F5TableComponentKey.h"
+#include "TableComponent.h"
+#include "TableComponentKey.h"
 #include "DataServerInterface.h"
 #include "LockInterface.h"
+#include "DataCentreInterface.h"
+#include "WheelData.h"
+#include "GSMInterface.h"
 using namespace Orz;
 WheelDirector::WheelDirector(const std::string & name/* , const std::string & xmlFile*/):Director(name)
 {
@@ -36,62 +39,107 @@ WheelDirector::~WheelDirector(void)
 	
 	ORZ_LOG_NORMAL_MESSAGE("Destroy a WheelDirector Object;");
 }
-
-void WheelDirector::enableScene(const std::string & name, bool second)
-{
-	WinData::getInstance().setSecondWinner(second);
-	_scene = Orz::GameFactories::getInstance().createScene(name);
-	// load resource paths from config file
-	Ogre::ConfigFile cf;
-	cf.load(name + ".cfg");
-
-	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
-	Ogre::String sec, type, arch;
-
-	// go through all specified resource groups
-	while (seci.hasMoreElements())
+#ifdef _GAME1
+	
+	void WheelDirector::enableScene(int i)
 	{
-		sec = seci.peekNextKey();
-		Ogre::ConfigFile::SettingsMultiMap* settings = seci.getNext();
-		Ogre::ConfigFile::SettingsMultiMap::iterator i;
 
-		// go through all resource paths
-		for (i = settings->begin(); i != settings->end(); i++)
+		WheelData::getInstance().setLions(i);
+		std::string name = "WheelScene2";
+		bool second = true;
+		ComponentPtr comp = Orz::ComponentFactories::getInstance().create("DataCentre");
+		DataCentreInterface * data =comp->queryInterface<DataCentreInterface>();
+		data->setHasTable(second);
+		_scene = Orz::GameFactories::getInstance().createScene(name);
+		Ogre::ConfigFile cf;
+		cf.load(name + ".cfg");
+
+		Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+		Ogre::String sec, type, arch;
+
+		// go through all specified resource groups
+		while (seci.hasMoreElements())
 		{
-			type = i->first;
-			arch = i->second;
+			sec = seci.peekNextKey();
+			Ogre::ConfigFile::SettingsMultiMap* settings = seci.getNext();
+			Ogre::ConfigFile::SettingsMultiMap::iterator i;
+
+			// go through all resource paths
+			for (i = settings->begin(); i != settings->end(); i++)
+			{
+				type = i->first;
+				arch = i->second;
 
 
-			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
+				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
 
-			//Ogre::ResourceGroupManager::getSingleton().addResourceLocation("D:/Test", "FileSystem", "General");
+			}
+			
+
+		}
+
+		{
+			const Ogre::ResourceGroupManager::LocationList  & list = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList("sound");
+
+			Orz::ISoundManager::getSingleton().setResourcesPath((*list.begin())->archive->getName());
 		}
 		
-
+		Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(name);
+		getWorld()->comeIn(_scene);
 	}
+#else
+		
 
+	void WheelDirector::enableScene(const std::string & name, bool second)
 	{
-		const Ogre::ResourceGroupManager::LocationList  & list = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList("sound");
+		ComponentPtr comp = Orz::ComponentFactories::getInstance().create("DataCentre");
+		DataCentreInterface * data =comp->queryInterface<DataCentreInterface>();
+		data->setHasTable(second);
+		_scene = Orz::GameFactories::getInstance().createScene(name);
+		Ogre::ConfigFile cf;
+		cf.load(name + ".cfg");
 
-		Orz::ISoundManager::getSingleton().setResourcesPath((*list.begin())->archive->getName());
+		Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+		Ogre::String sec, type, arch;
+
+		// go through all specified resource groups
+		while (seci.hasMoreElements())
+		{
+			sec = seci.peekNextKey();
+			Ogre::ConfigFile::SettingsMultiMap* settings = seci.getNext();
+			Ogre::ConfigFile::SettingsMultiMap::iterator i;
+
+			// go through all resource paths
+			for (i = settings->begin(); i != settings->end(); i++)
+			{
+				type = i->first;
+				arch = i->second;
+
+
+				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
+
+			}
+			
+
+		}
+
+		{
+			const Ogre::ResourceGroupManager::LocationList  & list = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList("sound");
+
+			Orz::ISoundManager::getSingleton().setResourcesPath((*list.begin())->archive->getName());
+		}
+		
+		Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(name);
+		getWorld()->comeIn(_scene);
 	}
-	
-	Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(name);
-	getWorld()->comeIn(_scene);
-}
 
+#endif
 void WheelDirector::doExecute(Event * evt)
 {
 	switch(WheelEvents::getMsg(evt))
 	{
 
 		
-	case WheelEvents::CLICK_BUTTON:
-		{
-			intX2 intx2 = evt->getData<intX2>();
-			_logic.process_event(LogicEvent::ClickButton(intx2.get<0>(), intx2.get<1>()));
-		}
-		break;
 	case WheelEvents::ASK_TIME:
 		_logic.process_event(LogicEvent::AskTime());
 		break;
@@ -117,7 +165,6 @@ void WheelDirector::doEnable(void)
 {
 	
 	Orz::IInputManager::getSingleton().addKeyListener(this);
-	//enableScene("WheelScene");
 	
 	EventWorld * world = getWorld();
 	
@@ -125,33 +172,60 @@ void WheelDirector::doEnable(void)
 	_autoEngine.reset(new MyHardwareEngineDecorator(wheelEngine));
 
 	WheelClockPtr clock(new WheelClock());
-	boost::function< void (const std::string & , bool) > fun = boost::bind(&WheelDirector::enableScene, this, _1, _2);
+#ifdef _GAME1
+	WheelGame::EnableSceneFunction fun = boost::bind(&WheelDirector::enableScene, this, _1);
+#else
+	WheelGame::EnableSceneFunction fun = boost::bind(&WheelDirector::enableScene, this, _1, _2);
+#endif
 	_game.reset(new WheelGame(world, _autoEngine, clock, fun));
 
 	
 	_logic.init(_game.get());
-	_ui.reset(new DUI());
- 		getWorld()->comeIn(_autoEngine);
+	_ui.reset(new DUI(_game->getDataServer(), _game->getGSM()->queryInterface<GSMInterface>()));
+ 	getWorld()->comeIn(_autoEngine);
+
+
 	_keyTable = Orz::ComponentFactories::getInstance().create("F5TableKey");
+	
+
+
 	enableUpdate();
-	/*ComponentPtr dataServer = _game->getDataServer();
+	ComponentPtr dataServer = _game->getDataServer();
 	DataServerInterface * data =dataServer->queryInterface<DataServerInterface>();
 	data->load();
 	LockInterface * lock = dataServer->queryInterface<LockInterface>();
-	lock->print();*/
+	lock->print();
 	
 }
 bool WheelDirector::onKeyPressed(const KeyEvent & evt)
 {
 
-	if(evt.getKey() == Orz::KC_F5)
+
+	switch(evt.getKey())
 	{
+	case Orz::KC_F1:
+			
+		_logic.process_event(LogicEvent::F1());
+		break;
+	case Orz::KC_F2:
+			
+		_logic.process_event(LogicEvent::F2());
+		break;
+	case Orz::KC_F3:
+			
+		_logic.process_event(LogicEvent::F3());
+		break;
+	case Orz::KC_F5:
+			
 		_logic.process_event(LogicEvent::Dan1());
-	}
-	if(evt.getKey() == Orz::KC_F6)
-	{
+		break;
+	case Orz::KC_F6:
+			
 		_logic.process_event(LogicEvent::Dan2());
+		break;
 	}
+
+
 	return false;
 }
 bool WheelDirector::onKeyReleased(const KeyEvent & evt)
@@ -217,8 +291,8 @@ extern "C" void dllStartPlugin(void)
 
 	GameFactories::getInstance().addFactory(df.get()); 
 	Orz::ComponentFactories::getInstance()
-		.addFactory("F5Table", boost::factory<F5TableComponent *>())
-		.addFactory("F5TableKey", boost::factory<F5TableComponentKey *>());
+		.addFactory("Table", boost::factory<TableComponent *>())
+		.addFactory("F5TableKey", boost::factory<TableComponentKey *>());
 }
 
 extern "C" void dllStopPlugin(void)
@@ -227,6 +301,6 @@ extern "C" void dllStopPlugin(void)
 
 	
 	Orz::ComponentFactories::getInstance()
-		.removeFactory("F5Table")
+		.removeFactory("Table")
 		.removeFactory("F5TableKey");
 }

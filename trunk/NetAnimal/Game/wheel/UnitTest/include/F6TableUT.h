@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(F6TableUT)
 {
 
 	
-	Orz::ComponentPtr comp = Orz::ComponentFactories::getInstance().create("F5Table");
+	Orz::ComponentPtr comp = Orz::ComponentFactories::getInstance().create("Table");
 	F6TableInterface * f6 = comp->queryInterface<F6TableInterface>();
 	BOOST_CHECK(f6 != NULL);
 	BOOST_CHECK(f6->setDataIndex(F6TableInterface::PoTaiFenShu, 1));

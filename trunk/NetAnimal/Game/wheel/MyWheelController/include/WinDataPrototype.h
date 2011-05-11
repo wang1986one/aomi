@@ -19,9 +19,9 @@ namespace Orz
 	//	size_t calculate(const WheelEnum::AnimalItem & animalItem, const WheelEnum::RATE mode)const;
 	//	const WheelEnum::WIN_MODE getWinMode(void) const; 
 	//	void submit(const WheelEnum::RATE mode) const; 
-	//	void setBouns(int bouns);
+	//	void setBonus(int bonus);
 	//	
-	//	WinDataPrototypePtr gatBounsData(void) const;
+	//	WinDataPrototypePtr gatBonusData(void) const;
 	//	static int getRate(const WheelEnum::AnimalItem & animalItem,  const WheelEnum::RATE mode);
 	//public:
 	//	const WheelEnum::WIN_MODE _winMode;

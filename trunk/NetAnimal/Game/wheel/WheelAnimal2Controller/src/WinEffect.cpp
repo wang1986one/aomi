@@ -8,8 +8,6 @@ using namespace Orz;
 
 inline static void GetNode(Ogre::SceneNode ** node, /*WheelEnum e,*/const std::string & name, boost::shared_ptr<WheelAnimalSceneObj> scene)
 {
-	//if(WHEEL_HAS(e))
-	//{
 	if(OgreGraphicsManager::getSingleton().getSceneManager()->hasSceneNode(name))
 	{
 		(*node) = OgreGraphicsManager::getSingleton().getSceneManager()->getSceneNode(name);
@@ -17,11 +15,6 @@ inline static void GetNode(Ogre::SceneNode ** node, /*WheelEnum e,*/const std::s
 	{
 		(*node) = OgreGraphicsManager::getSingleton().getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	}
-	//}
-	//else
-	//{
-	//	(*node) = scene->getNullSceneNode();
-	//}
 }
 WinEffect::WinEffect(boost::shared_ptr<WheelAnimalSceneObj> scene):_effect(0),_billboardIsload(false)
 {

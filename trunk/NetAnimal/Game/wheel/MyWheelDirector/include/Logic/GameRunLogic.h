@@ -16,8 +16,9 @@ namespace Orz
 		GameRunLogic(my_context ctx);
 		~GameRunLogic(void);
 
-		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;
-		sc::result react(const UpdateEvt & evt);
+		/*typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;
+		sc::result react(const UpdateEvt & evt);*/
+
 	private:
 
 		TimeType _time;

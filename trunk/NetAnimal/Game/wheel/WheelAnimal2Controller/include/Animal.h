@@ -40,7 +40,7 @@ class TheAnimation;
 class _OrzWheelAnimal2ControllerExport Animal
 {
 public:
-	Animal(WheelEnum::AnimalType type, Ogre::SceneNode * sn, Ogre::Entity * entity);
+	Animal(WheelEnum::AnimalType type, Ogre::SceneNode * sn, Ogre::Entity * entity,const std::string & materialName, const std::string & goldMaterialName);
 public:
 
 	
@@ -48,9 +48,12 @@ public:
 	void play(WheelEnum::ACTION_TYPE action);
 	WheelEnum::AnimalType getType(void);
 	void stop(void);
+
 	void insertAnimation(WheelEnum::ACTION_TYPE action, Ogre::AnimationState* anim);
 	Ogre::Entity * getEntity(void) const;
 	Ogre::SceneNode * getSceneNode(void) const;
+
+	void gold(bool enable);
 private:
 	typedef std::map<WheelEnum::ACTION_TYPE, Ogre::AnimationState *> AnimationMap;
 	
@@ -61,6 +64,9 @@ private:
 
 	AnimationMap _actions;
 	WheelEnum::AnimalType _type;
+
+	const std::string _materialName;
+	const std::string _goldMaterialName;
 };
 
 typedef boost::shared_ptr<Animal> AnimalPtr;

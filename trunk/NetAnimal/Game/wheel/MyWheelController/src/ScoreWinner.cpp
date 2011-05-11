@@ -1,6 +1,6 @@
 #include "MyWheelControllerStableHeaders.h"
 #include "ScoreWinner.h"
-//using namespace Orz;
+using namespace Orz;
 //
 //ScoreWinner::ScoreWinner(void)
 //{

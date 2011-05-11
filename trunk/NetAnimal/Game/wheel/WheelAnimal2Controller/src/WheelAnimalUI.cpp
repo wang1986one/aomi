@@ -93,8 +93,6 @@ WheelAnimalUI::WheelAnimalUI(void)
 	_TVUI.reset(new TVUI());
 	_winBg.reset(new WinBg());
 	_light.reset(new Light());
-	/*_dan.reset(new Dan(this));
-	_dan2.reset(new Dan2(this));*/
 
 }
 WheelAnimalUI::~WheelAnimalUI(void)
@@ -149,11 +147,11 @@ void WheelAnimalUI::x2(void)
 
 void WheelAnimalUI::update(TimeType interval)
 {
-	//_time->update(interval);
-	//_bonus->update(interval);
-	//_banker->update(interval);
-	//_logo->update(interval);
-	//_winBg->update(interval);
+	_time->update(interval);
+	_bonus->update(interval);
+	_banker->update(interval);
+	_logo->update(interval);
+	_winBg->update(interval);
 }
 
 

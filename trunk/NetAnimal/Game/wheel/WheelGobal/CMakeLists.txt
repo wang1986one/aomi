@@ -1,11 +1,12 @@
 
 ORZ_PRE_BUILD_EVENT(WheelGobal)
 
-ADD_DEFINITIONS( -D_CONSOLE -D${LIB_NAME_TOUPPER}_EXPORTS  -DTIXML_USE_STL)
+ADD_DEFINITIONS( -D_CONSOLE -D${LIB_NAME_TOUPPER}_EXPORTS  )
 
 
 INCLUDE_DIRECTORIES(
 include
+include/ThirdParty/Ofusion/
 )
 
 use_precompiled_header(WheelGobal
@@ -32,8 +33,8 @@ Framework_Base
 debug OgreMain_d 
 optimized OgreMain 
 
-debug tinyxmld_STL 
-optimized tinyxml_STL
+#debug tinyxmld_STL 
+#optimized tinyxml_STL
 )
 
 INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/  DESTINATION ./include/WheelGobal PATTERN "CVS" EXCLUDE  PATTERN ".svn" EXCLUDE)

@@ -73,7 +73,24 @@ namespace Orz
 		
 		};
 
-		class ClickButton: public boost::statechart::event<ClickButton>
+
+		class F1: public boost::statechart::event<F1>
+		{
+		
+		};
+
+		class F2: public boost::statechart::event<F2>
+		{
+		
+		};
+
+		
+		class F3: public boost::statechart::event<F3>
+		{
+		
+		};
+
+	/*	class ClickButton: public boost::statechart::event<ClickButton>
 		{
 		public:
 			ClickButton(int id, int button):_id(id),  _button(button)
@@ -91,7 +108,7 @@ namespace Orz
 		private:
 			int _button;
 			int _id;
-		};
+		};*/
 
 		
 		//class FindSC: public boost::statechart::event<FindSC>

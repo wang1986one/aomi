@@ -37,17 +37,17 @@ void WheelEngine::startGame(size_t time)
 }
 
 
-void WheelEngine::clickButton(int id, int button)
-{
-	EventChannel channel = EventChannel::create().addUserChannel<CHANNEL_INTERNAL>();
-
-	Event * evt = NULL;
-	evt = WheelEvents::createEvent(WheelEvents::CLICK_BUTTON);
-	channel.addUserChannel<CHANNEL_PROCESS>();
-	evt->setChannel(channel);
-	evt->setData<intX2>(intX2(id, button));
-	_world->broadcasting(evt);
-}
+//void WheelEngine::clickButton(int id, int button)
+//{
+//	EventChannel channel = EventChannel::create().addUserChannel<CHANNEL_INTERNAL>();
+//
+//	Event * evt = NULL;
+//	evt = WheelEvents::createEvent(WheelEvents::CLICK_BUTTON);
+//	channel.addUserChannel<CHANNEL_PROCESS>();
+//	evt->setChannel(channel);
+//	evt->setData<intX2>(intX2(id, button));
+//	_world->broadcasting(evt);
+//}
 //void WheelEngine::pushRate(void)
 //{
 //

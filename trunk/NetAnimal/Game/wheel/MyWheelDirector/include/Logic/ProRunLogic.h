@@ -19,8 +19,10 @@ public:
 	sc::result react(const UpdateEvt & evt);
 
 	
+	void exit(void);
 private:
 	ProcessPtr _process;
+	WMHardwareInterface* _hardware;
 };
 }
 #endif

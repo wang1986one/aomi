@@ -8,7 +8,7 @@
 #include <boost/random.hpp>
 namespace Orz
 {
-	//
+	
 	//class ScoreSecondWinner;
 	//typedef boost::shared_ptr<ScoreSecondWinner> ScoreSecondWinnerPtr;
 	//class ScoreSecondWinner
@@ -21,8 +21,8 @@ namespace Orz
 	//	}
 	//	//WinDataPrototypePtr getWinData(WinDataPrototypePtr) const;
 	////public:
-	////	ScoreBouns(void);
-	////	~ScoreBouns(void);
+	////	ScoreBonus(void);
+	////	~ScoreBonus(void);
 	////	std::pair<int, bool> calculate()
 	////	std::pair<int, WinDataPrototypePtr> getWinner(const Winner & w, int prize) const;
 	//////	int calculate(WheelEnum::WINNER winner, int n = 1) const;

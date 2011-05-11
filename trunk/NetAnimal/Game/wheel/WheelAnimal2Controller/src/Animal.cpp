@@ -10,9 +10,20 @@ void Animal::insertAnimation(WheelEnum::ACTION_TYPE action, Ogre::AnimationState
 
 }
 
-Animal::Animal(WheelEnum::AnimalType type, Ogre::SceneNode * sn, Ogre::Entity * ent):_type(type),_sn(sn),_ent(ent),_curAnim()				  
+Animal::Animal(WheelEnum::AnimalType type, Ogre::SceneNode * sn, Ogre::Entity * ent, const std::string & materialName, const std::string & goldMaterialName):_type(type),_sn(sn),_ent(ent),_curAnim(),
+_materialName(materialName), _goldMaterialName(goldMaterialName)
 {
 
+}
+void Animal::gold(bool enable)
+{
+	if(enable)
+	{
+		_ent->setMaterialName(_goldMaterialName);
+	}else
+	{
+		_ent->setMaterialName(_materialName);
+	}
 }
 
 Ogre::Entity * Animal::getEntity(void) const 

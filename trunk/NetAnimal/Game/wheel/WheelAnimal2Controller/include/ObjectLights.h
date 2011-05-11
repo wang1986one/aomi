@@ -24,13 +24,13 @@ namespace Orz
 
 	struct TheLight
 	{
-		TheLight(int id, Orz::WheelEnum::LIGHT_COLOR color, int table = -1)
+		TheLight(int id, Orz::WheelEnum::LIGHT_COLOR color/*, int table = -1*/)
 		{
 			static int i = 0;
 			_id = id;
 			_random = rand();
 			_color = color;
-			_table = table;
+			//	_table = table;
 
 		}
 		int id(void) const
@@ -42,10 +42,10 @@ namespace Orz
 		{
 			return _random;
 		}
-		int table(void) const
+		/*int table(void) const
 		{
-			return _table;
-		}
+		return _table;
+		}*/
 
 		int randomID(void) const
 		{
@@ -61,7 +61,7 @@ namespace Orz
 		}
 	private:
 		Orz::WheelEnum::LIGHT_COLOR _color;
-		int _table;
+		//	int _table;
 
 		int _id;
 		int _random;
@@ -95,10 +95,10 @@ namespace Orz
 
 
 	public:
-		bool push(WheelEnum::LIGHT_COLOR color,int table = -1)
+		bool push(WheelEnum::LIGHT_COLOR color/*,int table = -1*/)
 		{
 
-			_set.insert(TheLight(_set.size(),color, table));
+			_set.insert(TheLight(_set.size(),color/*, table*/));
 
 			int i = 0;
 			for(nth_index<TheLightSet,1>::type::iterator it1=get<1>(_set).begin();
@@ -119,10 +119,10 @@ namespace Orz
 		virtual int getRandomLight(WheelEnum::LIGHT_COLOR color)
 		{
 
-			int table =  Orz::WinData::getInstance().getSecondWinnerId();
+			int table =  Orz::WinData::getInstance().getTable();
 			for(TheLightSet::iterator it=_set.begin();it!=_set.end();++it)
 			{
-				if(it->color() == color && it->table() == table)
+				if(it->color() == color /*&& it->table() == table*/)
 					return it->randomID();
 			}
 			return -1;
@@ -138,6 +138,23 @@ namespace Orz
 		{
 			_set.clear();
 			//std::fill(_lights.begin(), _lights.end(), WheelEnum::Red);
+		}
+
+		void closeLight(void)
+		{
+
+			for( int i=0; i<24; i++)
+			{
+				_scene->setLightAn(i, getLight(i));
+			}
+
+		}
+		void closeTable(void)
+		{
+			for( int i=0; i<24; i++)
+			{
+				_scene->setTableAn(i, -1);
+			}
 		}
 		//unsigned int getNumber(WheelEnum::LIGHT_COLOR color);
 
@@ -160,21 +177,21 @@ namespace Orz
 		}
 
 
-		int getTable(int i) const
+		/*	int getTable(int i) const
 		{
 
-			int n=0;
-			for(nth_index<TheLightSet,1>::type::iterator it1=get<1>(_set).begin();
-				it1!=get<1>(_set).end();++it1)
-			{
-				if(n == i)
-					return it1->table();
-				n++;
-			}
-			return -1;
+		int n=0;
+		for(nth_index<TheLightSet,1>::type::iterator it1=get<1>(_set).begin();
+		it1!=get<1>(_set).end();++it1)
+		{
+		if(n == i)
+		return it1->table();
+		n++;
 		}
+		return -1;
+		}*/
 
-		
+
 		void setLight(int i)
 		{
 			_scene->setLight(i, getLight(i));
@@ -187,31 +204,12 @@ namespace Orz
 		{
 			_scene->setLightAn(i, getLight(i));
 		}
-		void setTable(int i)
-		{
-			_scene->setTable(i, getTable(i));
-		}
-		void setTableLiang(int i)
-		{
-			_scene->setTableLiang(i, getTable(i));
-		}
-		void setTableAn(int i)
-		{
-			_scene->setTableAn(i, getTable(i));
-		}
 
-		
 	private:  
 
-		//const static unsigned int _size;
-		//std::map<int, Ogre::Entity *> _lights;
-		//
-		
 		boost::shared_ptr<WheelAnimalSceneObj> _scene;
-		//boost::array<int, 24> _lights;
 
 		TheLightSet _set;
-		//float _i;
 
 	};
 	typedef boost::shared_ptr<ObjectLights> ObjectLightsPtr;
