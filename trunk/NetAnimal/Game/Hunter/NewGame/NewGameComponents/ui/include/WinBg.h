@@ -529,7 +529,7 @@ namespace Orz
 					_number.push_back(CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Bonus/Number/3"));
 					_number.push_back(CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Bonus/Number/2"));
 					_number.push_back(CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Bonus/Number/1"));
-					_number.show(WinData::getInstance().getBonus());
+					_number.show(WinData::getInstance().getBonus().bonus);
 				}else
 				{
 					CEGUI::WindowManager::getSingleton().getWindow("Win/Bg/Bonus")->hide();

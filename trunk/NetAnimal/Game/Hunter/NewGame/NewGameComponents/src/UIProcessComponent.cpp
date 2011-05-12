@@ -142,7 +142,7 @@ bool UIProcessComponent::activate(SanProcess process)
 		_rotate->setVolume(0.8f);
 		break;
 	case PROCESS_WIN:
-		_money->setBonus(WinData::getInstance().getBonus());
+		_money->setBonus(WinData::getInstance().getBonus().bonus);
 		switch(WinData::getInstance().getWinMode())
 		{
 		case Orz::WheelEnum::DOUBLE:
