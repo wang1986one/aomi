@@ -162,7 +162,7 @@ bool SceneProcessComponent::activate(SanProcess process)
 		case Orz::WheelEnum::GOLD:
 			{
 				CNewGameSceneInterface * scene = _sceneComponent->queryInterface<CNewGameSceneInterface>();
-				scene->enableGoldWineffect(true, WinData::getInstance().getBonus());
+				scene->enableGoldWineffect(true, WinData::getInstance().getBonus().bonus);
 				_actionInterface->enable = boost::bind(&SceneProcessComponent::winEnable, this, CNewGameSceneInterface::Farward, 2, 3.f, true);
 				_actionInterface->disable = boost::bind(&___disable);
 				return true;
@@ -260,7 +260,7 @@ bool SceneProcessComponent::activate(SanProcess process)
 		case Orz::WheelEnum::GOLD:
 			{
 				CNewGameSceneInterface * scene = _sceneComponent->queryInterface<CNewGameSceneInterface>();
-				scene->enableGoldWineffect(false, WinData::getInstance().getBonus());
+				scene->enableGoldWineffect(false, WinData::getInstance().getBonus().bonus);
 			}
 			break;
 		case Orz::WheelEnum::DOUBLE:
