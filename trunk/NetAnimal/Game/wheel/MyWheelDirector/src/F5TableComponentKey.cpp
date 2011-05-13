@@ -12,7 +12,7 @@ F5TableComponentKey::~F5TableComponentKey(void)
 
 bool F5TableComponentKey::onKeyPressed(const KeyEvent & evt)
 {
-	switch(evt.getKey())
+	/*switch(evt.getKey())
 	{
 	case Orz::KC_P:
 		F5Table::getInstancePtr()->pushCoin(F5TableInterface::_1,1);
@@ -21,7 +21,7 @@ bool F5TableComponentKey::onKeyPressed(const KeyEvent & evt)
 		F5Table::getInstancePtr()->popCoin(F5TableInterface::_1,1);
 		break;
 
-	}
+	}*/
 	return false;
 }
 bool F5TableComponentKey::onKeyReleased(const KeyEvent & evt)

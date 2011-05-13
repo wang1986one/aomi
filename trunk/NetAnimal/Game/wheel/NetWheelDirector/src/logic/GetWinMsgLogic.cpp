@@ -1,0 +1,15 @@
+
+#include "NetWheelDirectorStableHeaders.h"
+#include "logic/AllLogic.h"
+#include "WheelEvents.h"
+#include "LockInterface.h"
+#include "CodingFormatInterface.h"
+#include "DataServerInterface.h"
+#include "F6TableInterface.h"
+#include "WMHardwareInterface.h"
+#include "CommunicateInterface.h"
+#include "DataCentreInterface.h"
+#include "OperatingPanelInterface.h"
+#include "ScoreInterface.h"
+#include "Logic/SetWinMsg.h"
+using namespace Orz;

@@ -11,7 +11,7 @@ namespace Orz
 	class WheelLogic;
 	class WheelClock;
 	class WheelMediator;
-	class EntityLoader;
+	//class EntityLoader;
 	class AutoEngineDecorator;
 	class MyHardwareEngineDecorator;
 	class DUI;
@@ -41,7 +41,7 @@ namespace Orz
 		
 	private:
 		boost::scoped_ptr<WheelGame> _game;
-		boost::scoped_ptr<EntityLoader> _loader;
+	//	boost::scoped_ptr<EntityLoader> _loader;
 		boost::scoped_ptr<DUI> _ui;
 		FSMLogicHandler<WheelGame, WheelLogic> _logic;
 		ScenePtr _scene;

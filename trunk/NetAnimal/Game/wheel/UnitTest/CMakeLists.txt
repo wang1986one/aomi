@@ -31,6 +31,24 @@ ORZ_SET_PROJECT_FILES(src src/ .cpp)
 ADD_EXECUTABLE(${EXE_NAME} ${${EXE_NAME}_FILE})
 
 
+IF(MyWheelDirector) 
+	TARGET_LINK_LIBRARIES(${EXE_NAME} MyWheelController)
+ENDIF(MyWheelDirector)
+
+
+
+IF(NetWheelDirector) 
+	TARGET_LINK_LIBRARIES(${EXE_NAME} NetWheelController)
+ENDIF(NetWheelDirector)
+
+
+IF(WheelAnimal2) 
+	TARGET_LINK_LIBRARIES(${EXE_NAME} WheelAnimal2Controller)
+ENDIF(WheelAnimal2)
+
+
+
+
 TARGET_LINK_LIBRARIES(${EXE_NAME} 
 View_Fmod 
 View_OGRE3D 
@@ -40,8 +58,6 @@ View_SingleChip
 Toolkit_Base 
 Framework_Base
 WheelGobal
-MyWheelController
-WheelAnimal2Controller
 )
 
 ORZ_POST_BUILD_EVENT()

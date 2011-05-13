@@ -27,7 +27,7 @@ namespace Orz
 		typedef boost::function< void (int i) >  EnableSceneFunction;
 #else
 		void enableScene(const std::string & name, bool second);
-		typedef boost::function< void (const std::string & , bool) >;
+		typedef boost::function< void (const std::string & , bool) > EnableSceneFunction;
 #endif
 
 
