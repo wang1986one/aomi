@@ -8,7 +8,10 @@ using namespace Orz;
 
 
 
-SelectLogic::SelectLogic(my_context ctx):LogicAdv(ctx), _allTime(10.0f),_state(SelectScene),_sceneMsg(0)
+SelectLogic::SelectLogic(my_context ctx):LogicAdv(ctx), _allTime(10.0f),_state(SelectScene)
+#ifdef _GAME1
+,_sceneMsg(0)
+#endif
 {
 
 	ORZ_LOG_NORMAL_MESSAGE("State In: SelectLogic!");
