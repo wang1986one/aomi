@@ -11,8 +11,8 @@ namespace Orz
 
 
 	class TimeLogic;
-	class SetupHardwareLogic;
-	class StartLogic: public FSM::LogicAdv<StartLogic, GameLogic, SetupHardwareLogic>//, public UpdateToEnable<LogiLogo>
+	class SetupRateLogic;
+	class StartLogic: public FSM::LogicAdv<StartLogic, GameLogic, SetupRateLogic>//, public UpdateToEnable<LogiLogo>
 	{
 	public:
 		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;

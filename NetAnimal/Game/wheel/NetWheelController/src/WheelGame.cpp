@@ -136,12 +136,12 @@ public:
 WheelGame::~WheelGame(void)
 {
 
-	CommunicateInterface * communicate = _hardware->queryInterface<CommunicateInterface>();
-	communicate->disconnection();
-	GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
+	//CommunicateInterface * communicate = _hardware->queryInterface<CommunicateInterface>();
+	//communicate->disconnection();
+	/*GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
 	gsm->disconnection();
 	gsm->shutdown();
-	_gsmConnection.disconnect();
+	_gsmConnection.disconnect();*/
 }
 
 
@@ -152,15 +152,15 @@ _clock(clock),
 _enableSceneFunction(enableSceneFunction),
 _select(NULL)
 {
-	_hardware = Orz::ComponentFactories::getInstance().create("WMHardware");
-	_pool = Orz::ComponentFactories::getInstance().create("Pool");
+	//_hardware = Orz::ComponentFactories::getInstance().create("WMHardware");
+	//_pool = Orz::ComponentFactories::getInstance().create("Pool");
 	_table = Orz::ComponentFactories::getInstance().create("Table");
-	_gsmComp = Orz::ComponentFactories::getInstance().create("GSM");
-	_gameGsmComp = Orz::ComponentFactories::getInstance().create("GameGSM");
-	_gameLevel = Orz::ComponentFactories::getInstance().create("GameLevel");
+	//_gsmComp = Orz::ComponentFactories::getInstance().create("GSM");
+	//_gameGsmComp = Orz::ComponentFactories::getInstance().create("GameGSM");
+	//_gameLevel = Orz::ComponentFactories::getInstance().create("GameLevel");
 
 	_clock->setListener(this);
-	_dataServer =  Orz::ComponentFactories::getInstance().create("DataServer");
+	//_dataServer =  Orz::ComponentFactories::getInstance().create("DataServer");
 	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
 
 	_select = (Ogre::OverlayContainer*)om.createOverlayElement( "Panel", "3in1");
@@ -176,87 +176,87 @@ _select(NULL)
 	getOverlay()->add2D(_select);
 
 
-	CommunicateInterface * communicate = _hardware->queryInterface<CommunicateInterface>();
+	//CommunicateInterface * communicate = _hardware->queryInterface<CommunicateInterface>();
 
-	GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
-	_gsmConnection = gsm->subscribeSMS(boost::bind(&WheelGame::getSms, this, _1));
-	gsm->init();
+	//GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
+	//_gsmConnection = gsm->subscribeSMS(boost::bind(&WheelGame::getSms, this, _1));
+//gsm->init();
 
 	int n = SingleChipManager::getSingleton().getSCMAmount();
-	if(n >= 1)
-	{
-		communicate->connection(0);
-	}else
-	{
-		communicate->connection(-1);
-	}
-	if(n >= 2)
+	//if(n >= 1)
+	//{
+	//	communicate->connection(0);
+	//}else
+	//{
+	//	communicate->connection(-1);
+	//}
+	/*if(n >= 2)
 	{
 		gsm->connection(1);
 	}else
 	{
 		gsm->connection(-1);
-	}
+	}*/
 
 
-	GameGSMInterface * game = _gameGsmComp->queryInterface<GameGSMInterface>();
+	//GameGSMInterface * game = _gameGsmComp->queryInterface<GameGSMInterface>();
 
 
-	std::string text;
-	report(text);
-	gsm->send(game->getRobot(), text);
-	boost::shared_ptr<_SMSHandler> report(new _SMSHandler());
-	report->start("是否进行查账:");
-	report->fail("查账失败。");
-	report->addItem(1, GSMSpace::GUEST, "是", "查账结果。", "start" ,boost::bind(&WheelGame::report, this, _1)) ;
-	report->addItem(2, GSMSpace::GUEST, "否", "取消查账。", "start");
-	game->addHandler("chazhang",report);
+	//std::string text;
+	//report(text);
+	////gsm->send(game->getRobot(), text);
+	//boost::shared_ptr<_SMSHandler> report(new _SMSHandler());
+	//report->start("是否进行查账:");
+	//report->fail("查账失败。");
+	//report->addItem(1, GSMSpace::GUEST, "是", "查账结果。", "start" ,boost::bind(&WheelGame::report, this, _1)) ;
+	//report->addItem(2, GSMSpace::GUEST, "否", "取消查账。", "start");
+	//game->addHandler("chazhang",report);
 
 
 
-	boost::shared_ptr<_SMSHandler> extend(new _SMSHandler());
-	extend->start("选择增加额度:");
-	extend->fail("额度增加失败。");
-	extend->addItem(1, GSMSpace::GUEST, "100", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 100, _1)) ;
-	extend->addItem(2, GSMSpace::GUEST, "300", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 300, _1)) ;
-	extend->addItem(3, GSMSpace::GUEST, "500", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 500, _1)) ;
-	extend->addItem(4, GSMSpace::GUEST, "1000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 1000, _1)) ;
-	extend->addItem(5, GSMSpace::GUEST, "3000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 3000, _1)) ;
-	extend->addItem(6, GSMSpace::GUEST, "5000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 5000, _1)) ;
-	extend->addItem(7, GSMSpace::GUEST, "10000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 10000, _1)) ;
-	game->addHandler("baozhang",extend);
+	//boost::shared_ptr<_SMSHandler> extend(new _SMSHandler());
+	//extend->start("选择增加额度:");
+	//extend->fail("额度增加失败。");
+	//extend->addItem(1, GSMSpace::GUEST, "100", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 100, _1)) ;
+	//extend->addItem(2, GSMSpace::GUEST, "300", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 300, _1)) ;
+	//extend->addItem(3, GSMSpace::GUEST, "500", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 500, _1)) ;
+	//extend->addItem(4, GSMSpace::GUEST, "1000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 1000, _1)) ;
+	//extend->addItem(5, GSMSpace::GUEST, "3000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 3000, _1)) ;
+	//extend->addItem(6, GSMSpace::GUEST, "5000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 5000, _1)) ;
+	//extend->addItem(7, GSMSpace::GUEST, "10000", "额度增加。", "start" ,boost::bind(&WheelGame::extend, this, 10000, _1)) ;
+	//game->addHandler("baozhang",extend);
 
-	//
-	boost::shared_ptr<_SMSHandler> qingling(new _SMSHandler());
-	qingling->start("清零:");
-	qingling->fail("清零失败。");
-	qingling->addItem(1, GSMSpace::GUEST, "是", "执行。", "start" ,boost::bind(&WheelGame::clearData, this, _1)) ;
-	qingling->addItem(2, GSMSpace::GUEST, "否", "放弃。", "start");
-	game->addHandler("qingling",qingling);
+	////
+	//boost::shared_ptr<_SMSHandler> qingling(new _SMSHandler());
+	//qingling->start("清零:");
+	//qingling->fail("清零失败。");
+	//qingling->addItem(1, GSMSpace::GUEST, "是", "执行。", "start" ,boost::bind(&WheelGame::clearData, this, _1)) ;
+	//qingling->addItem(2, GSMSpace::GUEST, "否", "放弃。", "start");
+	//game->addHandler("qingling",qingling);
 
 }
+//
+//ComponentPtr WheelGame::getGSM(void) const
+//{
+//	return _gsmComp;
+//}
+//ComponentPtr WheelGame::getGameLevel(void) const
+//{
+//	return _gameLevel;
+//}
 
-ComponentPtr WheelGame::getGSM(void) const
-{
-	return _gsmComp;
-}
-ComponentPtr WheelGame::getGameLevel(void) const
-{
-	return _gameLevel;
-}
 
-
-void WheelGame::getSms(const SMS & sms)
-{
-
-	GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
-	GameGSMInterface * game = _gameGsmComp->queryInterface<GameGSMInterface>();
-	std::string text;
-	
-	game->handle(sms, text);
-	if(!text.empty())
-		gsm->send(sms.tel, text);
-}
+//void WheelGame::getSms(const SMS & sms)
+//{
+//
+//	//GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
+//	////GameGSMInterface * game = _gameGsmComp->queryInterface<GameGSMInterface>();
+//	std::string text;
+//	
+//	//game->handle(sms, text);
+//	//if(!text.empty())
+//	//	gsm->send(sms.tel, text);
+//}
 void WheelGame::addBottomToUI(void)
 {
 	_ui->addBottom();
@@ -296,53 +296,53 @@ bool WheelGame::report(std::string & result)
 	result +=( zhang+";查账完成");
 	return true;
 }
-bool WheelGame::extend(int profits, std::string & result)
-{
-	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+//bool WheelGame::extend(int profits, std::string & result)
+//{
+//	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+//
+//	unsigned int levings = data->getLevingsProfits();
+//	int all  = levings + profits;
+//	data->setLevingsProfits(all);
+//	data->cleanCostBackTimeCode2();
+//	data->save();
+//	result += "报账成功,当前额度为:"+boost::lexical_cast<std::string>(all)+"。";
+//	return true;
+//}
 
-	unsigned int levings = data->getLevingsProfits();
-	int all  = levings + profits;
-	data->setLevingsProfits(all);
-	data->cleanCostBackTimeCode2();
-	data->save();
-	result += "报账成功,当前额度为:"+boost::lexical_cast<std::string>(all)+"。";
-	return true;
-}
-
-bool WheelGame::clearData(std::string & result)
-{
-	F5TableInterface * table = _table->queryInterface<F5TableInterface>();
-	table->clear();
-	table->save();
-	result+= "完成清零。";
-	return true;
-}
-void WheelGame::reportEarnings(void)
-{
-
-
-	//PoolInterface * pool = _pool->queryInterface<PoolInterface>();
-
-	//unsigned int earnings = pool->getEarnings();
-	/*if(earnings != 0)
-	{*/
-
-		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
-		unsigned int levings = data->getLevingsProfits();
-		if(1 >= levings)
-		{
-			data->setLevingsProfits(0);
-		}else
-		{
-			data->setLevingsProfits(levings - 1);
-		}
-
-		data->save();
-		//pool->clearEarnings();
-
-	//}
-
-}
+//bool WheelGame::clearData(std::string & result)
+//{
+//	F5TableInterface * table = _table->queryInterface<F5TableInterface>();
+//	table->clear();
+//	table->save();
+//	result+= "完成清零。";
+//	return true;
+////}
+//void WheelGame::reportEarnings(void)
+//{
+//
+//
+//	//PoolInterface * pool = _pool->queryInterface<PoolInterface>();
+//
+//	//unsigned int earnings = pool->getEarnings();
+//	/*if(earnings != 0)
+//	{*/
+//
+//		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+//		unsigned int levings = data->getLevingsProfits();
+//		if(1 >= levings)
+//		{
+//			data->setLevingsProfits(0);
+//		}else
+//		{
+//			data->setLevingsProfits(levings - 1);
+//		}
+//
+//		data->save();
+//		//pool->clearEarnings();
+//
+//	//}
+//
+//}
 
 
 
@@ -360,8 +360,8 @@ void WheelGame::updateClock(TimeType interval)
 
 void WheelGame::update(TimeType interval)
 {
-	GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
-	gsm->update(interval);
+	//GSMInterface * gsm = _gsmComp->queryInterface<GSMInterface>();
+	//gsm->update(interval);
 	_ui->update(interval);
 }
 int WheelGame::answerTime(void)
@@ -386,10 +386,10 @@ Ogre::Overlay * WheelGame::getOverlay(void)
 }
 
 
-ComponentPtr WheelGame::getDataServer(void)
-{
-	return _dataServer;
-}
+//ComponentPtr WheelGame::getDataServer(void)
+//{
+//	return _dataServer;
+//}
 //
 //LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 //		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
@@ -435,11 +435,11 @@ EventWorld * WheelGame::getWorld(void) const
 	return _world;
 }
 
-
-ComponentPtr WheelGame::getHardware(void) const
-{
-	return _hardware;
-}
+//
+//ComponentPtr WheelGame::getHardware(void) const
+//{
+//	return _hardware;
+//}
 void WheelGame::runWinner(void)
 {
 	_ui->runWinner();

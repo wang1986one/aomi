@@ -15,7 +15,7 @@ namespace Orz
 	{
 	public:
 
-		DUI(ComponentPtr dataServer, GSMInterface * gsm);
+		DUI(/*ComponentPtr dataServer, GSMInterface * gsm*/);
 		virtual ~DUI(void);
 
 

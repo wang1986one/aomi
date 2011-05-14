@@ -27,7 +27,7 @@ bool Dan::textAccepted(const CEGUI::EventArgs&)
 	if(!check())
 		return false;
 	
-	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
+//	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
 	CEGUI::String text = CEGUI::WindowManager::getSingleton().getWindow("Dan/Bg/Text/Putin")->getText();
 
 	if(text.empty())
@@ -38,73 +38,73 @@ bool Dan::textAccepted(const CEGUI::EventArgs&)
 
 	}else
 	{	
-		format->clear();
-		LockInterface * lock = _dataServer->queryInterface<LockInterface>();
-		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+	//	format->clear();
+	/*	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();*/
 
-		std::string code = lock->getLockCode2();
-		format->decode10(code, 60);
-		unsigned int oCheck = format->getCheck8(60);
+		//std::string code = lock->getLockCode2();
+		//format->decode10(code, 60);
+		//unsigned int oCheck = format->getCheck8(60);
 
 
-		if(data->loadCodingData())
-		{
+		//if(data->loadCodingData())
+		//{
 
-			CodingFormatInterface * lockData = _dataServer->queryInterface<CodingFormatInterface>();
-			unsigned int oId = lockData->getLockID();
-			if(format->decode10(std::string(text.c_str()),28))
-			{
-				if(format->getBackCheck() != oCheck ||format->getBackID() != (oId%128))
-				{
-					warning(L"开机码和报账码不匹配，请重新报账");
-				}else
-				{
-					lockData->setLockLeavings(format->getBackLeavingsIndex());
-					data->saveCodingData();
-					unsigned int index = format->getBackLeavingsIndex();
-					unsigned int profits = format->index2Profits(index);
-					unsigned int levings = data->getLevingsProfits();
+		//	CodingFormatInterface * lockData = _dataServer->queryInterface<CodingFormatInterface>();
+		//	unsigned int oId = lockData->getLockID();
+		//	if(format->decode10(std::string(text.c_str()),28))
+		//	{
+		//		if(format->getBackCheck() != oCheck ||format->getBackID() != (oId%128))
+		//		{
+		//			warning(L"开机码和报账码不匹配，请重新报账");
+		//		}else
+		//		{
+		//		/*	lockData->setLockLeavings(format->getBackLeavingsIndex());
+		//			data->saveCodingData();
+		//			unsigned int index = format->getBackLeavingsIndex();
+		//			unsigned int profits = format->index2Profits(index);
+		//			unsigned int levings = data->getLevingsProfits();*/
 
-					data->setLevingsProfits(levings + profits);
-					data->cleanCostBackTimeCode2();
-					data->save();
-					if(check())
-					{
-						warning(L"报账成功");
-					}
-				}
+		//			//data->setLevingsProfits(levings + profits);
+		//			//data->cleanCostBackTimeCode2();
+		//			//data->save();
+		//			if(check())
+		//			{
+		//				warning(L"报账成功");
+		//			}
+		//		}
 
-			}
-			else
-			{
-				warning(L"无效开机码");
-			}
-		}else
-			{
-				warning(L"内部数据错误，请联系开发商！");
-			}
+		//	}
+		//	else
+		//	{
+		//		warning(L"无效开机码");
+		//	}
+		//}else
+		//	{
+		//		warning(L"内部数据错误，请联系开发商！");
+		//	}
 	
 	}
 	CEGUI::WindowManager::getSingleton().getWindow("Dan/Bg/Text/Putin")->setText("");
 	return true;
 }
 
-Dan::Dan(DanListener * listener, ComponentPtr dataServer, GSMInterface * gsm):_time(-1.f),_callback(listener), _gsm(gsm)
+Dan::Dan(DanListener * listener/*, ComponentPtr dataServer, GSMInterface * gsm*/):_time(-1.f),_callback(listener)//, _gsm(gsm)
 {
 
-	_dataServer = dataServer;
+	//_dataServer = dataServer;
 
-	_table = Orz::ComponentFactories::getInstance().create("Table");
-	_coding = Orz::ComponentFactories::getInstance().create("Format");
+	//_table = Orz::ComponentFactories::getInstance().create("Table");
+	//_coding = Orz::ComponentFactories::getInstance().create("Format");
 	/*_lockCoding = Orz::ComponentFactories::getInstance().create("Format");
 	_lock = Orz::ComponentFactories::getInstance().create("Senselock");*/
 
-	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+	//LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 
-	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
-	
-	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
-	format->_key = lock->key;
+	//CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
+	//
+	//DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+	//format->_key = lock->key;
 
 
 	_win= CEGUI::WindowManager::getSingleton().loadWindowLayout("dan.layout");
@@ -137,9 +137,9 @@ Dan::Dan(DanListener * listener, ComponentPtr dataServer, GSMInterface * gsm):_t
 bool Dan::check(void)
 {
 	
-	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+	//LockInterface * lock = _dataServer->queryInterface<LockInterface>();
 	
-	CodingFormatInterface * lockFormat =  _dataServer->queryInterface<CodingFormatInterface>();
+	/*CodingFormatInterface * lockFormat =  _dataServer->queryInterface<CodingFormatInterface>();
 	CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
 	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
 
@@ -148,69 +148,69 @@ bool Dan::check(void)
 		
 		warning(L"请检查短信猫是否配置正确！",2.0);
 		return false;
-	}
+	}*/
 
-	bool right = true;
-	if(!lock->check())
-	{
-		warning(L"请检查加密狗是否配置正确！",2.0);
-		right = false;
-	}
+	//bool right = true;
+	//if(!lock->check())
+	//{
+	//	warning(L"请检查加密狗是否配置正确！",2.0);
+	//	right = false;
+	//}
 
-	if(right)
-	{
-		
-		lock->update();
-		std::string code = lock->getLockCode();
+	//if(right)
+	//{
+	//	
+	//	lock->update();
+	//	std::string code = lock->getLockCode();
 
-		if(!lockFormat->decode10(code, 60))
-		{
-			srand(time(NULL));
-			lockFormat->clear();
-			lockFormat->setLockTimes(0);
-			lockFormat->setLockID(rand()%128);
-			lockFormat->setLockLeavings(0);
-			lockFormat->setLockPass(0);
-			right = false;
-		}
+	//	if(!lockFormat->decode10(code, 60))
+	//	{
+	//		srand(time(NULL));
+	//		lockFormat->clear();
+	//		lockFormat->setLockTimes(0);
+	//		lockFormat->setLockID(rand()%128);
+	//		lockFormat->setLockLeavings(0);
+	//		lockFormat->setLockPass(0);
+	//		right = false;
+	//	}
 
-		if(!data->hasLevings())
-		{
-			warning(L"游戏额度已经用光，请重新打码！", 5.0f );
-			right = false;
-		}
+	//	if(!data->hasLevings())
+	//	{
+	//		warning(L"游戏额度已经用光，请重新打码！", 5.0f );
+	//		right = false;
+	//	}
 
-		
-	}
-		
+	//	
+	//}
+	//	
 
-	std::wstringstream wss;
+	//std::wstringstream wss;
 
-	if(!right)
-	{
-		setText("Dan/Bg/Text/BzmText", L"?????,?????,?????,?????");
-		wss<<L"无法读取游戏额度";
-	}else
-	{
-		std::string code = lock->getLockCode2();
-		if(lockFormat->decode10(code, 60))
-		{
-		
-			std::wstring wstr;
-			for(int i=0;i<20; i++)
-			{
-				if(i%5 == 0 && i != 0)
-					wstr.push_back(',');
-				wstr.push_back(code.at(i));
-			}
-			setText("Dan/Bg/Text/BzmText", wstr);
-		}
-		wss<<L"距离下次报账还有"<<data->getLevingsProfits()<<L" 个游戏额度";
-		warning(L"运行正常！", 1.0f);
-	}
-	
-	setText("Dan/Bg/Text/ed", wss.str());
-	return right;
+	//if(!right)
+	//{
+	//	setText("Dan/Bg/Text/BzmText", L"?????,?????,?????,?????");
+	//	wss<<L"无法读取游戏额度";
+	//}else
+	//{
+	//	std::string code = lock->getLockCode2();
+	//	if(lockFormat->decode10(code, 60))
+	//	{
+	//	
+	//		std::wstring wstr;
+	//		for(int i=0;i<20; i++)
+	//		{
+	//			if(i%5 == 0 && i != 0)
+	//				wstr.push_back(',');
+	//			wstr.push_back(code.at(i));
+	//		}
+	//		setText("Dan/Bg/Text/BzmText", wstr);
+	//	}
+	//	wss<<L"距离下次报账还有"<<data->getLevingsProfits()<<L" 个游戏额度";
+	//	warning(L"运行正常！", 1.0f);
+	//}
+	//
+	//setText("Dan/Bg/Text/ed", wss.str());
+	return true;
 }
 
 
@@ -259,7 +259,7 @@ void Dan::hide(void)
 	Orz::IInputManager::getSingleton().removeKeyListener(this);
 	CEGUI::WindowManager::getSingleton().getWindow("Dan/Bg/Text/Putin")->removeAllEvents();
 	_win->hide();
-	_connection.disconnect();
+	//_connection.disconnect();
 	CEGUI::Window * win = CEGUI::System::getSingleton().getGUISheet();
 	if(win)
 	{
@@ -322,59 +322,59 @@ bool Dan::onKeyPressed(const KeyEvent & evt)
 
 
 
-	if(evt.getKey() == Orz::KC_B)
-	{
-		LockInterface * lock = _dataServer->queryInterface<LockInterface>();
-		DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
-		
-		if(check())
-		{
+	//if(evt.getKey() == Orz::KC_B)
+	//{
+	//	LockInterface * lock = _dataServer->queryInterface<LockInterface>();
+	//	DataServerInterface * data = _dataServer->queryInterface<DataServerInterface>();
+	//	
+	//	if(check())
+	//	{
 
 
-			CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
+	//		CodingFormatInterface * format = _coding->queryInterface<CodingFormatInterface>();
 
-		
+	//	
 
-			format->clear();
-			format->setCost(data->getCost());
-			format->setEarn(data->getEarn());
-			format->setPass(data->getSeconds()/ 3600);
+	//		format->clear();
+	//		format->setCost(data->getCost());
+	//		format->setEarn(data->getEarn());
+	//		format->setPass(data->getSeconds()/ 3600);
 
-			{
-				if(!data->loadCodingData())
-				{
-					data->reset();
-				}
+	//		{
+	//			if(!data->loadCodingData())
+	//			{
+	//				data->reset();
+	//			}
 
-				CodingFormatInterface * lockData = _dataServer->queryInterface<CodingFormatInterface>();
-				unsigned int times = lockData->getLockTimes();
-				format->setTimes(times);
-				lockData->setLockTimes(times +1);
-				format->setID(lockData->getLockID());
-				data->saveCodingData();
+	//			CodingFormatInterface * lockData = _dataServer->queryInterface<CodingFormatInterface>();
+	//			unsigned int times = lockData->getLockTimes();
+	//			format->setTimes(times);
+	//			lockData->setLockTimes(times +1);
+	//			format->setID(lockData->getLockID());
+	//			data->saveCodingData();
 
-			}
-			
-			std::string str = format->encode10(60 ,20);
-			
-			std::wstring wstr;
-			for(int i=0;i<20; i++)
-			{
-				if(i%5 == 0 && i != 0)
-					wstr.push_back(',');
-				wstr.push_back(str.at(i));
-			}
-			lock->setLockCode2(str);
-				
-			data->save();
-			warning(L"报账码生成，成功！");
-			setText("Dan/Bg/Text/BzmText", wstr);
-		}/*else
-		{
-			setText("Dan/Bg/Text/BzmText", L"?????,?????,?????,?????");
-		}*/
+	//		}
+	//		
+	//		std::string str = format->encode10(60 ,20);
+	//		
+	//		std::wstring wstr;
+	//		for(int i=0;i<20; i++)
+	//		{
+	//			if(i%5 == 0 && i != 0)
+	//				wstr.push_back(',');
+	//			wstr.push_back(str.at(i));
+	//		}
+	//		lock->setLockCode2(str);
+	//			
+	//		data->save();
+	//		warning(L"报账码生成，成功！");
+	//		setText("Dan/Bg/Text/BzmText", wstr);
+	//	}/*else
+	//	{
+	//		setText("Dan/Bg/Text/BzmText", L"?????,?????,?????,?????");
+	//	}*/
 
-	}
+	//}
 	return false;
 }
 bool Dan::onKeyReleased(const KeyEvent & evt)

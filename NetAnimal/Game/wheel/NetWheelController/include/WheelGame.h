@@ -53,9 +53,9 @@ namespace Orz
 		void update(TimeType interval);
 
 		void runWinner(void);
-		ComponentPtr getHardware(void) const;
-		ComponentPtr getGameLevel(void) const;
-		ComponentPtr getGSM(void) const;
+		//ComponentPtr getHardware(void) const;
+		//ComponentPtr getGameLevel(void) const;
+		//ComponentPtr getGSM(void) const;
 		EventWorld * getWorld(void) const;
 
 
@@ -63,15 +63,15 @@ namespace Orz
 
 		Ogre::Overlay * getOverlay(void);
 	
-		ComponentPtr getDataServer(void);
-		void reportEarnings(void);
+	//	ComponentPtr getDataServer(void);
+	//	void reportEarnings(void);
 	private:
 
 		bool report(std::string & result);
-		bool extend(int coins, std::string & result);
-		bool clearData(std::string & result);
+		//bool extend(int coins, std::string & result);
+		//bool clearData(std::string & result);
 		
-		void getSms(const SMS & sms);
+		//void getSms(const SMS & sms);
 
 		Ogre::OverlayContainer* _select;
 		WheelEngineInterfacePtr _engine;
@@ -79,11 +79,11 @@ namespace Orz
 		WheelClockPtr _clock;
 
 
-		Orz::ComponentPtr _dataServer;
-		Orz::ComponentPtr _hardware;
-		Orz::ComponentPtr _pool;
-		ComponentPtr _gsmComp;
-		ComponentPtr _gameGsmComp;
+		//Orz::ComponentPtr _dataServer;
+		//Orz::ComponentPtr _hardware;
+		//Orz::ComponentPtr _pool;
+		//ComponentPtr _gsmComp;
+		//ComponentPtr _gameGsmComp;
 		ComponentPtr _gameLevel;
 		ComponentPtr _table;
 

@@ -10,7 +10,7 @@ namespace Orz
 {
 
 
-	//游戏的logo
+	//游戏的设置倍率
 	class SetupRateLogic: public FSM::LogicAdv<SetupRateLogic, StartLogic>//, public UpdateToEnable<LogiLogo>
 	{
 	public:
@@ -26,7 +26,7 @@ namespace Orz
 
 	private:
 		
-		WMHardwareInterface * _hardware;
+		//WMHardwareInterface * _hardware;
 		bool _updateHardware;
 	};
 }

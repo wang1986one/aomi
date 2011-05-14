@@ -20,10 +20,7 @@ void Dan1Logic::exit(void)
 }
 sc::result Dan1Logic::react(const LogicEvent::Dan1 & evt)
 {
-		return transit<HardwareLogic<GameLogic,
-		GameLogic, 
-		GameOver>
-		 >();
+		return transit<GameLogic>();
 }
 
 Dan1Logic::~Dan1Logic(void)

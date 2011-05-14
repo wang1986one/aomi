@@ -10,7 +10,7 @@ using namespace Orz;
 template<> DUI* Singleton<DUI>::_singleton = NULL;
 
  
-DUI::DUI(ComponentPtr dataServer, GSMInterface * gsm)
+DUI::DUI(/*ComponentPtr dataServer, GSMInterface * gsm*/)
 {
 	using namespace CEGUI;
 	CEGUI::SchemeManager::getSingleton().create("TaharezLook.scheme");
@@ -23,7 +23,7 @@ DUI::DUI(ComponentPtr dataServer, GSMInterface * gsm)
 	//CEGUI::System::getSingleton().setGUISheet(CEGUI::WindowManager::getSingleton().loadWindowLayout("AnimalUI.layout"));
 	//CEGUI::System::getSingleton().updateWindowContainingMouse();
 
-	_dan.reset(new Dan(this, dataServer, gsm));
+	_dan.reset(new Dan(this/*, dataServer, gsm*/));
 	_dan2.reset(new Dan2(this));
 
 }
