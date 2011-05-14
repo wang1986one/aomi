@@ -27,7 +27,7 @@ namespace Orz
 		SoundPlayerPtr _startMusic; 
 		//ProcessPtr _process;
 		bool _gotoDan;
-		CommunicateInterface * _communicate;
+		//CommunicateInterface * _communicate;
 		int _second;
 	
 	};

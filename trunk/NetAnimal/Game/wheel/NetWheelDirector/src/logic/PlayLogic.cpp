@@ -25,9 +25,6 @@ sc::result PlayLogic::react(const UpdateEvt & evt)
 	if(_process->update(evt.getInterval()))
 		return forward_event();
 
-		return transit<HardwareLogic<GameRunLogic,
-				EndLogic, 
-				GameOver>
-				 >();
+		return transit<EndLogic>();
 }
 

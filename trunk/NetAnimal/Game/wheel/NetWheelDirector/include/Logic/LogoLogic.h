@@ -29,7 +29,7 @@ namespace Orz
 		ProcessPtr _process;
 		bool _gotoReady;
 		
-		bool _ret;
+		//bool _ret;
 	/*	WMHardwareInterface * _hardware;
 		bool _updateHardware;*/
 	};

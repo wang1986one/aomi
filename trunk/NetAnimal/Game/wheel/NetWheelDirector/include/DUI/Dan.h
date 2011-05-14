@@ -27,7 +27,7 @@ namespace Orz
 	public:
 		bool textAccepted(const CEGUI::EventArgs&) ;
 
-		Dan(DanListener * listener, ComponentPtr dataServer, GSMInterface * gsm);
+		Dan(DanListener * listener/*, ComponentPtr dataServer, GSMInterface * gsm*/);
 		void write(int i, int j, const std::string & text);
 		void show(void);
 		void hide(void);
@@ -49,12 +49,13 @@ namespace Orz
 		TimeType _time;
 		std::vector<LinePtr > _lines;
 		Orz::ComponentPtr _table;
-		Orz::ComponentPtr _coding;
+		boost::signals2::connection _connection;
+	/*	Orz::ComponentPtr _coding;
 		
 		ComponentPtr _dataServer;
-		boost::signals2::connection _connection;
+		
 
-		GSMInterface * _gsm;
+		GSMInterface * _gsm;*/
 	};
 }
 

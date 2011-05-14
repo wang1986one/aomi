@@ -95,6 +95,7 @@ WheelDirector::~WheelDirector(void)
 		ComponentPtr comp = Orz::ComponentFactories::getInstance().create("DataCentre");
 		DataCentreInterface * data =comp->queryInterface<DataCentreInterface>();
 		data->setHasTable(second);
+		ORZ_LOG_NORMAL_MESSAGE(name+"!");
 		_scene = Orz::GameFactories::getInstance().createScene(name);
 		Ogre::ConfigFile cf;
 		cf.load(name + ".cfg");
@@ -181,7 +182,7 @@ void WheelDirector::doEnable(void)
 
 	
 	_logic.init(_game.get());
-	_ui.reset(new DUI(_game->getDataServer(), _game->getGSM()->queryInterface<GSMInterface>()));
+	_ui.reset(new DUI(/*_game->getDataServer(), _game->getGSM()->queryInterface<GSMInterface>()*/));
  	getWorld()->comeIn(_autoEngine);
 
 
@@ -190,11 +191,11 @@ void WheelDirector::doEnable(void)
 
 
 	enableUpdate();
-	ComponentPtr dataServer = _game->getDataServer();
-	DataServerInterface * data =dataServer->queryInterface<DataServerInterface>();
-	data->load();
-	LockInterface * lock = dataServer->queryInterface<LockInterface>();
-	lock->print();
+	//ComponentPtr dataServer = _game->getDataServer();
+	//DataServerInterface * data =dataServer->queryInterface<DataServerInterface>();
+	//data->load();
+	//LockInterface * lock = dataServer->queryInterface<LockInterface>();
+	//lock->print();
 	
 }
 bool WheelDirector::onKeyPressed(const KeyEvent & evt)

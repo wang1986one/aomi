@@ -15,20 +15,12 @@ StartLogic::StartLogic(my_context ctx):LogicAdv(ctx)//,_gotoDan(false),_second(-
 	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_START_ENABLE, WheelEvents::PROCESS_START_DISABLE));
 	ORZ_LOG_NORMAL_MESSAGE("State In: StartLogic!");
 
-	context<GameLogic>().stopQueryId();
-
-
-	
-	ComponentPtr opComp = Orz::ComponentFactories::getInstance().create("OperatingPanel");
-	OperatingPanelInterface * operation = opComp->queryInterface<OperatingPanelInterface>();
-	operation->reset();
 	
 }
 
 void StartLogic::exit(void)
 {
 	
-	context<GameLogic>().startQueryId();
 	
 }
 

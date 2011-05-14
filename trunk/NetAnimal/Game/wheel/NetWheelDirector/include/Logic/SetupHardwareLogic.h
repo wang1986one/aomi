@@ -10,23 +10,23 @@ namespace Orz
 {
 
 
-	//设置硬件属性
-	class SetupHardwareLogic: public FSM::LogicAdv<SetupHardwareLogic, StartLogic>
-	{
-	public:
-		
-		SetupHardwareLogic(my_context ctx);
-		~SetupHardwareLogic(void);
-		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;
-		
-		
-		sc::result react(const UpdateEvt & evt);
-	
-		void exit(void);
+	////设置硬件属性
+	//class SetupHardwareLogic: public FSM::LogicAdv<SetupHardwareLogic, StartLogic>
+	//{
+	//public:
+	//	
+	//	SetupHardwareLogic(my_context ctx);
+	//	~SetupHardwareLogic(void);
+	//	typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > > reactions;
+	//	
+	//	
+	//	sc::result react(const UpdateEvt & evt);
+	//
+	//	void exit(void);
 
-	private:
-		WMHardwareInterface * _hardware;
-		Orz::ComponentPtr _table;
-	};
+	//private:
+	//	WMHardwareInterface * _hardware;
+	//	Orz::ComponentPtr _table;
+	//};
 }
 #endif

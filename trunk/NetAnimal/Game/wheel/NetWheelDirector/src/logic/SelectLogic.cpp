@@ -43,10 +43,7 @@ sc::result SelectLogic::react(const UpdateEvt & evt)
 			getOwner()->enableScene(_sceneMsg.first, _sceneMsg.second);
 
 #endif
-			_state = HardwareTest;
-			WMHardwareInterface * hardware = getOwner()->getHardware()->queryInterface<WMHardwareInterface>();
-			hardware->start(WMHardwareInterface::Step0);
-			return forward_event();
+			return transit< GameLogic>();
 		}
 		if(_allTime<=0)
 		{
@@ -56,19 +53,10 @@ sc::result SelectLogic::react(const UpdateEvt & evt)
 			_sceneMsg.first = "WheelScene2";
 			_sceneMsg.second = true;
 #endif
+			return transit< GameLogic>();
 		}
 
 		return forward_event();
-	}else if(_state == HardwareTest)
-	{
-		WMHardwareInterface * hardware = getOwner()->getHardware()->queryInterface<WMHardwareInterface>();
-		if(!hardware->wait(evt.getInterval()))
-		{
-			return transit< 
-				SetupDataLogic
-			>();
-
-		}
 	}
 
 
@@ -106,6 +94,7 @@ sc::result SelectLogic::react(const LogicEvent::F1 & evt)
 sc::result SelectLogic::react(const LogicEvent::F2 & evt)
 {
 
+	ORZ_LOG_NORMAL_MESSAGE("const LogicEvent::F2 & evt");
 	_sceneMsg.first = "HunterScene";
 	_sceneMsg.second = false;
 	return forward_event();
@@ -119,31 +108,11 @@ sc::result SelectLogic::react(const LogicEvent::F3 & evt)
 
 void SelectLogic::exit(void)
 {
-	/*CommunicateInterface * communicate = getOwner()->getHardware()->queryInterface<CommunicateInterface>();
 
-
-	CommunicateInterface::Data data;
-
-	data.setData(CommunicateInterface::SETUP_ZSF, 0);
-	data.setData(CommunicateInterface::SETUP_ZXF, 0);
-	data.setData(CommunicateInterface::SETUP_ZSB, 0);
-	data.setData(CommunicateInterface::SETUP_ZXB, 0);
-	data.setData(CommunicateInterface::SETUP_ZYF, 0);
-	data.setData(CommunicateInterface::SETUP_ZTF, 0);
-	data.setData(CommunicateInterface::SETUP_WHAT, 0);
-	data.setData(CommunicateInterface::SETUP_TMS, 0);
-
-
-	communicate->setupData(CommunicateInterface::Panel2, data);*/
 	getOwner()->setSelectVisible(false);
 
-	Orz::ComponentPtr scoreComp = Orz::ComponentFactories::getInstance().create("Score");
-	ScoreInterface  * score = scoreComp->queryInterface<ScoreInterface>();
-	score->clear();
-	score->setDefault();
 
-	WMHardwareInterface * hardware = getOwner()->getHardware()->queryInterface<WMHardwareInterface>();
-	hardware->end();
+
 }
 
 

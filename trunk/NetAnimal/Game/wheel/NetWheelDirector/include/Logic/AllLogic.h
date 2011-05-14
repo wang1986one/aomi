@@ -20,7 +20,6 @@
 #include "Dan2Logic.h"
 
 #include "GetWinMsg.h"
-//#include "GetDataLogic.h"
 #include "SetWinMsg.h"
 #include "SetupHardwareLogic.h"
 #include "SetupRateLogic.h"

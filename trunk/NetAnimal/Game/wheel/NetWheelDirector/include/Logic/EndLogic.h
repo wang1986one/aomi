@@ -20,7 +20,7 @@ namespace Orz
 		ProcessPtr _process;
 		TimeType _allTime;
 		
-		CommunicateInterface * _communicate;
+		//CommunicateInterface * _communicate;
 	};
 }
 #endif
