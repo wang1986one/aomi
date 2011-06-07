@@ -2,20 +2,31 @@
 #define __Orz_Js__
 #include "JsInterface.h"
 #include "GameInterface.h"
+#include <boost/property_tree/ptree.hpp>
+#include <WheelGobal/WinData.h>
 namespace Orz
 {
 	class Js
 	{
-
-	public :
+	private:
+		enum Type
+		{
+			None = 1,
+			Color = 2,
+			Animal = 3,
+			Double = 4,
+			Treble = 5,
+			Many = 6
+		};
+	public:
 		Js(void);
 		~Js(void);
 
 		static Js & getInstance(void);
 		static Js * getInstancePtr(void);
 
-		void setButtonEnable(bool enable);
-		boost::signals2::connection subscribeEnableButton(const JsInterface::EnableButtonSignalType::slot_type &subscriber);
+		/*void setButtonEnable(bool enable);
+		boost::signals2::connection subscribeEnableButton(const JsInterface::EnableButtonSignalType::slot_type &subscriber);*/
 
 
 		void setTime(int time);
@@ -23,8 +34,8 @@ namespace Orz
 
 		
 		void askPanelData(void);
-		boost::signals2::connection subscribeAskPanelData(const JsInterface::AskPanelDataSignalType::slot_type &subscriber);
-
+		boost::signals2::connection subscribeAskPanelData(const JsInterface::StartGameSignalType::slot_type &subscriber);
+		boost::signals2::connection subscribeStartGame(const JsInterface::AskPanelDataSignalType::slot_type &subscriber);
 
 		
 
@@ -52,13 +63,16 @@ namespace Orz
 
 
 
+		void setWinData(const std::string & data);
 
+		void startGame(void);
 
 
 		
 	private:
-		JsInterface::EnableButtonSignalType _enableButton;
+		//JsInterface::EnableButtonSignalType _enableButton;
 		JsInterface::SetTimeSignalType _setTime;
+		JsInterface::StartGameSignalType _startGame;
 		JsInterface::AskPanelDataSignalType _askPanelData;
 
 		
@@ -72,6 +86,18 @@ namespace Orz
 		JsInterface::SetStateSignalType _setState;
 
 
+	private:
+
+		//void deal_None(boost::property_tree::ptree & pt);
+		//void deal_Color(boost::property_tree::ptree & pt);
+		//void deal_Animal(boost::property_tree::ptree & pt);
+		//void deal_Double(boost::property_tree::ptree & pt);
+		//void deal_Treble(boost::property_tree::ptree & pt);
+		//void deal_Many(boost::property_tree::ptree & pt);
+		Orz::WheelEnum::AnimalItem getItem(const std::string & c) const;
+		
+		Orz::WheelEnum::Winner getWinner(const std::string & c) const;
+		
 
 
 	};

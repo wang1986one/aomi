@@ -62,6 +62,7 @@ namespace Orz
 OrzWindow::OrzWindow(QWidget *parent, Qt::WFlags flags):QWidget(parent, flags | Qt::MSWindowsOwnDC),_init(false)
 {
 
+	
 	QPalette colourPalette = palette();
 	colourPalette.setColor(QPalette::Active, QPalette::WindowText, Qt::black);
 	colourPalette.setColor(QPalette::Active, QPalette::Window, Qt::black);
@@ -69,7 +70,6 @@ OrzWindow::OrzWindow(QWidget *parent, Qt::WFlags flags):QWidget(parent, flags | 
 
 	_clock.restart();
 	_now =_clock.elapsed();
-
 
 
 }
@@ -145,7 +145,6 @@ bool OrzWindow::init(void)
 		setAttribute(Qt::WA_PaintOnScreen);
 		setAttribute(Qt::WA_NoSystemBackground);
 		using namespace Orz;
-
 		_system.reset(new SystemList<boost::mpl::list<SimpleTimerManager,OgreGraphicsManager, QtInputManager, /*PluginsManager,*/CEGUIManager, FmodSoundManager, SingleChipManager, EventWorldUpdate> >());
 	
 		_system->setParame("w32_mouse",Orz::Variant(true));
@@ -155,8 +154,8 @@ bool OrzWindow::init(void)
 		//增加两个个动态插件
 		builder.addPlugin("SanController");
 		builder.addPlugin("Model_Base");
-		builder.addPlugin("MyWheelDirector");
-		builder.addPlugin("WheelAnimal2Model");
+		builder.addPlugin("NetWheelDirector");
+		//builder.addPlugin("WheelAnimal2Model");
 		builder.addPlugin("SanModel");
 		builder.addPlugin("NewGameComponents");
 		builder.addPlugin("NewGameSceneComponent");
@@ -164,8 +163,8 @@ bool OrzWindow::init(void)
 		builder.addPlugin("GameDiamondComponent");
 		builder.addPlugin("VedioUIComponent");
 
-		builder.addPlugin("CodingComponent");
-		builder.addPlugin("MyJobComponent");
+		//builder.addPlugin("CodingComponent");
+		//builder.addPlugin("MyJobComponent");
 		//设置大厅
 		builder.setTheater("TheaterBase","main");
 		builder.addDirector("WheelDirector","wheel");
@@ -190,7 +189,6 @@ bool OrzWindow::init(void)
 		_clock.restart();
 		_now =_clock.elapsed();
 		return ret;
-		
 		return true;
 
 	}
@@ -205,15 +203,16 @@ void OrzWindow::shutdown(void)
 }
 void OrzWindow::resizeEvent(QResizeEvent* evt)
 {
+	if(_init)
+	{
 
 	if(width() == 0 || height() == 0)
 		return;
-
-	
 	this->setVisible(false);
 	_window->resize(width(), height());
 
 	this->setVisible(true);
+	}
 	
 }
 

@@ -2,7 +2,7 @@
 
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0 FATAL_ERROR)
-
+PROJECT(OrzQt)
 IF( COMMAND CMAKE_POLICY )
    CMAKE_POLICY( SET CMP0003 NEW )
 ENDIF( COMMAND CMAKE_POLICY )
@@ -42,6 +42,8 @@ ${QT_BINARY_DIR}/QtNetwork4.dll
 ${QT_BINARY_DIR}/phonon4.dll
  DESTINATION ./bin/Release)
  
+INCLUDE(OrzHunterGame)
+INCLUDE(WheelGame)
  
 ADD_SUBDIRECTORY(JsComponent)
 ADD_SUBDIRECTORY(QtExecute)
@@ -68,6 +70,17 @@ Plugin=ParticleUniverse_d
 Plugin=Plugin_OgreVideo_d
 
 \")")
+
+
+
+#INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/debug PATTERN "CVS" EXCLUDE PATTERN ".svn"  EXCLUDE)
+
+#INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/release PATTERN "CVS" EXCLUDE PATTERN ".svn"  EXCLUDE)
+
+
+
+INCLUDE(FindOrzProjectEnd)	
+MESSAGE(${CMAKE_INSTALL_PREFIX})
 INSTALL(CODE "FILE(WRITE ${CMAKE_INSTALL_PREFIX}/bin/release/plugins.cfg \"
 # Defines plugins to load
 
@@ -86,15 +99,3 @@ PluginFolder=.
  Plugin=ParticleUniverse
  Plugin=Plugin_OgreVideo
 \")")
-
-
-
-INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/debug PATTERN "CVS" EXCLUDE PATTERN ".svn"  EXCLUDE)
-
-INSTALL(DIRECTORY ${ORZ_PROJECT_DIR}/media DESTINATION ./bin/release PATTERN "CVS" EXCLUDE PATTERN ".svn"  EXCLUDE)
-
-
-
-INCLUDE(OrzHunterGame)
-INCLUDE(WheelGame)
-INCLUDE(FindOrzProjectEnd)	

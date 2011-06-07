@@ -79,15 +79,22 @@ private:
 	//bin.wang 2011.04.17 
 	void setMarkNum(const std::string& name);
 
-	void setWinner(Orz::JsInterface::ButtonId id, int profit);
-	void enableButton(bool enable);
-	void setTime(int time);
+	/*void setWinner(Orz::JsInterface::ButtonId id, int profit);
+	void enableButton(bool enable);*/
+	
 	void askPanelData(void);
 	void setState(Orz::JsInterface::State state);
+	int _init;
+	typedef std::map<Qt::Key, std::string>  KeyMapType;
+	KeyMapType _keyMap;
 public slots:
 	void setupPanel(void);
     void populateJavaScriptWindowObject(void);
 	void answerPanelData(int id, int data);
+	void setWinData(const QString & data);
+	void startGame(void);
+	void setTime(int time);
+
 	
 };
 

@@ -30,6 +30,7 @@ TARGET_LINK_LIBRARIES(${LIB_NAME}
 Framework_Base 
 Toolkit_Base 
 Toolkit_Component_Task
+WheelGobal
 )
 
 
