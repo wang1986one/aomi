@@ -281,7 +281,7 @@ GameDiamondMoreWinderComponent::~GameDiamondMoreWinderComponent(void)
 	
 }
 
-ComponentInterface * GameDiamondMoreWinderComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameDiamondMoreWinderComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(CGameDiamondMoreWinderInterface)))

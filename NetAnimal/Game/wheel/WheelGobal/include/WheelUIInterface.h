@@ -15,12 +15,8 @@ namespace Orz
 		virtual ~WheelUIInterface(void);
 	public:
 		virtual void setTheTime(int second) = 0;
-	/*	virtual void setMenuDataVisible(bool visible) = 0;
-		virtual void setSetupVisible(bool visible) = 0;
-		virtual void menuResult(bool result) = 0;
-		virtual void writeMenuXY(int x, int y, unsigned long n) = 0;*/
 		virtual void setLogoShow(bool show) = 0;
-		virtual void setStartUIVisible(bool visible) = 0;
+		virtual void setStartVisible(bool visible) = 0;
 		virtual void setEndUIVisible(bool visible) = 0;
 		virtual void runWinner(void) = 0;
 		
@@ -39,7 +35,7 @@ namespace Orz
 		virtual void menuResult(bool result);
 		virtual void writeMenuXY(int x, int y, unsigned long n);*/
 		virtual void setLogoShow(bool show);
-		virtual void setStartUIVisible(bool visible);
+		virtual void setStartVisible(bool visible);
 		virtual void setEndUIVisible(bool visible);
 		virtual void runWinner(void);
 		virtual void addBottom(void);

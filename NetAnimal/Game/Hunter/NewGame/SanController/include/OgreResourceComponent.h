@@ -16,7 +16,7 @@ private:
 	bool createResourceGroup(const std::string & groupName);
 	std::string getResourceGroup(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	boost::scoped_ptr<COgreResourceInterface> _resourceInterface;
 
 	std::string _groupName;

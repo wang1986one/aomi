@@ -36,9 +36,3 @@ TableComponentKey::TableComponentKey(void)
 	
 	Orz::IInputManager::getSingleton().addKeyListener(this);
 }
-
-ComponentInterface * TableComponentKey::_queryInterface(const TypeInfo & info)
-{
-	return NULL;
-}
-

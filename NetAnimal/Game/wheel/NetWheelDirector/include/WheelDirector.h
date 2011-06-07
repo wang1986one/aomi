@@ -3,7 +3,9 @@
 
 
 #include "NetWheelDirectorStableHeaders.h"
+#include "RouletteGameInterfaces.h"
 #include <orz/Toolkit_Base/FSMLogic.h>
+#include <Ogre/Ogre.h>
 namespace Orz
 {
 	
@@ -11,11 +13,11 @@ namespace Orz
 	class WheelLogic;
 	class WheelClock;
 	class WheelMediator;
-	//class EntityLoader;
 	class AutoEngineDecorator;
 	class NetHardwareEngineDecorator;
+	class RouletteUIInterfaces;
 	class DUI;
-	//class NetHardwareCode;
+
 	typedef boost::shared_ptr<AutoEngineDecorator> AutoEngineDecoratorPtr;
 	typedef boost::shared_ptr<NetHardwareEngineDecorator> NetHardwareEngineDecoratorPtr;
 	class WheelDirector: public Director, public KeyListener
@@ -37,16 +39,19 @@ namespace Orz
 		virtual bool onKeyPressed(const KeyEvent & evt);
 		///通知键盘释放事件
 		virtual bool onKeyReleased(const KeyEvent & evt);
-
+		
 		
 	private:
-		boost::scoped_ptr<WheelGame> _game;
-	//	boost::scoped_ptr<EntityLoader> _loader;
+
+		void setSelectVisible(bool visible);
+		void initSlectUI(void);
 		boost::scoped_ptr<DUI> _ui;
-		FSMLogicHandler<WheelGame, WheelLogic> _logic;
+		FSMLogicHandler<ComponentPtr, WheelLogic> _logic;
 		ScenePtr _scene;
 		NetHardwareEngineDecoratorPtr _autoEngine;
-		Orz::ComponentPtr _keyTable;
+		Orz::ComponentPtr _gameComp;
+		Ogre::OverlayContainer* _select;
+		RouletteGameInterfaces * _gameInterface;// = _gameComp->queryInterface<RouletteGameInterfaces>();
 	};
 }
 

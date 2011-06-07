@@ -61,7 +61,7 @@ void GameNeedleComponent::setLeafVisible(bool visible)
 	}
 }
 
-ComponentInterface * GameNeedleComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameNeedleComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(CGameNeedleInterface)))

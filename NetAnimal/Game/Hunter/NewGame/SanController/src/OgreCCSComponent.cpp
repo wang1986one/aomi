@@ -215,7 +215,7 @@ OgreCCSComponent::~OgreCCSComponent(void)
 }
 
 
-ComponentInterface * OgreCCSComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * OgreCCSComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(COgreCCSInterface)))
 	{

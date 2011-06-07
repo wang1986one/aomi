@@ -187,7 +187,7 @@ WheelEnum::AnimalType AnimalSceneCallback::getAnimalType(int n)
 }
 
 
-void AnimalSceneCallback::OnCameraCreate(Ogre::Camera* pCamera, TiXmlElement* pCameraDesc)
+void AnimalSceneCallback::OnCameraCreate(Ogre::Camera* pCamera, rapidxml::xml_node<>* pCameraDesc)
 {
 
 	//std::cout<<pCamera->getName()<<std::endl;
@@ -196,7 +196,7 @@ void AnimalSceneCallback::OnCameraCreate(Ogre::Camera* pCamera, TiXmlElement* pC
 		push_back(SCENE_CAMERA, pCamera);
 	}
 }
-void AnimalSceneCallback::OnEntityCreate(Ogre::Entity *pEntity, TiXmlElement* pEntityDesc)
+void AnimalSceneCallback::OnEntityCreate(Ogre::Entity *pEntity, rapidxml::xml_node<>* pEntityDesc)
 {
 
 
@@ -218,7 +218,7 @@ void AnimalSceneCallback::OnEntityCreate(Ogre::Entity *pEntity, TiXmlElement* pE
 		push_back(SceneItemMark(TABLE_0+id), pEntity);
 	}
 }
-void AnimalSceneCallback::OnHelperCreated(Ogre::SceneNode* pHelper, TiXmlElement* pHelperDesc)
+void AnimalSceneCallback::OnHelperCreated(Ogre::SceneNode* pHelper, rapidxml::xml_node<>* pHelperDesc)
 {
 	boost::cmatch what;
 

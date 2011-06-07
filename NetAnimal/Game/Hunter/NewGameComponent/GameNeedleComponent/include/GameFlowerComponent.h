@@ -16,7 +16,7 @@ public:
 	GameFlowerComponent(void);
 	virtual ~GameFlowerComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	boost::scoped_ptr<CGameFlowerInterface> _flowerInterface;
 	bool load(Ogre::SceneNode * node);

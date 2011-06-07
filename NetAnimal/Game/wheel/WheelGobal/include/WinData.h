@@ -93,7 +93,8 @@ namespace Orz
 			int invest,
 			int profitForPerInvest);
 		void setWinner(WheelEnum::WINNER winner);
-		
+		bool waitFor(void) const;
+		void waitFor(bool wait);
 	private:
 		
 		WinData(void);
@@ -112,7 +113,7 @@ namespace Orz
 		std::vector<WinItem> _items;
 		int _table;
 		bool _hasTable;
-		
+		bool _waitFor;
 		//SecondWinnerList _secondWinnerList;
 		/*bool _secondWinner;
 		int _secondWinnerId;*/

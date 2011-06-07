@@ -19,7 +19,7 @@ namespace Orz
 		virtual ~AnimalProcessComponent(void);
 	private:
 
-		ComponentInterface * _queryInterface(const TypeInfo & info);
+		ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 		bool activate(SanProcess process);
 		boost::scoped_ptr<CGameActionInterface> _actionInterface;

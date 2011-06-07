@@ -22,7 +22,7 @@ public :
 	GameBallComponent(void);
 	virtual ~GameBallComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	boost::scoped_ptr<CGameBallInterface> _BallInterface;
 	bool load(Ogre::SceneNode * node);

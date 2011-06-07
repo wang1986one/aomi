@@ -15,7 +15,7 @@ OgrePlayerComponent::~OgrePlayerComponent(void)
 	
 }
 
-ComponentInterface * OgrePlayerComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * OgrePlayerComponent::_queryInterface(const TypeInfo & info) const
 {
 	/*ComponentInterface * comp = _resourceComp->_queryInterface(info);
 	if(comp)

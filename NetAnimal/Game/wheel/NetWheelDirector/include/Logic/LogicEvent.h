@@ -3,7 +3,7 @@
 
 
 #include "NetWheelDirectorStableHeaders.h"
-//#include "WheelMediator.h"
+#include "RouletteGameInterfaces.h"
 #include "WheelClock.h"
 namespace Orz
 {
@@ -15,10 +15,10 @@ namespace Orz
 		{
 		public:
 
-			void execute(WheelGame * game) const
-			{
-			//	game->received();
-			}
+			//void execute(WheelGame * game) const
+			//{
+			////	game->received();
+			//}
 
 		};
 
@@ -32,9 +32,9 @@ namespace Orz
 				if(_time>40)
 					_time = 40;
 			}
-			void execute(WheelGame * game) const
+			void execute(RouletteClockInterface * clock) const
 			{
-				game->setAllSecond(_time);
+			//	game->setAllSecond(_time);
 			}
 		private:
 			int _time;
@@ -46,9 +46,9 @@ namespace Orz
 		class AskTime: public boost::statechart::event<AskTime>
 		{
 		public:
-			void resetClock(WheelGame * game) const
+			void resetClock(RouletteClockInterface * clock) const
 			{
-				game->resetClock();
+				//clock->resetClock();
 			}
 			//void answerTime(WheelGame * game) const
 			//{

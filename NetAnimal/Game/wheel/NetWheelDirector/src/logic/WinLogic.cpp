@@ -10,7 +10,7 @@ WinLogic::WinLogic(my_context ctx):LogicAdv(ctx)
 {
 	ORZ_LOG_NORMAL_MESSAGE("State In: WinLogic!");
 	
-	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_WIN_ENABLE, WheelEvents::PROCESS_WIN_DISABLE));
+	_process.reset( new Process( context<WheelLogic>().game()->getWorld(), WheelEvents::PROCESS_WIN_ENABLE, WheelEvents::PROCESS_WIN_DISABLE));
 }
 
 WinLogic::~WinLogic(void)

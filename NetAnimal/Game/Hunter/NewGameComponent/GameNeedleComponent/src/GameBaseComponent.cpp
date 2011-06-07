@@ -81,7 +81,7 @@ bool GameBaseComponent::init(Ogre::SceneNode * node)
 
 	return true;
 }
-ComponentInterface * GameBaseComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameBaseComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(CGameBaseInterface)))

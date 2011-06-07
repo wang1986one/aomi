@@ -31,7 +31,7 @@ namespace Orz
 		void _reset(void);
 		void reset(void);
 		void stop(void);
-		ComponentInterface * _queryInterface(const TypeInfo & info);
+		ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 		bool run(int num);
 		boost::scoped_ptr<CGameDiamondMoreWinderInterface> _moreWinnerInterface;

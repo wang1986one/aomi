@@ -315,7 +315,7 @@ bool GameDiamondComponent::load(Ogre::SceneNode * node)
 	setDiamondColour(0.4f,0.7f,1.0f);
 	return true;
 }
-ComponentInterface * GameDiamondComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameDiamondComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(CGameDiamondInterface)))

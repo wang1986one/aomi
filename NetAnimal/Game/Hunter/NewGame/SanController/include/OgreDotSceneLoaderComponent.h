@@ -17,7 +17,7 @@ public :
 	
 private:
 	bool loadScene(const std::string & sceneName,const std::string & groupName, Ogre::SceneNode * node);
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	//ComponentPtr _resourceComp;
 	boost::scoped_ptr<COgreSceneLoaderInterface> _sceneLoaderInterface;
 	boost::scoped_ptr<Ogre::DotSceneLoader> _dotSceneLoader;

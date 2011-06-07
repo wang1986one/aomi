@@ -19,7 +19,7 @@ public :
 	virtual ~SceneProcessComponent(void);
 private:
 	
-	ComponentInterface * _queryInterface(const TypeInfo & info);
+	ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	ComponentPtr _sceneComponent;
 	bool activate(SanProcess process);
 	boost::scoped_ptr<CGameActionInterface> _actionInterface;
@@ -39,9 +39,12 @@ private:
 
 private:
 
+	bool prorunEnable(void);
+	void prorunDisable(void);
 	bool playEnable(void);
 	void playDisable(void);
 
+	Orz::SoundPlayerPtr _sound;
 	ParticleUniverse::ParticleSystem * _system;
 
 	

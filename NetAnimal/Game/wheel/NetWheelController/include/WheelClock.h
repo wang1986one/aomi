@@ -10,7 +10,6 @@ namespace Orz
 	{
 	public:
 		WheelClock(void);
-		void reset(void);
 		~WheelClock(void);
 
 		//获取剩余时间
@@ -31,6 +30,7 @@ namespace Orz
 		void setListener(WheelClockListener * listener);
 		
 		void update(TimeType interval);
+		void reset(void);
 	private:
 		void changeClock();
 		int _second;

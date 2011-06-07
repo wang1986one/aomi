@@ -40,7 +40,7 @@ void WheelAnimalUI::addBottom(void)
 {
 	_list->add();
 }
-void WheelAnimalUI::setStartUIVisible(bool visible)
+void WheelAnimalUI::setStartVisible(bool visible)
 {
 	if(visible)
 	{

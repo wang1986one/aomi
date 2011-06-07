@@ -17,7 +17,7 @@ public :
 	virtual ~OgrePlayerComponent(void);
 private:
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	ComponentPtr _meshComp;
 };

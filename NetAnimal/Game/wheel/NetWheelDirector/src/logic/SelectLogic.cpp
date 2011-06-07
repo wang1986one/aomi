@@ -8,59 +8,57 @@ using namespace Orz;
 
 
 
-SelectLogic::SelectLogic(my_context ctx):LogicAdv(ctx), _allTime(10.0f),_state(SelectScene)
+SelectLogic::SelectLogic(my_context ctx):LogicAdv(ctx), _allTime(0.0f)
 #ifdef _GAME1
 ,_sceneMsg(0)
 #endif
 {
 
 	ORZ_LOG_NORMAL_MESSAGE("State In: SelectLogic!");
-	getOwner()->setSelectVisible(true);
+	//context<WheelLogic>().game()->setSelectVisible(true);
 
 
-
-
+	
+	_sceneMsg.first = "HunterScene";
+	_sceneMsg.second = false;
 }
 
 
 
 sc::result SelectLogic::react(const UpdateEvt & evt)
 {
+	
 
+	//_allTime -= evt.getInterval();
 
-	if(_state == SelectScene)
+#ifdef _GAME1
+	if(_sceneMsg != 0)
 	{
-		_allTime -= evt.getInterval();
-
-#ifdef _GAME1
-		if(_sceneMsg != 0)
-		{
-			getOwner()->enableScene(_sceneMsg);
+		context<WheelLogic>().game()->enableScene(_sceneMsg);
 
 #else
-		if(!_sceneMsg.first.empty())
-		{
-			getOwner()->enableScene(_sceneMsg.first, _sceneMsg.second);
+	if(!_sceneMsg.first.empty())
+	{
+		context<WheelLogic>().game()->enableScene(_sceneMsg.first, _sceneMsg.second);
 
 #endif
-			return transit< GameLogic>();
-		}
-		if(_allTime<=0)
-		{
+		return transit< GameLogic>();
+	}
+	if(_allTime<=0)
+	{
 #ifdef _GAME1
-			_sceneMsg = 4;
+		_sceneMsg = 4;
 #else
-			_sceneMsg.first = "WheelScene2";
-			_sceneMsg.second = true;
+		_sceneMsg.first = "HunterScene";
+		_sceneMsg.second = false;
 #endif
-			return transit< GameLogic>();
-		}
-
-		return forward_event();
+		
+		context<WheelLogic>().game()->enableScene(_sceneMsg.first, _sceneMsg.second);
+		return transit< GameLogic>();
 	}
 
-
 	return forward_event();
+
 
 }
 #ifdef _GAME1
@@ -109,7 +107,7 @@ sc::result SelectLogic::react(const LogicEvent::F3 & evt)
 void SelectLogic::exit(void)
 {
 
-	getOwner()->setSelectVisible(false);
+	//context<WheelLogic>().game()->setSelectVisible(false);
 
 
 

@@ -1,40 +1,45 @@
 #ifndef __Orz_WheelGameComponente_h__
 #define __Orz_WheelGameComponent_h__
-#include "WheelGameInterface.h"
-//#include "F6TableInterface.h"
-#include <boost/multi_array.hpp>	
-//#include "CoinPool.h"
+#include "RouletteGameInterfaces.h"
+#include "WheelClock.h"
+#include "WheelGameUIRegister.h"
+
+
 namespace Orz
 {
-	class F5Table
+//class WheelUIInterface: public ComponentInterface
+//{	
+//private:
+//	typedef boost::function<void (bool visible)> SetVisibleFunction;
+//	typedef boost::function<void (void)> VoidFunction;
+//public:
+//	SetVisibleFunction setStartVisible;
+//	SetVisibleFunction setEndVisible;
+//	VoidFunction runWinner;
+//	SetVisibleFunction setLogoShow;
+//
+//	VoidFunction addBottom;
+//};
+//
+//
+//class WheelClockInterface: public ComponentInterface
+//{
+	class WheelGameComponent: public Component
 	{
 	public:
-		typedef F5TableInterface::ID ID;
-		typedef F5TableInterface::ACCOUNTS_ITEM ACCOUNTS_ITEM;
-		typedef F5TableInterface::SignalType SignalType;
+		WheelGameComponent(void);
+		virtual ~WheelGameComponent(void);
+		void enableState(Event::message_type evt, RouletteGameInterfaces::Referenced referenced);
+		void disableState(Event::message_type evt);
 	private:
-	public:
-		
-		void clear(void);
-		bool isClear(void) const;
-		void updateClear(void);
-		void save(void);
-		void load(void);
-	public:
-		
-		void setData(ID id, ACCOUNTS_ITEM item, size_t data);
-		size_t getData(ID id, ACCOUNTS_ITEM item) const;
-		static F5Table & getInstance(void);
-		static F5Table * getInstancePtr(void);
-		
-		
-		boost::signals2::connection refreshSigConnection(const SignalType::slot_type &subscriber);
-		
-	private:
-		F5Table(void);
-		boost::multi_array<size_t, 2> _datas;
-		bool _clear;
-		SignalType _refresh;
+		bool update(TimeType i);
+		boost::scoped_ptr<RouletteGameInterfaces> _gameInterface;
+		boost::scoped_ptr<RouletteClockInterface> _clockInterface;
+		boost::scoped_ptr<RouletteUIInterface> _uiInterface;
+	
+		WheelClock _clock;
+		WheelGameUIRegister _uiRegister;
+	//	boost::scoped_ptr<WheelGame> _game;
 	};
 }
 

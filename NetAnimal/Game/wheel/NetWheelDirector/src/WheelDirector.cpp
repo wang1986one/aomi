@@ -21,8 +21,10 @@
 #include "DataCentreInterface.h"
 #include "WheelData.h"
 #include "GSMInterface.h"
+#include "RouletteGameInterfaces.h"
+#include "WheelGameComponent.h"
 using namespace Orz;
-WheelDirector::WheelDirector(const std::string & name/* , const std::string & xmlFile*/):Director(name)
+WheelDirector::WheelDirector(const std::string & name/* , const std::string & xmlFile*/):Director(name),_gameInterface(NULL)
 {
 	
 	ORZ_LOG_NORMAL_MESSAGE("Create a WheelDirector Object;");
@@ -92,9 +94,9 @@ WheelDirector::~WheelDirector(void)
 
 	void WheelDirector::enableScene(const std::string & name, bool second)
 	{
-		ComponentPtr comp = Orz::ComponentFactories::getInstance().create("DataCentre");
+	/*	ComponentPtr comp = Orz::ComponentFactories::getInstance().create("DataCentre");
 		DataCentreInterface * data =comp->queryInterface<DataCentreInterface>();
-		data->setHasTable(second);
+		data->setHasTable(second);*/
 		ORZ_LOG_NORMAL_MESSAGE(name+"!");
 		_scene = Orz::GameFactories::getInstance().createScene(name);
 		Ogre::ConfigFile cf;
@@ -160,42 +162,103 @@ void WheelDirector::doExecute(Event * evt)
 
 
 
+void WheelDirector::initSlectUI(void)
+{
 
+	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
+
+	_select = (Ogre::OverlayContainer*)om.createOverlayElement( "Panel", "3in1");
+#ifdef _GAME1
+	_select->setMaterialName("Material_3in12");
+#else
+	_select->setMaterialName("Material_3in1");
+#endif
+	_select->setMetricsMode(Ogre::GMM_RELATIVE);
+	_select->setWidth(1);
+	_select->setHeight(1);
+	_select->hide();
+	Ogre::Overlay *  overlay = NULL;
+	{
+	
+		static std::string overlayName("getOverlay");
+		Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
+		overlay = om.getByName(overlayName);
+
+		if(!overlay)
+		{
+			overlay = om.create(overlayName);
+			overlay->setZOrder(0);
+			overlay->show();
+		}
+	}
+	overlay->add2D(_select);
+}
+
+
+void WheelDirector::setSelectVisible(bool visible)
+{
+	if(visible)
+		_select->show();
+	else
+		_select->hide();
+}
 
 void WheelDirector::doEnable(void)
 {
 	
+	initSlectUI();
 	Orz::IInputManager::getSingleton().addKeyListener(this);
 	
+		
+	_gameComp = Orz::ComponentFactories::getInstance().create("WheelGame");
+	if(!_gameComp)
+		_gameComp.reset(new WheelGameComponent());
+	 _gameInterface = _gameComp->queryInterface<RouletteGameInterfaces>();
+	assert(_gameInterface != NULL);
+	if(!_gameInterface->getWorld )
+	{
+		_gameInterface->getWorld = boost::bind(&WheelDirector::getWorld, this);
+	}
+
+	
+	if(!_gameInterface->enableScene )
+	{
+#ifdef _GAME1
+	_gameInterface->enableScene = boost::bind(&WheelDirector::enableScene, this, _1);
+#else
+	_gameInterface->enableScene = boost::bind(&WheelDirector::enableScene, this, _1, _2);
+#endif
+	}
+
+	if(!_gameInterface->setSelectVisible )
+	{
+		_gameInterface->setSelectVisible = boost::bind(&WheelDirector::setSelectVisible,this, _1);
+	}
+
 	EventWorld * world = getWorld();
 	
 	WheelEngineInterfacePtr wheelEngine(new WheelEngine(getWorld()));
 	_autoEngine.reset(new NetHardwareEngineDecorator(wheelEngine));
 
 	WheelClockPtr clock(new WheelClock());
-#ifdef _GAME1
-	WheelGame::EnableSceneFunction fun = boost::bind(&WheelDirector::enableScene, this, _1);
-#else
-	WheelGame::EnableSceneFunction fun = boost::bind(&WheelDirector::enableScene, this, _1, _2);
-#endif
-	_game.reset(new WheelGame(world, _autoEngine, clock, fun));
+//#ifdef _GAME1
+//	WheelGame::EnableSceneFunction fun = boost::bind(&WheelDirector::enableScene, this, _1);
+//#else
+//	WheelGame::EnableSceneFunction fun = boost::bind(&WheelDirector::enableScene, this, _1, _2);
+//#endif
+	//_game.reset(new WheelGame(world, _autoEngine, clock, fun));
 
+	//RouletteGameInterfaces * gameInterface = _gameComp->queryInterface<WheelGameInterface>();
 	
-	_logic.init(_game.get());
+
+
+	_logic.init(&_gameComp);
+//	_rouletteUI =  _gameComp->queryInterface<RouletteUIInterface>();
 	_ui.reset(new DUI(/*_game->getDataServer(), _game->getGSM()->queryInterface<GSMInterface>()*/));
  	getWorld()->comeIn(_autoEngine);
 
 
-	_keyTable = Orz::ComponentFactories::getInstance().create("F5TableKey");
-	
-
-
 	enableUpdate();
-	//ComponentPtr dataServer = _game->getDataServer();
-	//DataServerInterface * data =dataServer->queryInterface<DataServerInterface>();
-	//data->load();
-	//LockInterface * lock = dataServer->queryInterface<LockInterface>();
-	//lock->print();
 	
 }
 bool WheelDirector::onKeyPressed(const KeyEvent & evt)
@@ -238,7 +301,6 @@ bool WheelDirector::onKeyReleased(const KeyEvent & evt)
 
 void WheelDirector::doDisable(void)
 {
-	_keyTable.reset();
 	Orz::IInputManager::getSingleton().removeKeyListener(this);
 	if(_scene)
 	{
@@ -248,14 +310,15 @@ void WheelDirector::doDisable(void)
 	getWorld()->goOut(_autoEngine);
 	_autoEngine.reset();
 	_logic.shutdown();
-	_game.reset();
 	
 	_ui.reset();	
+	
+	_gameComp.reset();
 }
 void WheelDirector::doFrame(unsigned int step)
 {
 	_ui->update(step* WORLD_UPDATE_INTERVAL);
-	_game->update(step* WORLD_UPDATE_INTERVAL);
+	_gameInterface->update(step* WORLD_UPDATE_INTERVAL);
 	_logic.update(step* WORLD_UPDATE_INTERVAL);
 }
 

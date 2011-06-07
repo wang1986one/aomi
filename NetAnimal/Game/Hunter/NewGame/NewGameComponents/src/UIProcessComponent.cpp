@@ -22,28 +22,30 @@ bool UIProcessComponent::_enable(void)
 
 bool UIProcessComponent::enableLogo(void)
 {
-	VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
+	_logo->show();
+	/*VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
 	CEGUI::Window * window = CEGUI::System::getSingleton().getGUISheet(); 
 	Orz::ISoundManager::getSingleton().quickPlay("Fly.wav");
 	vedio->play();
 
 	vedio->getWindow()->setAlwaysOnTop(true);
 	_logo = 0.05f;
-	_migic = 3.0f;
+	_migic = 3.0f;*/
 	return true;
 }
 bool UIProcessComponent::updateLogo(TimeType i)
 {
-	VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
-	return !vedio->isEnd();
+	//VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
+	return false;//!vedio->isEnd();
 }
 void UIProcessComponent::disableLogo(void)
 {
-	VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
+	_logo->hide();
+	//VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
 	
 	CEGUI::Window * window = CEGUI::System::getSingleton().getGUISheet(); 
-	window->removeChildWindow(vedio->getWindow());	
-	vedio->reset();
+	//window->removeChildWindow(vedio->getWindow());	
+	//vedio->reset();
 }
 void UIProcessComponent::_disable(void)
 {
@@ -183,10 +185,15 @@ bool UIProcessComponent::activate(SanProcess process)
 	}
 	return false;
 }
-UIProcessComponent::UIProcessComponent(void):_actionInterface(new CGameActionInterface),_logo(-1.f),_migic(-1),_currTime(0.f)
+UIProcessComponent::UIProcessComponent(void):_actionInterface(new CGameActionInterface)/*,_logo(-1.f),_migic(-1)*/,_currTime(0.f)
 {
 
+	  
 	using namespace CEGUI;
+	CEGUI::ImagesetManager::getSingleton().createFromImageFile("mylogo", "logo.jpg");
+	_logo = WindowManager::getSingleton().createWindow("TaharezLook/StaticImage", "vedio");
+	_logo->setProperty("Image", "set:mylogo image:full_image"); 
+	_logo->setVisible(false);
 	SchemeManager::getSingleton().create("TaharezLook.scheme");
 	CEGUI::SchemeManager::getSingleton().create("VanillaSkin.scheme");
 	ImagesetManager::getSingleton().create("sample.imageset");
@@ -218,9 +225,9 @@ UIProcessComponent::UIProcessComponent(void):_actionInterface(new CGameActionInt
 	_bonus->setVolume(0.8f);
 
 
-	_vedio = Orz::ComponentFactories::getInstance().create("VedioUI");
-	VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
-	vedio->load("startmovie.ogg");
+	//_vedio = Orz::ComponentFactories::getInstance().create("VedioUI");
+	//VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
+	//vedio->load("startmovie.ogg");
 
 	_tvui.reset(new UI::TVUI);
 
@@ -234,12 +241,12 @@ UIProcessComponent::~UIProcessComponent(void)
 
 	_bonus->unload();
 }
-ComponentInterface * UIProcessComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * UIProcessComponent::_queryInterface(const TypeInfo & info) const
 {
 
 
 	if(info == TypeInfo(typeid(UIProcessInterface)))
-		return this;
+		return const_cast<UIProcessComponent *>(this);
 	if(info == TypeInfo(typeid(CGameActionInterface)))
 		return _actionInterface.get();
 	return NULL;
@@ -276,7 +283,7 @@ void UIProcessComponent::setLogoShow(bool show)
 {
 	
 }
-void UIProcessComponent::setStartUIVisible(bool visible)
+void UIProcessComponent::setStartVisible(bool visible)
 {
 
 
@@ -319,31 +326,31 @@ void UIProcessComponent::addBottom(void)
 }
 void UIProcessComponent::update(TimeType interval)
 {
-	if(_logo>0.f)
-	{
-		_logo -= interval;
-		if(_logo<=0)
-		{
-			_winBg->hide();
-			VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
-			CEGUI::Window * window = CEGUI::System::getSingleton().getGUISheet(); 
+	//if(_logo>0.f)
+	//{
+	//	_logo -= interval;
+	//	if(_logo<=0)
+	//	{
+	//		_winBg->hide();
+	//		//VedioUIInterface * vedio =  _vedio->queryInterface<VedioUIInterface>();
+	//		CEGUI::Window * window = CEGUI::System::getSingleton().getGUISheet(); 
 
 
-			window->addChildWindow(vedio->getWindow());
+	//		//window->addChildWindow(vedio->getWindow());
 
-		}
-	}
+	//	}
+	//}
 
-	if(_migic>0.f)
-	{
-		_migic -= interval;
-		if(_migic<=0)
-		{
+	//if(_migic>0.f)
+	//{
+	//	_migic -= interval;
+	//	if(_migic<=0)
+	//	{
 
-			Orz::ISoundManager::getSingleton().quickPlay("magic.wav");
+	//		Orz::ISoundManager::getSingleton().quickPlay("magic.wav");
 
-		}
-	}
+	//	}
+	//}
 	_banker->update(interval);
 	_money->update(interval);
 	_time->update(interval);

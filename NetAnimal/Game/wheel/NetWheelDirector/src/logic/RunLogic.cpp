@@ -111,7 +111,7 @@ RunLogic::RunLogic(my_context ctx):LogicAdv(ctx)
 {
 	ORZ_LOG_NORMAL_MESSAGE("State In: RunLogic!");
 
-	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_RUN_ENABLE, WheelEvents::PROCESS_RUN_DISABLE));
+	_process.reset( new Process( context<WheelLogic>().game()->getWorld(), WheelEvents::PROCESS_RUN_ENABLE, WheelEvents::PROCESS_RUN_DISABLE));
 }
 RunLogic::~RunLogic(void)
 {

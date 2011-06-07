@@ -262,7 +262,7 @@ bool GameBallComponent::load(Ogre::SceneNode * node)
 	_emi->setTransparency(1.f);
 	return true;
 }
-ComponentInterface * GameBallComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameBallComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameBallInterface)))
 		return _BallInterface.get();

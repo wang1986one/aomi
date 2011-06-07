@@ -17,7 +17,7 @@ WheelUIInterface::~WheelUIInterface(void)
 
 void WheelNullUI::setTheTime(int second){}
 void WheelNullUI::setLogoShow(bool show){}
-void WheelNullUI::setStartUIVisible(bool visible){}
+void WheelNullUI::setStartVisible(bool visible){}
 void WheelNullUI::runWinner(void){}
 void WheelNullUI::setEndUIVisible(bool visible){}
 

@@ -65,7 +65,7 @@ void SanProcessComponent::disableProcess(void)
 	_actions.clear();
 	_referenced.reset();
 }
-ComponentInterface * SanProcessComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * SanProcessComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CSanProcessInterface)))
 		return _processInterface.get();

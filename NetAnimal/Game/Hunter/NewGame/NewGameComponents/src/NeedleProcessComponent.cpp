@@ -263,7 +263,7 @@ bool NeedleProcessComponent::activate(SanProcess process)
 }
 
 
-ComponentInterface * NeedleProcessComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * NeedleProcessComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameColourInterface)))
 		return _colourComp->_queryInterface(info);

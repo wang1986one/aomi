@@ -25,7 +25,7 @@
 //
 //
 //
-//ComponentInterface * GameAnimalComponent::_queryInterface(const TypeInfo & info)
+//ComponentInterface * GameAnimalComponent::_queryInterface(const TypeInfo & info) const
 //{
 //
 //	//if(info == TypeInfo(typeid(CGameBaseInterface)))

@@ -33,7 +33,7 @@ public :
 private:
 	bool activate(SanProcess process);
 	bool load(const std::string & gName);
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	Ogre::SceneNode * getSceneNode(void) const;
 
 	//bool enableParticle(const std::string & name, Ogre::SceneNode * node);

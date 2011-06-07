@@ -20,6 +20,12 @@ _count(new ReferenceCount())
 	evt->setData<ReferenceCount*>(_count.get());
 	_world->broadcasting(evt);
 }
+
+
+Process::Referenced Process::reference(void)
+{
+	return _count->reference();
+}
 Process::~Process(void)
 {
 	Event * evt = WheelEvents::createEvent(_disable);

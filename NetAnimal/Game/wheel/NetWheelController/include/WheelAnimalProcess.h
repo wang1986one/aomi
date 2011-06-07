@@ -9,10 +9,12 @@ typedef boost::shared_ptr<ReferenceCount> ReferenceCountPtr;
 class _OrzNetWheelControlleExport Process
 {
 public:
+	typedef boost::shared_ptr<int> Referenced;
 	Process(EventWorld * world, Event::message_type enable,  Event::message_type disable, TimeType minTime = 0.5f, TimeType maxTime = 1000.0f);
 	~Process(void);
 	bool update(TimeType interval);
-
+	
+	Referenced reference(void);
 	//void capture(void);
 	//void release(void);
 private:

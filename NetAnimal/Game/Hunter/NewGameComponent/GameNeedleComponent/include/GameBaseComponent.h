@@ -17,7 +17,7 @@ public :
 	GameBaseComponent(void);
 	virtual ~GameBaseComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	
  bool setColor(int id, CGameBaseInterface::LIGHT_COLOR color);
 	boost::scoped_ptr<CGameBaseInterface> _baseInterface;

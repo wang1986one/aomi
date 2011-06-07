@@ -55,7 +55,7 @@ std::string OgreResourceComponent::getResourceGroup(void)
 {
 	return _groupName;
 }
-ComponentInterface * OgreResourceComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * OgreResourceComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(COgreResourceInterface)))
 		return _resourceInterface.get();

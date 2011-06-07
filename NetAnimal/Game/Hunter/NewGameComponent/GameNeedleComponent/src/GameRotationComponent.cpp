@@ -188,7 +188,7 @@ GameRotationComponent::~GameRotationComponent(void)
 }
 
 
-ComponentInterface * GameRotationComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameRotationComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameRotationInterface)))
 		return _gameRotationInterface.get();

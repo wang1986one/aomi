@@ -19,7 +19,7 @@ namespace Orz
 		VedioUIComponent(void);
 		virtual ~VedioUIComponent(void);
 	private:
-		virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+		virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 		boost::scoped_ptr<VedioUIInterface> _vedioInterface;
 
 		bool load(const std::string & filename);

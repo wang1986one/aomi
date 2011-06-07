@@ -21,7 +21,7 @@ public :
 	ZhugeLiangComponent(void);
 	virtual ~ZhugeLiangComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	ComponentPtr _playerComp;
 	bool activate(SanProcess process); 

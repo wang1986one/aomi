@@ -75,7 +75,7 @@ ProRunLogic::ProRunLogic(my_context ctx):LogicAdv(ctx),_hardware(NULL)
 {
 	ORZ_LOG_NORMAL_MESSAGE("State In: ProRunLogic!");
 
-	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_PRORUN_ENABLE, WheelEvents::PROCESS_PRORUN_DISABLE, 7.5f, 7.5f));
+	_process.reset( new Process( context<WheelLogic>().game()->getWorld(), WheelEvents::PROCESS_PRORUN_ENABLE, WheelEvents::PROCESS_PRORUN_DISABLE, 7.5f, 7.5f));
 	
 	if(WinData::getInstance().getWinMode() != WheelEnum::NONE)
 	{

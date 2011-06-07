@@ -105,7 +105,8 @@ _bonus(),
 _rate(WheelEnum::MODE0),
 _winMode(WheelEnum::NONE),
 _hasTable(false),
-_table(-1)
+_table(-1),
+_waitFor(false)
 {
 	
 }
@@ -264,4 +265,15 @@ void WinData::setTable(int table)
 int WinData::getTable(void) const
 {
 	return _table;
+}
+
+
+
+bool WinData::waitFor(void) const
+{
+	return _waitFor;
+}
+void WinData::waitFor(bool wait)
+{
+	_waitFor = wait;
 }

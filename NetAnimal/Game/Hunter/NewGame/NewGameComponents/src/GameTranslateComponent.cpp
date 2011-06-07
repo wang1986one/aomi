@@ -86,7 +86,7 @@ void GameTranslateComponent::resetRate(WheelEnum::RATE rate)
 
 	n++;
 }
-ComponentInterface * GameTranslateComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameTranslateComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameTranslateInterface)))
 		return _translateInterface.get();

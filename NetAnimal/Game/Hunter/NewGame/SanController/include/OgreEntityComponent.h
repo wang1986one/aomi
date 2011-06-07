@@ -31,7 +31,7 @@ private:
 private:
 
 	
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	boost::scoped_ptr<COgreEntityInterface> _entityInterface;
 	boost::scoped_ptr<COgreAnimationInterface> _animationInterface;
 

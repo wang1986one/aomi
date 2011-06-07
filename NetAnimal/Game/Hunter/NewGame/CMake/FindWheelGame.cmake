@@ -1,1 +1,0 @@
-ORZ_FIND(Wheel_Game WheelGame bin/debug/WheelController.dll)

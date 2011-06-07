@@ -12,7 +12,7 @@ WheelPlaceComponent::~WheelPlaceComponent(void)
 {
 	
 }
-ComponentInterface * WheelPlaceComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * WheelPlaceComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CWheelPlaceInterface)))
 	{

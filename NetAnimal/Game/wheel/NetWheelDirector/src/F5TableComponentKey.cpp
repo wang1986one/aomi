@@ -36,8 +36,3 @@ F5TableComponentKey::F5TableComponentKey(void)
 	Orz::IInputManager::getSingleton().addKeyListener(this);
 }
 
-ComponentInterface * F5TableComponentKey::_queryInterface(const TypeInfo & info)
-{
-	return NULL;
-}
-

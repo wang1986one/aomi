@@ -52,18 +52,27 @@ int main()
 	//增加两个个动态插件
 	builder.addPlugin("SanController");
 	builder.addPlugin("Model_Base");
+#ifdef _MyWheelDirector
 	builder.addPlugin("MyWheelDirector");
+#endif
+	
+#ifdef _NetWheelDirector
+	builder.addPlugin("NetWheelDirector");
+#endif
+	
+#ifdef _WheelAnimal2
 	builder.addPlugin("WheelAnimal2Model");
+#endif
 	builder.addPlugin("SanModel");
 	builder.addPlugin("NewGameComponents");
 	builder.addPlugin("NewGameSceneComponent");
 	builder.addPlugin("GameNeedleComponent");
 	builder.addPlugin("GameDiamondComponent");
-	builder.addPlugin("VedioUIComponent");
+	//builder.addPlugin("VedioUIComponent");
 
 	builder.addPlugin("CodingComponent");
 	builder.addPlugin("MyJobComponent");
-	builder.addPlugin("JsComponent");
+	//builder.addPlugin("JsComponent");
 	
 	//设置大厅
 	builder.setTheater("TheaterBase","main");
@@ -90,27 +99,6 @@ int main()
 
 			
 
-		/*	using namespace Ogre;
-			DataStreamPtr pStream;
-
-			pStream = ResourceGroupManager::getSingleton().openResource( "sc.xml", "xml" );
-
-
-			
-			using namespace rapidxml;
-
-
-			String data = pStream->getAsString();
-
-			xml_document<> doc;
-			doc.parse<0>(&data[0]);
-			rapidxml::xml_node<> *node = doc.first_node("single-chips");*/
-		/*	Orz::SingleChipManager::getSingleton().loadXML(node);
-			{
-				const Ogre::ResourceGroupManager::LocationList  & list = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList("sound");
-		
-				Orz::ISoundManager::getSingleton().setResourcesPath((*list.begin())->archive->getName());
-			}*/
 			if(logic->load(EventWorld::Parameter()))
 			{
 				system->run();

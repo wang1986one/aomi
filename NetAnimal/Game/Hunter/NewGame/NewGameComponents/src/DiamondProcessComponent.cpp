@@ -44,7 +44,7 @@ void DiamondProcessComponent::step(int i)
 DiamondProcessComponent::~DiamondProcessComponent(void)
 {
 }
-ComponentInterface * DiamondProcessComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * DiamondProcessComponent::_queryInterface(const TypeInfo & info) const
 {
 #ifdef _BALL_
 

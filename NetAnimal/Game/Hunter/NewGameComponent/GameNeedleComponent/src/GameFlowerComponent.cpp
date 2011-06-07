@@ -153,7 +153,7 @@ bool GameFlowerComponent::load(Ogre::SceneNode * node)
 	flowerlight->setVisible(false);
 	return true;
 }
-ComponentInterface * GameFlowerComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameFlowerComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameFlowerInterface)))
 		return _flowerInterface.get();

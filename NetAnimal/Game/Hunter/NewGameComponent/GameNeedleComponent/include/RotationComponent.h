@@ -18,7 +18,7 @@ public :
 	virtual ~RotationComponent(void);
 private:
 	
-	ComponentInterface * _queryInterface(const TypeInfo & info);
+	ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	
 	boost::scoped_ptr<CRotationInterface> _rotationInterface;
 
