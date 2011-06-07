@@ -78,8 +78,8 @@ BOOST_AUTO_TEST_CASE(JsComponentUT)
 
 	JsInterface * js = jsComp->queryInterface<JsInterface>();
 	assert(js);
-	js->subscribeEnableButton(boost::bind(&MyJs::enableButton, &myJs, _1));
-	js->subscribeSetTime(boost::bind(&MyJs::setTime, &myJs, _1));
+	//js->subscribeEnableButton(boost::bind(&MyJs::enableButton, &myJs, _1));
+	//js->subscribeSetTime(boost::bind(&MyJs::setTime, &myJs, _1));
 	js->subscribeAskPanelData(boost::bind(&MyJs::askPanelData, &myJs));
 	
 

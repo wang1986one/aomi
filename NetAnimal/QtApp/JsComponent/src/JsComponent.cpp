@@ -9,17 +9,17 @@ JsComponent::JsComponent(void):_jsInterface(new JsInterface()), _gameInterface(n
 	_query.add(_jsInterface.get());
 	_query.add(_gameInterface.get());
 
-	_jsInterface->subscribeEnableButton = boost::bind(&Js::subscribeEnableButton, Js::getInstancePtr(), _1);
-	_gameInterface->setButtonEnable = boost::bind(&Js::setButtonEnable, Js::getInstancePtr(), _1);
+	//_jsInterface->subscribeEnableButton = boost::bind(&Js::subscribeEnableButton, Js::getInstancePtr(), _1);
+	//_gameInterface->setButtonEnable = boost::bind(&Js::setButtonEnable, Js::getInstancePtr(), _1);
 
-
+	_jsInterface->setTime = boost::bind(&Js::setTime, Js::getInstancePtr(), _1);
 	
 
-	_jsInterface->subscribeSetTime = boost::bind(&Js::subscribeSetTime, Js::getInstancePtr(), _1);
-	_gameInterface->setTime = boost::bind(&Js::setTime, Js::getInstancePtr(), _1);
+	//_jsInterface->subscribeSetTime = boost::bind(&Js::subscribeSetTime, Js::getInstancePtr(), _1);
+	//_gameInterface->setTime = boost::bind(&Js::setTime, Js::getInstancePtr(), _1);
 
 	
-
+	_jsInterface->subscribeStartGame = boost::bind(&Js::subscribeStartGame, Js::getInstancePtr(), _1);
 	_jsInterface->subscribeAskPanelData = boost::bind(&Js::subscribeAskPanelData, Js::getInstancePtr(), _1);
 	_gameInterface->askPanelData = boost::bind(&Js::askPanelData, Js::getInstancePtr());
 
@@ -27,6 +27,7 @@ JsComponent::JsComponent(void):_jsInterface(new JsInterface()), _gameInterface(n
 	
 	_gameInterface->subscribePostPanelData = boost::bind(&Js::subscribePostPanelData, Js::getInstancePtr(), _1);
 	_jsInterface->postPanelData = boost::bind(&Js::postPanelData, Js::getInstancePtr(), _1, _2);
+	_jsInterface->startGame = boost::bind(&Js::startGame, Js::getInstancePtr());
 
 	
 	_jsInterface->subscribeAddProfit = boost::bind(&Js::subscribeAddProfit, Js::getInstancePtr(), _1);
@@ -47,6 +48,7 @@ JsComponent::JsComponent(void):_jsInterface(new JsInterface()), _gameInterface(n
 	
 	_jsInterface->subscribeSetState = boost::bind(&Js::subscribeSetState, Js::getInstancePtr(), _1);
 	_gameInterface->setState = boost::bind(&Js::setState, Js::getInstancePtr(), _1);
+	_jsInterface->setWinData = boost::bind(&Js::setWinData, Js::getInstancePtr(), _1);
 
 
 	
@@ -60,7 +62,7 @@ JsComponent::~JsComponent(void)
 {
 	
 }
-ComponentInterface * JsComponent::_queryInterface(const TypeInfo & info)
-{
-	return _query.queryInterface(info);
-}
+//ComponentInterface * JsComponent::_queryInterface(const TypeInfo & info)
+//{
+//	return _query.queryInterface(info);
+//}
