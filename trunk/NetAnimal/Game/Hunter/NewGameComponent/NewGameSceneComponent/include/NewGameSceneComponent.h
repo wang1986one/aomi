@@ -29,7 +29,7 @@ public :
 	NewGameSceneComponent(void);
 	virtual ~NewGameSceneComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	boost::scoped_ptr<CNewGameSceneInterface> _interface;
 	Ogre::SceneNode * _node;//整个场景的结点
 	Ogre::SceneNode * _RotationNode;//用于旋转用结点

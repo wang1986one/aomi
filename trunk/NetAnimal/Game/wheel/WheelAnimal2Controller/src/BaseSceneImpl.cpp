@@ -31,6 +31,7 @@ boost::shared_ptr<BaseSceneImpl> BaseSceneImpl::create(boost::shared_ptr<OSMScen
 		base_scene = callback;
 		
 		osm->initialise(filename.c_str(), osm_cb.get());
+	//	osm->createScene(Orz::OgreGraphicsManager::getSingleton().getSceneManager()->getRootSceneNode());
 	}
 
 	

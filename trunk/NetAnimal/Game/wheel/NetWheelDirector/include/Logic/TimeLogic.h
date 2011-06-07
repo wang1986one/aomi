@@ -16,10 +16,10 @@ namespace Orz
 	public:
 		TimeLogic(my_context ctx);
 		~TimeLogic(void);
-		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt > ,  sc::custom_reaction< LogicEvent::Dan1 >, sc::custom_reaction< LogicEvent::Dan2 >/* *//*, sc::custom_reaction< SetMode> ,sc::custom_reaction< HowWin >, sc::custom_reaction< AskTime > , */> reactions;
+		typedef boost::mpl::list< sc::custom_reaction< UpdateEvt >/* ,  sc::custom_reaction< LogicEvent::Dan1 >, sc::custom_reaction< LogicEvent::Dan2 >*//* *//*, sc::custom_reaction< SetMode> ,sc::custom_reaction< HowWin >, sc::custom_reaction< AskTime > , */> reactions;
 		sc::result react(const UpdateEvt & evt)	;
-		sc::result react(const LogicEvent::Dan1 & evt);
-		sc::result react(const LogicEvent::Dan2 & evt);
+	/*	sc::result react(const LogicEvent::Dan1 & evt);
+		sc::result react(const LogicEvent::Dan2 & evt);*/
 		void exit(void);
 	private:
 

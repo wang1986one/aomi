@@ -71,7 +71,7 @@ ZhugeLiangComponent::~ZhugeLiangComponent(void)
 {
 	
 }
-ComponentInterface * ZhugeLiangComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * ZhugeLiangComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameActionInterface)))
 	{

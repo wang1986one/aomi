@@ -225,7 +225,7 @@ bool RotationComponent::init(Ogre::SceneNode * node, CRotationInterface::DIRECTI
 	_direction = (direction == CRotationInterface::Clockwise)? -1: 1;
 	return true;
 }
-ComponentInterface * RotationComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * RotationComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(CRotationInterface)))

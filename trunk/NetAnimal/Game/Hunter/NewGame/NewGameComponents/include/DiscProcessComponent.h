@@ -15,7 +15,7 @@
 //	virtual ~DiscProcessComponent(void);
 //private:
 //	
-//	ComponentInterface * _queryInterface(const TypeInfo & info);
+//	ComponentInterface * _queryInterface(const TypeInfo & info) const;
 //
 //
 //};

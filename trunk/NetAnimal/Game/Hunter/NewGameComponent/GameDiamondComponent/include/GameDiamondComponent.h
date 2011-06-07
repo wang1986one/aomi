@@ -25,7 +25,7 @@ public :
 	GameDiamondComponent(void);
 	virtual ~GameDiamondComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	boost::scoped_ptr<CGameDiamondInterface> _diamondInterface;
 	bool load(Ogre::SceneNode * node);

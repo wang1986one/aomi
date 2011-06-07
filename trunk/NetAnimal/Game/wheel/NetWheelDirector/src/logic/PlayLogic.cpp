@@ -9,7 +9,7 @@ PlayLogic::PlayLogic(my_context ctx):LogicAdv(ctx)
 	
 	ORZ_LOG_NORMAL_MESSAGE("State In: PlayLogic!");
 	//WheelUI::getSingleton().runZXH(Hardware::getSingleton().getWinType()->getBanker());
-	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_PLAY_ENABLE, WheelEvents::PROCESS_PLAY_DISABLE));
+	_process.reset( new Process( context<WheelLogic>().game()->getWorld(), WheelEvents::PROCESS_PLAY_ENABLE, WheelEvents::PROCESS_PLAY_DISABLE));
 }
 
 

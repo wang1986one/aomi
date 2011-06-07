@@ -28,7 +28,7 @@ private:
 	///通知键盘释放事件
 	virtual bool onKeyReleased(const KeyEvent & evt);
 
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	bool update(TimeType i);
 	boost::scoped_ptr<COgreNodeDebuggerInterface> _debuggerInterface;

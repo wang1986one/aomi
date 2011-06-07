@@ -56,7 +56,7 @@ AnimalProcessComponent::~AnimalProcessComponent(void)
 {
 
 }
-ComponentInterface * AnimalProcessComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * AnimalProcessComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CAnimalProcessInterface)))
 		return _animalInterface.get();
@@ -82,11 +82,11 @@ bool AnimalProcessComponent::activate(SanProcess process)
 		
 		if(this->_type.second == Orz::AnimalEnum::KING)
 		{
-			if(_type.first == 3)
+			if(_type.first == 2)
 			{
 				
 				_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_dj", 0);
-				_actionInterface->disable = animation->disable;
+				_actionInterface->disable = boost::bind(&___disable);
 				_actionInterface->update = boost::bind(&___update, _1);
 				
 				return true;
@@ -106,21 +106,41 @@ bool AnimalProcessComponent::activate(SanProcess process)
 			break;
 		case 2:
 			{
-				_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "lion_dj", 0);
+				_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_dj", 0);
 
 			}
 			break;
 		case 3:
-			_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_dj", 0);
+			_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "lion_dj", 0);
 
 			break;
 
 		}
 
+		_actionInterface->disable = boost::bind(&___disable);
+		_actionInterface->update = animation->update;
+		return true;
+	}
+
+	if(process == PROCESS_PRORUN)
+	{
+
+		if(this->_type.second == Orz::AnimalEnum::KING)
+			return false;
+		COgreAnimationInterface * animation = _entityComp->queryInterface< COgreAnimationInterface >();
+		_actionInterface->enable =  boost::bind(&___enable);
 		_actionInterface->disable = animation->disable;
 		_actionInterface->update = animation->update;
 		return true;
-	}else if(process == PROCESS_PLAY && _isWinner)
+	}	
+
+	if(process == PROCESS_END)
+	{
+		return false;
+	}	
+
+
+	if(process == PROCESS_PLAY && _isWinner)
 	{
 		COgreAnimationInterface * animation = _entityComp->queryInterface< COgreAnimationInterface >();
 		/*	if(_type.first != 3)
@@ -139,12 +159,12 @@ bool AnimalProcessComponent::activate(SanProcess process)
 			break;
 		case 2:
 			{
-				_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "lion_zj", 3);
+				_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_zj", 3);
 
 			}
 			break;
 		case 3:
-			_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_zj", 3);
+			_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "lion_zj", 3);
 
 			break;
 
@@ -157,7 +177,7 @@ bool AnimalProcessComponent::activate(SanProcess process)
 	{
 	
 		
-		if(_type.first == 3)
+		if(_type.first == 2)
 		{
 			
 			_actionInterface->enable = boost::bind(&COgreAnimationInterface::enable, animation, "panda_dj", 0);
@@ -187,12 +207,12 @@ bool AnimalProcessComponent::init(AnimalEnum::ANIMAL_TYPE type, Ogre::SceneNode 
 		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
 		break;
 	case 2:
-		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "lion01.mesh", node);
-		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 5.0f);
-		break; 
-	case 3:
 		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "panda.mesh", node);
 		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 4.0f);
+		break; 
+	case 3:
+		entity->load(boost::lexical_cast<std::string>(i++)+"Animal", "lion01.mesh", node);
+		entity->getSceneNode()->setScale(Ogre::Vector3::UNIT_SCALE * 5.0f);
 		break;
 	}
 	if(type.second == Orz::AnimalEnum::KING)

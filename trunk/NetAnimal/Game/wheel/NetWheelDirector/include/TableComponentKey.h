@@ -21,8 +21,6 @@ namespace Orz
 
 	
 
-		virtual ComponentInterface * _queryInterface(const TypeInfo & info);
-
 	};
 }
 

@@ -21,12 +21,19 @@ int main()
 	//boost::shared_ptr<LogicConfigerManualLoader>  loader(new LogicConfigerManualLoader());
 
 	builder.addPlugin("Model_Base");
+#ifdef _NetWheelDirector
+	builder.addPlugin("NetWheelDirector");
+#endif
+#ifdef _MyWheelDirector
 	builder.addPlugin("MyWheelDirector");
+#endif
+#ifdef _WheelAnimal2
 	builder.addPlugin("WheelAnimal2Model");
-	builder.addPlugin("CodingComponent");
-	builder.addPlugin("MyJobComponent");
+#endif
+
+	//builder.addPlugin("CodingComponent");
+	//builder.addPlugin("MyJobComponent");
  
-	/*builder.addPlugin("WheelAnimalModel");*/
 	builder.setTheater("TheaterBase","main");
 	/*
 	NameValueList p;

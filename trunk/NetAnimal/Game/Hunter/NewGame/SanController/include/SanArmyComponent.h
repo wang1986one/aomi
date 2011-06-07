@@ -18,7 +18,7 @@
 //	SanArmyComponent(void);
 //	virtual ~SanArmyComponent(void);
 //private:
-//	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+//	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 //
 //	ComponentPtr _playerComp;
 //	bool activate(SanProcess process, SanWinMode winMode); 

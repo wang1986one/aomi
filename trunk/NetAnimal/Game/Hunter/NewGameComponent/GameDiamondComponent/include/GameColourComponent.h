@@ -22,7 +22,7 @@ public :
 	GameColourComponent(void);
 	virtual ~GameColourComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	boost::scoped_ptr<CGameColourInterface> _ColourInterface;
 	bool load(Ogre::SceneNode * node);

@@ -7,8 +7,9 @@ GameRunLogic::GameRunLogic(my_context ctx):LogicAdv(ctx),_time(0.f)
 {
 	
 	std::cout<<"!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<std::endl;
-	getOwner()->addBottomToUI();
-	getOwner()->runWinner();
+	
+	context<WheelLogic>().ui()->addBottom();
+	context<WheelLogic>().ui()->runWinner();
 }
 GameRunLogic::~GameRunLogic(void)
 {

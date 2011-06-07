@@ -24,7 +24,7 @@ namespace Orz
 		virtual void setTheTime(int second);
 		
 		virtual void setLogoShow(bool show);
-		virtual void setStartUIVisible(bool visible);
+		virtual void setStartVisible(bool visible);
 		virtual void setEndUIVisible(bool visible);
 		virtual void runWinner(void);
 		virtual void update(TimeType interval);

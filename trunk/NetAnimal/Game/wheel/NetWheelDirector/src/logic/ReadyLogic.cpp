@@ -9,7 +9,7 @@ using namespace Orz;
 	
 ReadyLogic::ReadyLogic(my_context ctx):LogicAdv(ctx)
 {
-	_process.reset( new Process( getOwner()->getWorld(), WheelEvents::PROCESS_READY_ENABLE, WheelEvents::PROCESS_READY_DISABLE));
+	_process.reset( new Process( context<WheelLogic>().game()->getWorld(), WheelEvents::PROCESS_READY_ENABLE, WheelEvents::PROCESS_READY_DISABLE));
 	
 	ORZ_LOG_NORMAL_MESSAGE("State In: ReadyLogic!");
 }
@@ -38,7 +38,7 @@ sc::result ReadyLogic::react(const UpdateEvt & evt)
 sc::result ReadyLogic::react(const LogicEvent::AskTime & evt)
 {
 
-	evt.resetClock(getOwner());
+	evt.resetClock(context<WheelLogic>().clock());
 
 	return transit<StartLogic>();
 }

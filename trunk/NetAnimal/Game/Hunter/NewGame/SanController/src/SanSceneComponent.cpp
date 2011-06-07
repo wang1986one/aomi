@@ -120,7 +120,7 @@ bool SanSceneComponent::load(const std::string & gName)
 
 	return true;
 }
-ComponentInterface * SanSceneComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * SanSceneComponent::_queryInterface(const TypeInfo & info) const
 {
 
 

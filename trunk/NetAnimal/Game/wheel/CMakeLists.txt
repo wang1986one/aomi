@@ -38,28 +38,56 @@ FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/interface ORZ_PROJECT_INTERFACE_DIR)
 FILE(TO_CMAKE_PATH ${ORZ_PROJECT_DIR}/component ORZ_PROJECT_COMPONENT_DIR)
 
 
-ADD_SUBDIRECTORY(WheelGobal)
+
+IF(MyWheelDirector)
+	ADD_DEFINITIONS(-D_MyWheelDirector)
+ENDIF( MyWheelDirector)
 
 
+IF(NetWheelDirector)
+	ADD_DEFINITIONS(-D_NetWheelDirector)
+ENDIF( NetWheelDirector)
 
 
-ADD_SUBDIRECTORY(UnitTest)
-ADD_SUBDIRECTORY(Wheel)
+IF(WheelAnimal2)
+	ADD_DEFINITIONS(-D_WheelAnimal2)
+ENDIF( WheelAnimal2)
 
 
 IF(MyWheelDirector)
     ADD_SUBDIRECTORY(MyWheelDirector)
     ADD_SUBDIRECTORY(MyWheelController)
-	ADD_DEPENDENCIES(MyWheelController WheelGobal)
-	ADD_DEPENDENCIES(MyWheelDirector MyWheelController)
 ENDIF( MyWheelDirector)
 
 
 IF(NetWheelDirector)
     ADD_SUBDIRECTORY(NetWheelDirector)
     ADD_SUBDIRECTORY(NetWheelController)
+ENDIF( NetWheelDirector)
+
+
+IF(WheelAnimal2)
+    ADD_SUBDIRECTORY(WheelAnimal2Controller)
+    ADD_SUBDIRECTORY(WheelAnimal2Model)
+ENDIF( WheelAnimal2)
+
+ADD_SUBDIRECTORY(UnitTest)
+ADD_SUBDIRECTORY(Wheel)
+
+ADD_SUBDIRECTORY(WheelGobal)
+
+
+
+IF(MyWheelDirector)
+	ADD_DEPENDENCIES(MyWheelController WheelGobal)
+	ADD_DEPENDENCIES(MyWheelDirector MyWheelController)
+ENDIF( MyWheelDirector)
+
+
+IF(NetWheelDirector)
 	ADD_DEPENDENCIES(NetWheelController WheelGobal)
 	ADD_DEPENDENCIES(NetWheelDirector NetWheelController)
+	MESSAGE(123)
 ENDIF( NetWheelDirector)
 
 

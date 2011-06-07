@@ -1,1 +1,0 @@
-ORZ_FIND(Orz_SDK OrzSDK bin/debug/Toolkit_Base.dll)

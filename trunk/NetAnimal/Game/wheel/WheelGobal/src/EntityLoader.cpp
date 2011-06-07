@@ -11,14 +11,14 @@ const std::string ACTOR("actor");
 const std::string TYPE("type");
 const std::string NAME("name");
 
-bool loadPlugin(TiXmlElement*  element)
+bool loadPlugin(rapidxml::xml_node<>*  element)
 {
 	const std::string  * name = element->Attribute(NAME);
 	PluginsManager::getSingleton().loadPlugin(*name);
 	return true;
 }
 
-bool readSceneFromXML(TiXmlElement*  element, EntityLoader * loader)
+bool readSceneFromXML(rapidxml::xml_node<>*  element, EntityLoader * loader)
 {
 	
 	const std::string * type = element->Attribute(TYPE);
@@ -27,7 +27,7 @@ bool readSceneFromXML(TiXmlElement*  element, EntityLoader * loader)
 
 	return true;
 }
-bool readActorFromXML(TiXmlElement*  element, EntityLoader * loader)
+bool readActorFromXML(rapidxml::xml_node<>*  element, EntityLoader * loader)
 {
 	
 	const std::string * type = element->Attribute(TYPE);
@@ -49,13 +49,13 @@ bool EntityLoader::loadFromXML(const std::string & xmlFile)
 {
 	TiXmlDocument document(xmlFile.c_str());
 	document.LoadFile();
-	TiXmlElement* root = document.FirstChildElement(ENTITY_LOADER.c_str());
+	rapidxml::xml_node<>* root = document.FirstChildElement(ENTITY_LOADER.c_str());
 
 	if (root)
 	{	
 		
 	
-		for(TiXmlElement*  element = root->FirstChildElement();  element; element = element->NextSiblingElement(  ) ) 
+		for(rapidxml::xml_node<>*  element = root->FirstChildElement();  element; element = element->NextSiblingElement(  ) ) 
 		{ 
 			if(element->ValueStr() == PLUGIN)
 			{

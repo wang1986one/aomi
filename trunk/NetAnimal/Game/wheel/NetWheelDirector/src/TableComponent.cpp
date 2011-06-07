@@ -49,8 +49,3 @@ TableComponent::TableComponent(void):_f5TableInterface(new F5TableInterface()),_
 	_query.add(_f6TableInterface.get());
 }
 
-ComponentInterface * TableComponent::_queryInterface(const TypeInfo & info)
-{
-	return _query.queryInterface(info);
-}
-

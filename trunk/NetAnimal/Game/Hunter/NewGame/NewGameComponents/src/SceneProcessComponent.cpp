@@ -26,6 +26,9 @@ SceneProcessComponent::SceneProcessComponent(void):_actionInterface(new CGameAct
 
 	_system = psm->createParticleSystem("winnomove", "newgame_winnomove", Orz::OgreGraphicsManager::getSingletonPtr()->getSceneManager());
 	Orz::OgreGraphicsManager::getSingleton().getSceneManager()->getRootSceneNode()->attachObject(_system); 
+	
+	_sound = Orz::ISoundManager::getSingleton().createPlayer("S_Pointer.wav", true);
+	_sound->load();
 
 }
 SceneProcessComponent::~SceneProcessComponent(void)
@@ -40,6 +43,7 @@ SceneProcessComponent::~SceneProcessComponent(void)
 	}
 	_rain->unload();
 	_light->unload();
+	_sound->unload();
 }
 
 bool SceneProcessComponent::enable(void)
@@ -107,6 +111,18 @@ bool SceneProcessComponent::winEnable(CNewGameSceneInterface::CAM_DIRECTION camD
 //	return false;
 //}
 
+bool SceneProcessComponent::prorunEnable(void)
+{
+	
+		
+	_sound->play(-1);
+	return true;
+}
+void SceneProcessComponent::prorunDisable(void)
+{
+	_sound->stop();
+
+}
 
 
 bool SceneProcessComponent::playEnable(void)
@@ -146,6 +162,12 @@ bool SceneProcessComponent::activate(SanProcess process)
 			_actionInterface->enable =  boost::bind(&SceneProcessComponent::enableLighting, this);
 			_actionInterface->disable = boost::bind(&___disable);
 
+			return true;
+		}else
+		{
+			
+			_actionInterface->enable =  boost::bind(&SceneProcessComponent::prorunEnable, this);
+			_actionInterface->disable =  boost::bind(&SceneProcessComponent::prorunDisable, this);
 			return true;
 		}
 
@@ -279,7 +301,7 @@ bool SceneProcessComponent::activate(SanProcess process)
 	return false;
 }
 
-ComponentInterface * SceneProcessComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * SceneProcessComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(CGameActionInterface)))

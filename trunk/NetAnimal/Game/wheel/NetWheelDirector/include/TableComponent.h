@@ -33,12 +33,10 @@ namespace Orz
 
 		//CodingSet _set;
 
-		virtual ComponentInterface * _queryInterface(const TypeInfo & info);
 
 		boost::scoped_ptr<F5TableInterface> _f5TableInterface;
 		boost::scoped_ptr<F6TableInterface> _f6TableInterface;
 
-		ComponentQueryInterface _query;
 	};
 }
 

@@ -16,7 +16,7 @@ public :
 	GameNeedleComponent(void);
 	virtual ~GameNeedleComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	void setLeafVisible(bool visible);
 	boost::scoped_ptr<CGameNeedleInterface> _needleInterface;
 	bool load(Ogre::SceneNode * node);

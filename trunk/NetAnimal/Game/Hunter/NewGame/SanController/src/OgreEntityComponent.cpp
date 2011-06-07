@@ -103,7 +103,7 @@ void OgreEntityComponent::unload(void)
 
 }
 
-ComponentInterface * OgreEntityComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * OgreEntityComponent::_queryInterface(const TypeInfo & info) const
 {
 
 	if(info == TypeInfo(typeid(COgreEntityInterface)))

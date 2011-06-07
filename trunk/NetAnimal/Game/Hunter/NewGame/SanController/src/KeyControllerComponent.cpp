@@ -34,7 +34,7 @@
 //	_nodes.erase(std::remove(_nodes.begin(), _nodes.end(), sn), _nodes.end());
 //	
 //}
-//ComponentInterface * OgreNodeDebuggerComponent::_queryInterface(const TypeInfo & info)
+//ComponentInterface * OgreNodeDebuggerComponent::_queryInterface(const TypeInfo & info) const
 //{
 //	if(info == TypeInfo(typeid(COgreNodeDebuggerInterface)))
 //	{

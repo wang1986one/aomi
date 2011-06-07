@@ -3,7 +3,7 @@
 #include "WheelAnimalGame.h"
 #include "WheelEvents.h"
 #include "WheelAnimalUI.h"
-#include "WheelGameInterface.h"
+#include "WheelGameUIRegister.h"
 #include "WheelAnimalScene.h"
 using namespace Orz;
 WheelAnimalScene::WheelAnimalScene(const std::string & name):Scene(name)
@@ -34,14 +34,14 @@ void WheelAnimalScene::doExecute(Event * evt)
 void WheelAnimalScene::doEnable(void)
 {
 	WheelUIInterfacePtr ui(new WheelAnimalUI());
-	WheelGameInterface::getSingleton().active(ui);
+	WheelGameUIRegister::getSingleton().active(ui);
 	_controller.reset(new WheelAnimalGame());
 	enableUpdate();
 	setChannel(EventChannel::create().addUserChannel<CHANNEL_PROCESS>());
 }
 void WheelAnimalScene::doDisable(void)
 {
-	WheelGameInterface::getSingleton().active(WheelUIInterfacePtr());
+	WheelGameUIRegister::getSingleton().active(WheelUIInterfacePtr());
 	/*_processManager.reset();*/
 	_controller.reset();
 

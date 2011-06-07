@@ -14,7 +14,7 @@
 //	GameAnimalComponent(void);
 //	virtual ~GameAnimalComponent(void);
 //private:
-//	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+//	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 //	ComponentPtr _entityComp;//OgreEntity
 //};
 //}

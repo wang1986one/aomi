@@ -227,7 +227,7 @@ bool GameColourComponent::load(Ogre::SceneNode * node)
 	reset();
 	return true;
 }
-ComponentInterface * GameColourComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * GameColourComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(CGameColourInterface)))
 		return _ColourInterface.get();

@@ -17,7 +17,7 @@ public :
 	GameRotationComponent(void);
 	virtual ~GameRotationComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 	boost::scoped_ptr<CGameRotationInterface> _gameRotationInterface;
 

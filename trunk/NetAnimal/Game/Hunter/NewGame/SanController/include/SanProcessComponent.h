@@ -19,7 +19,7 @@ public :
 	SanProcessComponent(void);
 	virtual ~SanProcessComponent(void);
 private:
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	
 private:
 	typedef std::vector<ComponentPtr> ComponentList;

@@ -25,11 +25,11 @@ namespace Orz
 		///得到动画类型
 		virtual WheelEnum::AnimalType getAnimalType(int n);
 		/// 但创建摄像机的时候，关联到相应枚举
-		virtual void OnCameraCreate(Ogre::Camera* pCamera, TiXmlElement* pCameraDesc);
+		virtual void OnCameraCreate(Ogre::Camera* pCamera, rapidxml::xml_node<>* pCameraDesc);
 		///当创建实体的时候，关联到相应枚举
-		virtual void OnEntityCreate(Ogre::Entity *pEntity, TiXmlElement* pEntityDesc);   
+		virtual void OnEntityCreate(Ogre::Entity *pEntity, rapidxml::xml_node<>* pEntityDesc);   
 		///当创建虚拟体的时候，关联到相应枚举
-		virtual void OnHelperCreated(Ogre::SceneNode* pHelper, TiXmlElement* pHelperDesc);
+		virtual void OnHelperCreated(Ogre::SceneNode* pHelper, rapidxml::xml_node<>* pHelperDesc);
 	    ///得到动画对应的名称
 		virtual std::string getSceneAnimationName(SceneItemMark mark);
 		

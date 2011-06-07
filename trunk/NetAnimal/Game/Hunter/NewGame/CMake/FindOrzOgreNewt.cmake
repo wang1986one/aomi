@@ -1,1 +1,0 @@
-ORZ_FIND(Orz_OgreNewt View_OgreNewt bin/debug/OgreNewtUT.exe)

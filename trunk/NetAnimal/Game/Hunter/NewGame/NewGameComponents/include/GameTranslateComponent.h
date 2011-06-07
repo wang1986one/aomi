@@ -20,7 +20,7 @@ namespace Orz
 	private:
 
 		boost::scoped_ptr<CGameTranslateInterface> _translateInterface;
-		ComponentInterface * _queryInterface(const TypeInfo & info);
+		ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 		void resetRate(WheelEnum::RATE rate);
 		int getColor();

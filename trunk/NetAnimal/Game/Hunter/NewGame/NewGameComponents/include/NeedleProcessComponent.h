@@ -36,7 +36,7 @@ namespace Orz
 	private:
 		bool activate(SanProcess process);
 
-		ComponentInterface * _queryInterface(const TypeInfo & info);
+		ComponentInterface * _queryInterface(const TypeInfo & info) const;
 
 
 		bool enable(void);

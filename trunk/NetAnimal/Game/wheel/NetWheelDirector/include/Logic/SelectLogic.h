@@ -32,13 +32,13 @@ namespace Orz
 		SceneMsg _sceneMsg;
 
 	private:
-		enum TheState
+	/*	enum TheState
 		{
 			SelectScene,
 			HardwareTest,
 		};
 	private:
-		TheState _state;
+		TheState _state;*/
 	};
 
 

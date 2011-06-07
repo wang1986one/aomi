@@ -14,7 +14,7 @@ public:
 	
 private:
 	
-	virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+	virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 	void doPlace(int n, Orz::NameValueList * nvl);
 	boost::scoped_ptr<CWheelPlaceInterface> _placeInterface;
 };

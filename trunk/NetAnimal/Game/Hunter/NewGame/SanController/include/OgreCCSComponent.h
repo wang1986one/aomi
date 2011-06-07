@@ -32,7 +32,7 @@ namespace Orz
 
 		CCS::CameraControlSystem * getCCS(void);
 		bool update(TimeType interval);
-		virtual ComponentInterface * _queryInterface(const TypeInfo & info);
+		virtual ComponentInterface * _queryInterface(const TypeInfo & info) const;
 		boost::scoped_ptr<COgreCCSInterface> _ccsInterface;
 		boost::scoped_ptr<CUpdateInterface> _updateInterface;
 		

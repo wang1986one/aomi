@@ -100,7 +100,7 @@ bool VedioUIComponent::play(void)
 	return true;	
 }
 
-ComponentInterface * VedioUIComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * VedioUIComponent::_queryInterface(const TypeInfo & info) const
 {
 
 

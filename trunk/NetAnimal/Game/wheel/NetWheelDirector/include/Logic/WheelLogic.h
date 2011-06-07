@@ -7,6 +7,7 @@
 #include "WheelGame.h"
 #include "CommunicateInterface.h"
 #include "logic/LogicEvent.h"
+#include "RouletteGameInterfaces.h"
 namespace Orz
 {
 
@@ -17,7 +18,7 @@ namespace Orz
 	class LogoLogic;
 	
 	class SelectLogic;
-	class WheelLogic: public FSM::MainLogic<WheelLogic, WheelGame, SelectLogic/**/> 
+	class WheelLogic: public FSM::MainLogic<WheelLogic, ComponentPtr, SelectLogic> 
 	{
 	public:
 		typedef boost::mpl::list< sc::custom_reaction< LogicEvent::WheelStart >, sc::custom_reaction< LogicEvent::SetTime >  > reactions;
@@ -25,8 +26,16 @@ namespace Orz
 		sc::result react(const LogicEvent::WheelStart & evt);
 		sc::result react(const LogicEvent::SetTime & evt);
 
+		RouletteGameInterfaces * game(void);
+		RouletteClockInterface * clock(void);
+		RouletteUIInterface * ui(void);
+
 		WheelLogic(void);
 		~WheelLogic(void);
+	private:
+		RouletteGameInterfaces * _game;
+		RouletteClockInterface * _clock;
+		RouletteUIInterface * _ui;
 
 	};
 

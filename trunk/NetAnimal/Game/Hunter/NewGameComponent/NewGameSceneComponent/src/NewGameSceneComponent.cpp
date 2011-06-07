@@ -137,7 +137,7 @@ NewGameSceneComponent::~NewGameSceneComponent(void)
 {
 	_coinLoop->unload();
 }
-ComponentInterface * NewGameSceneComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * NewGameSceneComponent::_queryInterface(const TypeInfo & info) const
 {
 	if (info==TypeInfo(typeid(CNewGameSceneInterface)))
 	{

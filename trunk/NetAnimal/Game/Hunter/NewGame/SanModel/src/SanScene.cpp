@@ -8,7 +8,7 @@
 #include "SanUI.h"
 #include <WheelGobal/WheelEvents.h>
 #include <WheelGobal/WheelUIInterface.h>
-#include <WheelGobal/WheelGameInterface.h>
+#include <WheelGobal/WheelGameUIRegister.h>
 #include "CSanProcessInterface.h"
 #include "CWheelPlaceInterface.h"
 #include "COgreEntityInterface.h"
@@ -16,7 +16,7 @@
 #include "CGameRotationInterface.h"
 #include "CAnimalProcessInterface.h"
 #include "CGameBaseInterface.h"
-#include "CNewGameSceneInterface.h"
+#include "CNewGameSceneInterface.h"setTheTime
 #include "CGameDiamondInterface.h"
 #include "UIProcessInterface.h"
 #include "CGameTranslateInterface.h"
@@ -244,7 +244,7 @@ void SanScene::doEnable(void)
 
 	
 	UIProcessInterface * ui = _uiComp->queryInterface<UIProcessInterface>();
-	WheelGameInterface::getSingleton().active(boost::shared_ptr<WheelUIInterface>(ui, nodeleter()));//激活这个ui
+	WheelGameUIRegister::getSingleton().active(boost::shared_ptr<WheelUIInterface>(ui, nodeleter()));//激活这个ui
 	CNeedleProcessInterface * needle = _needleComp->queryInterface<CNeedleProcessInterface>();
 	needle->_callback = boost::bind(&SanScene::setWinner, this, _1);
 
@@ -268,7 +268,7 @@ void SanScene::doEnable(void)
 void SanScene::doDisable(void)
 {
 
-	WheelGameInterface::getSingleton().active(WheelUIInterfacePtr());
+	WheelGameUIRegister::getSingleton().active(WheelUIInterfacePtr());
 	//_sceneComp.reset();
 }
 

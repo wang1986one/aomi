@@ -11,7 +11,7 @@
 //{
 //
 //}
-//ComponentInterface * DiscProcessComponent::_queryInterface(const TypeInfo & info)
+//ComponentInterface * DiscProcessComponent::_queryInterface(const TypeInfo & info) const
 //{
 //
 //	return NULL;

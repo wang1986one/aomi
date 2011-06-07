@@ -25,7 +25,7 @@ namespace Orz
 	private:
 
 		bool activate(SanProcess process);
-		ComponentInterface * _queryInterface(const TypeInfo & info);
+		ComponentInterface * _queryInterface(const TypeInfo & info) const;
 		ComponentPtr _diamondComp;
 		ComponentPtr _ballComp;
 		boost::scoped_ptr<CGameActionInterface> _actionInterface;

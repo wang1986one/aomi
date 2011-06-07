@@ -21,7 +21,7 @@ OgreDotSceneLoaderComponent::~OgreDotSceneLoaderComponent(void)
 {
 
 }
-ComponentInterface * OgreDotSceneLoaderComponent::_queryInterface(const TypeInfo & info)
+ComponentInterface * OgreDotSceneLoaderComponent::_queryInterface(const TypeInfo & info) const
 {
 	if(info == TypeInfo(typeid(COgreSceneLoaderInterface)))
 		return _sceneLoaderInterface.get();

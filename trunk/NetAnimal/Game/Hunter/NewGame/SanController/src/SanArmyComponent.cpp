@@ -52,7 +52,7 @@
 //{
 //	
 //}
-//ComponentInterface * SanArmyComponent::_queryInterface(const TypeInfo & info)
+//ComponentInterface * SanArmyComponent::_queryInterface(const TypeInfo & info) const
 //{
 //	if(info == TypeInfo(typeid(CGameActionInterface)))
 //	{
