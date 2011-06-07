@@ -43,9 +43,9 @@ panelDatas["yellow_monkey"] = { id: 10, text: '黄色猴子', num: 0, rate: 7, p
 ,image:'<img src="./icon/monkey_yellow.png" width="40" height="40" longdesc="">' };
 
 panelDatas["red_rabbit"] = { id: 11, text: '红色兔子', num: 0, rate: 8, profit: -1   
-,image:'<img src="./icon/rabblt_green.png" width="40" height="40" longdesc="">'};
-panelDatas["green_rabbit"] = { id: 12, text: '绿色兔子', num: 0, rate: 7, profit: -1   
 ,image:'<img src="./icon/rabblt_red.png" width="40" height="40" longdesc="">'};
+panelDatas["green_rabbit"] = { id: 12, text: '绿色兔子', num: 0, rate: 7, profit: -1   
+,image:'<img src="./icon/rabblt_green.png" width="40" height="40" longdesc="">'};
 panelDatas["yellow_rabbit"] = { id: 13, text: '黄色兔子', num: 0, rate: 4, profit: -1   
 ,image:'<img src="./icon/rabblt_yellow.png" width="40" height="40" longdesc="">'};
 
@@ -62,7 +62,8 @@ function setupButton()
 	}
 }
 function enableButton()
-{
+{	
+	
 	bMarkBegin = true;
 	for (var key in panelDatas) { 
 		$( "#" + key, ".demo" ).button("enable");
@@ -165,9 +166,10 @@ function clearButton()
 }
 function handle(event)
 {
-	
 	panelDatas[event.data.attr("id")].num += 1;
 	
+	_json_data = 123;
+	_upload_data = true;
 	if(panelMsg.tms.num > 0)
 	{
 		panelMsg.tms.num--;
