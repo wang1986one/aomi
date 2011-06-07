@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head> 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" > 
@@ -18,6 +18,46 @@
 <script type="text/javascript">
 //<!--
 
+		
+		var next = -1;
+		function abc()
+		{
+
+
+			$.getJSON('http://7dgame.com:80/index/list/format/html?jsoncallback=?',  
+				function(data, textStatus)
+				{
+				
+				
+					if(next == -1){next = data.next}
+						
+					if(data.next != next)
+					{
+						next = data.next;
+						QtExecute.startGame();
+						QtExecute.setWinData(data.prize.type, data.prize.color, data.prize.animal);
+					}else
+					{
+						
+						$('#text1').text("距离下次开奖还有:"+(data.next- data.now)+"秒");
+					}
+				}				
+			);
+			
+			return false; 
+
+			
+
+		
+
+		}
+
+		$(document).ready(function(){
+				setInterval(abc, 1000);
+			});
+
+			
+			
     $(document).ready(function() {
 
         $('#line0').html($('#line0').html() + getMsg('yl'));
@@ -89,11 +129,12 @@
 
 	
 </head> 
+<div id="text"></div>
+<div id="text1"></div>
 
 <div class="demo">
 <p id="line0"/>
 <p id="line1"/>
-
 <p id="line2"/>
 <p id="line3"/>
 </div>
